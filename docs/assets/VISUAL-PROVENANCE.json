@@ -1,0 +1,12 @@
+{
+  "source": "First E3 public recording in the evaluated manifest; same retained inference example",
+  "original_shape": [
+    18,
+    500
+  ],
+  "mask": "Fixed contiguous 50%, seed 20261026",
+  "display_limits": "2nd/98th percentiles of this example, shared across all frames; display clipping only",
+  "color": "Scaled CSI amplitude, not body temperature or RF-field intensity",
+  "transformations": "Measured array, exact saved missing mask, observed-only linear interpolation",
+  "data_license": "CC BY 4.0, Alsaify et al., DOI 10.17632/v38wjmz6f6.2"
+}

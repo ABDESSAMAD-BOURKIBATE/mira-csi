@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "platform": "Windows",
+  "python": "3.12.14",
+  "torch": "2.11.0+cpu",
+  "device": "CPU",
+  "checks": [
+    {
+      "condition": "Complete",
+      "prediction": "pick_up",
+      "matches_evaluated_prediction": true,
+      "max_probability_difference": 3.2280473349910466e-08
+    },
+    {
+      "condition": "Block 50%",
+      "prediction": "sit_down",
+      "matches_evaluated_prediction": true,
+      "max_probability_difference": 3.245752580594008e-08
+    }
+  ],
+  "scope": "Two saved-model inference cases reproduce the Colab CPU predictor; no live-sensing or population-accuracy claim."
+}

@@ -1,65 +1,104 @@
-# MIRA-CSI
+<p align="center">
+  <img src="docs/assets/mira-csi-banner.png" alt="MIRA-CSI — missingness-informed Wi-Fi activity recognition, developed by Abdessamad Bourkibate" width="100%">
+</p>
 
-**Missingness-Informed Recognition of Activities from Wi-Fi CSI**
+<p align="center">
+  <a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0"><img alt="Research release" src="https://img.shields.io/badge/release-v0.1.0-176B74?style=flat-square&logo=github"></a>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.13_tested-3776AB?style=flat-square&logo=python&logoColor=white">
+  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.11-EE4C2C?style=flat-square&logo=pytorch&logoColor=white">
+  <img alt="Evaluation" src="https://img.shields.io/badge/evaluation-60_fits_verified-14806A?style=flat-square">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-6C5B96?style=flat-square"></a>
+  <a href="https://orcid.org/0009-0000-6186-8071"><img alt="Author ORCID" src="https://img.shields.io/badge/ORCID-0009--0000--6186--8071-A6CE39?style=flat-square&logo=orcid&logoColor=white"></a>
+</p>
 
-Developer and research lead: **Eng. Abdessamad Bourkibate**  
-Software & Cybersecurity Engineer | AI & EdTech, Share'In Holding  
-ORCID: https://orcid.org/0009-0000-6186-8071
+<p align="center">
+  <a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Results</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#reproduce">Reproduce</a> · <a href="#citation">Cite</a>
+</p>
 
-MIRA-CSI is an executable research model for seven-class activity recognition
-from recorded Wi-Fi channel-state information. The five-seed, three-fold
-comparison is complete and independently verified. It remains experimental;
-the results do not establish general superiority or deployment readiness.
+## Overview
+
+**MIRA-CSI** — *Missingness-Informed Recognition of Activities from Wi-Fi CSI* — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides the model, trained states, a standalone predictor and a completed comparison against two CNN training regimes and official multivariate MiniRocket.
+
+**Developer and research lead:** Eng. **Abdessamad Bourkibate**  
+Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
+
+**Status:** experimental offline classifier, evaluated on seven activity labels. The results do not establish broad model superiority or live deployment readiness.
+
+## Quick start
+
+```sh
+git clone https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi.git
+cd mira-csi
+python -m pip install numpy
+python -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+Download [the verified model/results package](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.1.0/mira-csi-verified-results.zip) and extract it into the project directory, producing `results/`. Then run:
+
+```sh
+python predict.py --checkpoint results/checkpoints/mira_csi_E3_s20261026.pt --input results/demo_input.npy --calibration results/runs/mira_csi_E3_s20261026.json
+```
+
+Add `--observed results/demo_observed.npy` for the matched block-loss example. A CPU is sufficient for saved-model inference. The predictor returns an activity label and seven model probabilities. The included example is a public recorded CSI segment.
+
+Exact evaluated package versions are in [`evaluation/package_versions.json`](evaluation/package_versions.json).
+
+## Architecture
+
+<p align="center"><img src="figures/mira_architecture.png" alt="18 amplitude bands plus observation mask and gap channels, temporal CNN, coverage-weighted pooling and seven activity logits" width="100%"></p>
+
+| Component | Implementation |
+|---|---|
+| Signal input | 18 amplitude bands × 500 normalized packet positions |
+| Missingness input | Observation mask and distance to nearest observation |
+| Encoder | 1D convolutions: 32 → 64 → 128 channels, GroupNorm, GELU |
+| Pooling | Temporal features weighted by local observation coverage |
+| Output | Seven logits, with source-validation temperature scaling |
+| Model size | 40,871 trainable parameters |
+
+The comparison includes an ordinary amplitude CNN (40,423 parameters), the same CNN with source-only loss augmentation, and the official MiniRocket transform with **9,996 features**. Mask and time-gap representations have prior art; [`PRIOR-ART.md`](PRIOR-ART.md) documents attribution and the scope of this design.
+
+### A real recording through the repair pipeline
+
+<p align="center"><img src="docs/assets/csi-repair-demo.gif" alt="Recorded CSI, synthetic 50 percent contiguous loss, and observed-only linear repair" width="100%"></p>
+
+The animation uses the released first-E3 recording, the saved 250-position missing mask and linear interpolation. Colors encode scaled CSI amplitude. Animation time is illustrative; the horizontal axis is normalized packet position. [Visual provenance](docs/assets/VISUAL-PROVENANCE.json) records the source and display limits.
+
+## Evaluation
+
+**60 fitted runs · 3 excluded-environment folds · 5 paired training/mask seeds**
 
 | Model | Complete accuracy (%) | Block 50%, linear (%) |
 |---|---:|---:|
 | CNN | 24.52 ± 2.17 | 22.19 ± 2.15 |
 | CNN + augmentation | 22.54 ± 1.82 | 20.76 ± 1.33 |
-| MIRA-CSI | 23.73 ± 2.26 | 23.00 ± 1.28 |
+| **MIRA-CSI** | **23.73 ± 2.26** | **23.00 ± 1.28** |
 | MiniRocket (9,996) | 53.08 ± 0.33 | 19.59 ± 0.88 |
 
-Means ± SD over five paired training/mask seeds on the fixed held-environment
-selection. See [the full evaluation](evaluation/README.md) for exact scope,
-per-seed values, probability quality, repair errors and the retained failed
-inference example. The code and model states are real; no result was imposed.
+Means ± sample SD across five paired seeds; each seed pools 1,260 held-environment predictions. Room and participant cohort change together, so this protocol cannot isolate a causal room-only effect.
 
-## Implemented design
+<p align="center"><img src="evaluation/expanded_comparison.png" alt="Measured familiar and held-environment accuracy under complete input and random or contiguous loss" width="100%"></p>
 
-A compact temporal CNN receives 18 amplitude-band streams, an observation mask
-and the normalized distance to the nearest observed sample. Temporal pooling
-weights encoded features by local observation coverage. This weight is a
-deterministic coverage proxy; it is not a measured probability or RF field.
+MiniRocket is stronger on complete inputs and fails substantially under long gaps. MIRA-CSI has limited absolute recognition accuracy; these experiments do not establish a substantial practical advantage over the ordinary CNN. The **[full evaluation](evaluation/README.md)** includes per-seed metrics, repair comparisons, NLL, Brier, ECE and the retained failed first-file inference example.
 
-Two ablations distinguish the effects of source-only corruption augmentation
-and the extra missingness inputs/pooling. A wider official MiniRocket reference
-provides an independent algorithmic comparison. All settings are fixed in
-`protocol.json` before the new results are examined.
+All **3,048 metric rows** were independently recomputed from saved probabilities in Colab and again locally. The package retains 896,112 probability vectors, including dependent supplementary mask views of the same 1,260 recordings.
 
-The CNN blocks and mask-aware learning have prior art. In particular, GRU-D
-already uses masking and time intervals. Our specific CSI implementation and
-evaluation must be assessed against that literature; attribution is preserved
-in `PRIOR-ART.md` and the vendored MiniRocket files.
+## Technology stack
 
-## Real data and boundaries
+| Role | Languages and libraries |
+|---|---|
+| Model and inference | Python · PyTorch · NumPy |
+| Signal preparation | Python · NumPy · SciPy |
+| Reference comparison | Numba · scikit-learn · official MiniRocket source |
+| Analysis and figures | pandas · Matplotlib · Pillow |
+| Research documentation | Markdown · LaTeX · CFF citation metadata |
 
-The inputs derive from 1260 publicly released recordings by Alsaify et al.
-(dataset DOI: https://doi.org/10.17632/v38wjmz6f6.2;
-article DOI: https://doi.org/10.1016/j.dib.2020.106534).
-The immutable selection/participant roles and raw-file hashes are preserved in
-`data/manifest.json`. The portable tensor contains 18 scaled amplitude bands
-at 500 normalized packet positions, not seconds or pixels.
+## Reproduce
 
-Each of three folds excludes an entire environment and its participant cohort.
-It cannot identify a causal room-only effect, because different environments
-contain different participants. Artificially removed packet positions are not
-empirical network outages. No private local Wi-Fi measurements are included.
-
-## Run
-
-Use Python with NumPy, SciPy, scikit-learn, PyTorch, Numba, joblib and Matplotlib.
-In Colab these are checked in the notebook before starting. From this directory:
+Install `requirements.txt`. Obtain the exact processed public input cache from the [release assets](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0), or rebuild it from pinned raw recordings:
 
 ```sh
+python -m pip install -r requirements.txt
 python prepare_data.py
 python check_inputs.py
 python run_experiment.py --models cnn_clean cnn_augmented mira_csi
@@ -68,36 +107,46 @@ python verify_results.py
 python summarize_results.py
 ```
 
-The protocol requires 5 seeds × 3 folds for every model (60 fitted runs).
-The compute amendment in `protocol_amendment_01.json` pairs training/mask seeds
-for the primary comparison: seven matched conditions per fit. CNNs retain their
-additional 31-condition grid as supplementary sensitivity data; MiniRocket runs
-use the seven matched conditions. Checkpoints, validation histories and complete
-per-file probability arrays are saved, so aggregate claims can be independently
-recomputed. Partial runs must be labeled incomplete.
+[`protocol.json`](protocol.json) fixes the selection, participant roles, model settings and seeds. The [compute amendment](protocol_amendment_01.json) pairs training/mask seeds for the primary comparison. Extra CNN masks and a previously completed full-grid MiniRocket run remain supplementary sensitivity data.
 
-`prepare_data.py` downloads only the pinned public selection, checks every raw
-SHA256 and reconstructs the exact tensor recorded in `input_receipt.json`.
-It requires approximately 395 MB of download/storage for the selected MAT files.
+<details>
+<summary><strong>Download contents and provenance</strong></summary>
 
-## License and citation
+| Asset | Contents |
+|---|---|
+| `mira-csi-verified-results.zip` | All 60 trained states, probability arrays, metrics, histories, plots and run records |
+| `mira-csi-public-inputs.zip` | Exact public input tensor, manifest, attribution and hashes |
+| GitHub source archive | Source code, model card, evaluation summaries and documentation |
 
-Original implementation is released under GPL-3.0-or-later, with author credit
-to Abdessamad Bourkibate. The official MiniRocket reference retains its authors
-and GPL license. Dataset ownership remains with its original authors; the
-dataset is separately licensed CC BY 4.0. A citation file describes this software
-without inventing a publication, DOI or release history.
+SHA256 digests accompany the release. The input cache does not overwrite current software source. Raw-data reconstruction downloads approximately 395 MB; the optional processed cache is smaller.
 
-## Run a saved model without retraining
+</details>
 
-Download the full verified results from the release assets and extract it in
-this project directory, producing `results/`. Then run:
+## Task boundaries
 
-```sh
-python predict.py --checkpoint results/checkpoints/mira_csi_E3_s20261026.pt --input results/demo_input.npy --calibration results/runs/mira_csi_E3_s20261026.json
+- Input is processed, recorded CSI from the documented acquisition system.
+- Output is one of seven predefined activity labels and its probability vector.
+- Ordinary laptop RSSI does not provide this input. Body images, temperature, vital signs and unrestricted through-wall pose reconstruction are outside the evaluated task.
+- Synthetic missing positions and offline repair do not establish causal real-time operation. See the [model card](MODEL_CARD.md) for full limitations.
+
+## Citation
+
+Use **Cite this repository** on GitHub or [`CITATION.cff`](CITATION.cff).
+
+```bibtex
+@software{bourkibate2026mira,
+  author  = {Bourkibate, Abdessamad},
+  title   = {{MIRA-CSI}: Missingness-Informed Recognition of Activities from Wi-Fi CSI},
+  year    = {2026},
+  version = {0.1.0},
+  url     = {https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0}
+}
 ```
 
-Add `--observed results/demo_observed.npy` to reproduce the fixed block-loss
-example. The example is a recorded public CSI segment, not the current user.
-See [the executed Colab experiment](https://colab.research.google.com/drive/1HKb7rLYoDC1B8xlrZ-pyvIQqe0R9rD9w)
-and the evaluation directory for the run record.
+Also cite **Alsaify et al.** for the [dataset](https://doi.org/10.17632/v38wjmz6f6.2) and **Dempster, Schmidt and Webb** for [MiniRocket](https://doi.org/10.1145/3447548.3467231) when using those components. This software release has no assigned DOI.
+
+## License and contributions
+
+Original software: **GPL-3.0-or-later**, credited to Abdessamad Bourkibate. MiniRocket retains its original authors and license; the dataset is separately **CC BY 4.0**. See [NOTICE.md](NOTICE.md) and [data attribution](data/README.md).
+
+Reproducible bug reports, documented replications and focused pull requests are welcome. Include the software revision, environment, input hashes and reproduction steps. Keep credentials and private measurements out of public reports.
