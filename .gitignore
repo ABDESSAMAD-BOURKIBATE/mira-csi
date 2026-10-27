@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+data/*.npy
+data/raw/
+results/
+*.zip
+*.log
+.venv/

@@ -1,0 +1,12 @@
+{
+  "source": "Alsaify et al. public CSI recordings",
+  "dataset_doi": "10.17632/v38wjmz6f6.2",
+  "source_commit": "5337147c5156948b13e6b05a50b79529614acfbe",
+  "raw_verification": "1260 raw-file hashes independently rechecked in the preceding transfer experiment; original per-file SHA256 in manifest.",
+  "order": "Tensor row i corresponds exactly to selected[i] in manifest.json.",
+  "preprocessing": "Existing audited 3 antennas x 6 five-subcarrier amplitude bands; SNR scaling then dB, linearly resampled to 500 normalized packet positions; float32.",
+  "sha256": {
+    "manifest.json": "9e5d8eeac1f37d75462048bb22c0ed28c588dc253debf09530616c5a04462953",
+    "band_streams.npy": "a30b0cc456a5bafb6e8e20f740cc33a547f9a45bd3d166093dc3adc75230455a"
+  }
+}
