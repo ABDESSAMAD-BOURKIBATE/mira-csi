@@ -1,0 +1,58 @@
+[
+  [
+    "##",
+    "Overview"
+  ],
+  [
+    "##",
+    "Quick start"
+  ],
+  [
+    "##",
+    "Architecture"
+  ],
+  [
+    "###",
+    "Measurement availability, case by case"
+  ],
+  [
+    "###",
+    "Complete observations"
+  ],
+  [
+    "###",
+    "Random missing positions"
+  ],
+  [
+    "###",
+    "Contiguous missing interval"
+  ],
+  [
+    "###",
+    "Repair on the actual recording"
+  ],
+  [
+    "##",
+    "Evaluation"
+  ],
+  [
+    "##",
+    "Technology stack"
+  ],
+  [
+    "##",
+    "Reproduce"
+  ],
+  [
+    "##",
+    "Task boundaries"
+  ],
+  [
+    "##",
+    "Citation"
+  ],
+  [
+    "##",
+    "License and contributions"
+  ]
+]

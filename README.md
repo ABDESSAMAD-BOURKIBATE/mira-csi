@@ -24,16 +24,26 @@
 
 <p align="center"><a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Results</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
 
-## Overview
+<a id="overview"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/overview-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/overview-light.svg">
+  <img src="docs/assets/headings/overview-light.svg" alt="Overview" width="900">
+</picture></h3>
 
-**MIRA-CSI** — *Missingness-Informed Recognition of Activities from Wi-Fi CSI* — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides the model, trained states, a standalone predictor and a completed comparison against two CNN training regimes and official multivariate MiniRocket.
+**MIRA-CSI** — Missingness-Informed Recognition of Activities from Wi-Fi CSI — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides the model, trained states, a standalone predictor and a completed comparison against two CNN training regimes and official multivariate MiniRocket.
 
 **Developer and research lead:** Eng. **Abdessamad Bourkibate**  
 Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
 
 **Status:** experimental offline classifier, evaluated on seven activity labels. The results do not establish broad model superiority or live deployment readiness.
 
-## Quick start
+<a id="quick-start"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/quick-start-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/quick-start-light.svg">
+  <img src="docs/assets/headings/quick-start-light.svg" alt="Quick start" width="900">
+</picture></h3>
 
 Open the [executed saved-model notebook](notebooks/quickstart.ipynb) in Colab, or use the commands below. The notebook has been run top-to-bottom on a Windows CPU and retains its actual outputs.
 
@@ -54,7 +64,12 @@ Add `--observed results/demo_observed.npy` for the matched block-loss example. A
 
 Exact evaluated package versions are in [`evaluation/package_versions.json`](evaluation/package_versions.json).
 
-## Architecture
+<a id="architecture"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/architecture-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/architecture-light.svg">
+  <img src="docs/assets/headings/architecture-light.svg" alt="Architecture" width="900">
+</picture></h3>
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/architecture-dark.png">
@@ -73,11 +88,21 @@ Exact evaluated package versions are in [`evaluation/package_versions.json`](eva
 
 The comparison includes an ordinary amplitude CNN (40,423 parameters), the same CNN with source-only loss augmentation, and the official MiniRocket transform with **9,996 features**. Mask and time-gap representations have prior art; [`PRIOR-ART.md`](PRIOR-ART.md) documents attribution and the scope of this design.
 
-### Measurement availability, case by case
+<a id="measurement-availability-case-by-case"></a>
+<h4><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/measurement-availability-case-by-case-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/measurement-availability-case-by-case-light.svg">
+  <img src="docs/assets/headings/measurement-availability-case-by-case-light.svg" alt="Measurement availability, case by case" width="900">
+</picture></h4>
 
 The first three clips are abstract data-flow illustrations. Teal paths represent parallel streams and dots represent observations; spacing and motion do not encode measured amplitudes, time, radio propagation or a numerical loss rate. The final plot uses the released real CSI example.
 
-### Complete observations
+<a id="complete-observations"></a>
+<h4><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/complete-observations-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/complete-observations-light.svg">
+  <img src="docs/assets/headings/complete-observations-light.svg" alt="Complete observations" width="900">
+</picture></h4>
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-complete-dark.webp">
@@ -87,7 +112,12 @@ The first three clips are abstract data-flow illustrations. Teal paths represent
 
 Available samples enter preprocessing together. Complete input means no additional mask was imposed; it does not establish that acquisition was free from noise or packet loss.
 
-### Random missing positions
+<a id="random-missing-positions"></a>
+<h4><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/random-missing-positions-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/random-missing-positions-light.svg">
+  <img src="docs/assets/headings/random-missing-positions-light.svg" alt="Random missing positions" width="900">
+</picture></h4>
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-random-loss-dark.webp">
@@ -97,7 +127,12 @@ Available samples enter preprocessing together. Complete input means no addition
 
 Scattered gaps illustrate non-contiguous unavailable positions. In the experiment, the exact requested number of positions is selected without replacement and the same temporal mask is applied to all 18 streams.
 
-### Contiguous missing interval
+<a id="contiguous-missing-interval"></a>
+<h4><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/contiguous-missing-interval-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/contiguous-missing-interval-light.svg">
+  <img src="docs/assets/headings/contiguous-missing-interval-light.svg" alt="Contiguous missing interval" width="900">
+</picture></h4>
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-block-loss-dark.webp">
@@ -107,7 +142,12 @@ Scattered gaps illustrate non-contiguous unavailable positions. In the experimen
 
 A common gap illustrates a continuous unavailable interval. In the evaluated 50% case, exactly 250 of 500 normalized packet positions are hidden jointly across streams. The illustration itself does not encode this fraction.
 
-### Repair on the actual recording
+<a id="repair-on-the-actual-recording"></a>
+<h4><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/repair-on-the-actual-recording-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/repair-on-the-actual-recording-light.svg">
+  <img src="docs/assets/headings/repair-on-the-actual-recording-light.svg" alt="Repair on the actual recording" width="900">
+</picture></h4>
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-linear-repair-dark.webp">
@@ -117,7 +157,12 @@ A common gap illustrates a continuous unavailable interval. In the evaluated 50%
 
 Grey is the original public recording, teal is retained input, and dashed amber is linear interpolation between observed boundaries. The grey hidden values are used only for reconstruction scoring, never for repair. These offline operators can use later observed samples. Normalized packet positions are not elapsed seconds. [Visual provenance](docs/assets/CASE-VISUAL-PROVENANCE.json).
 
-## Evaluation
+<a id="evaluation"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/evaluation-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/evaluation-light.svg">
+  <img src="docs/assets/headings/evaluation-light.svg" alt="Evaluation" width="900">
+</picture></h3>
 
 **60 fitted runs · 3 excluded-environment folds · 5 paired training/mask seeds**
 
@@ -140,7 +185,12 @@ MiniRocket is stronger on complete inputs and fails substantially under long gap
 
 All **3,048 metric rows** were independently recomputed from saved probabilities in Colab and again locally. The package retains 896,112 probability vectors, including dependent supplementary mask views of the same 1,260 recordings.
 
-## Technology stack
+<a id="technology-stack"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/technology-stack-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/technology-stack-light.svg">
+  <img src="docs/assets/headings/technology-stack-light.svg" alt="Technology stack" width="900">
+</picture></h3>
 
 | Role | Languages and libraries |
 |---|---|
@@ -150,7 +200,12 @@ All **3,048 metric rows** were independently recomputed from saved probabilities
 | Analysis and figures | pandas · Matplotlib · Pillow |
 | Research documentation | Markdown · LaTeX · CFF citation metadata |
 
-## Reproduce
+<a id="reproduce"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/reproduce-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/reproduce-light.svg">
+  <img src="docs/assets/headings/reproduce-light.svg" alt="Reproduce" width="900">
+</picture></h3>
 
 Install `requirements.txt`. Obtain the exact processed public input cache from the [release assets](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0), or rebuild it from pinned raw recordings:
 
@@ -179,14 +234,24 @@ SHA256 digests accompany the release. The input cache does not overwrite current
 
 </details>
 
-## Task boundaries
+<a id="task-boundaries"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/task-boundaries-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/task-boundaries-light.svg">
+  <img src="docs/assets/headings/task-boundaries-light.svg" alt="Task boundaries" width="900">
+</picture></h3>
 
 - Input is processed, recorded CSI from the documented acquisition system.
 - Output is one of seven predefined activity labels and its probability vector.
 - Ordinary laptop RSSI does not provide this input. Body images, temperature, vital signs and unrestricted through-wall pose reconstruction are outside the evaluated task.
 - Synthetic missing positions and offline repair do not establish causal real-time operation. See the [model card](MODEL_CARD.md) for full limitations.
 
-## Citation
+<a id="citation"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/citation-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/citation-light.svg">
+  <img src="docs/assets/headings/citation-light.svg" alt="Citation" width="900">
+</picture></h3>
 
 Use **Cite this repository** on GitHub or [`CITATION.cff`](CITATION.cff).
 
@@ -202,7 +267,12 @@ Use **Cite this repository** on GitHub or [`CITATION.cff`](CITATION.cff).
 
 Also cite **Alsaify et al.** for the [dataset](https://doi.org/10.17632/v38wjmz6f6.2) and **Dempster, Schmidt and Webb** for [MiniRocket](https://doi.org/10.1145/3447548.3467231) when using those components. This software release has no assigned DOI.
 
-## License and contributions
+<a id="license-and-contributions"></a>
+<h3><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/license-and-contributions-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/license-and-contributions-light.svg">
+  <img src="docs/assets/headings/license-and-contributions-light.svg" alt="License and contributions" width="900">
+</picture></h3>
 
 Original software: **GPL-3.0-or-later**, credited to Abdessamad Bourkibate. MiniRocket retains its original authors and license; the dataset is separately **CC BY 4.0**. See [NOTICE.md](NOTICE.md) and [data attribution](data/README.md).
 
