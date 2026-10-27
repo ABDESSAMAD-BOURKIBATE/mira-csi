@@ -2,13 +2,15 @@ cff-version: 1.2.0
 message: "If you use this software, please cite this repository and cite the original dataset and MiniRocket separately."
 title: "MIRA-CSI: Missingness-Informed Recognition of Activities from Wi-Fi CSI"
 type: software
+version: 0.1.0
+date-released: 2026-10-27
 repository-code: "https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi"
 url: "https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi"
 authors:
   - family-names: Bourkibate
     given-names: Abdessamad
     orcid: "https://orcid.org/0009-0000-6186-8071"
-abstract: "Research implementation and a fixed five-seed evaluation protocol for missingness-informed Wi-Fi CSI activity recognition. Performance and novelty require the accompanying completed evaluation."
+abstract: "Research implementation and a fixed five-seed evaluation protocol for missingness-informed Wi-Fi CSI activity recognition. The completed five-seed comparison and its limitations accompany the software."
 license: GPL-3.0-or-later
 keywords:
   - Wi-Fi CSI

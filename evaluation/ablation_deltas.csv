@@ -1,0 +1,7 @@
+pattern,comparison,mean_macro_f1_delta,sd_macro_f1_delta,positive_seeds,seeds
+complete,cnn_augmented minus cnn_clean,-0.023966339390642393,0.013860084294989026,0,5
+complete,mira_csi minus cnn_augmented,0.010714185456093938,0.031972949421460437,3,5
+random,cnn_augmented minus cnn_clean,-0.024324007641571072,0.013034517994397254,0,5
+random,mira_csi minus cnn_augmented,-1.6797762722625674e-05,0.032499475880361346,1,5
+contiguous,cnn_augmented minus cnn_clean,-0.017638154376058385,0.0167563555483258,1,5
+contiguous,mira_csi minus cnn_augmented,0.018187457265789346,0.023166406904149613,5,5

@@ -1,0 +1,44 @@
+[
+  {
+    "prediction": "pick_up",
+    "probabilities": {
+      "sit": 0.05814766328442949,
+      "fall_from_sit": 0.05856006102353554,
+      "lie": 0.0626420522950793,
+      "stand": 0.15393016088326905,
+      "walk_tx_rx": 0.10772981157216505,
+      "sit_down": 0.23306406410193378,
+      "pick_up": 0.3259261868395878
+    },
+    "observed_fraction": 1.0,
+    "temperature": 0.7951876475940234,
+    "model": "mira_csi",
+    "training_seed": 20261026,
+    "excluded_environment": 3,
+    "scope": "Offline seven-class research prediction; no body image or real-time sensing claim.",
+    "condition": "Complete",
+    "file": "E3_S21_C01_A01_T01.mat",
+    "truth": "sit"
+  },
+  {
+    "prediction": "sit_down",
+    "probabilities": {
+      "sit": 0.09562691701352853,
+      "fall_from_sit": 0.09472645021671969,
+      "lie": 0.08433471836313915,
+      "stand": 0.13249434275147098,
+      "walk_tx_rx": 0.11886374314663843,
+      "sit_down": 0.25427643986438897,
+      "pick_up": 0.21967738864411418
+    },
+    "observed_fraction": 0.5,
+    "temperature": 0.7951876475940234,
+    "model": "mira_csi",
+    "training_seed": 20261026,
+    "excluded_environment": 3,
+    "scope": "Offline seven-class research prediction; no body image or real-time sensing claim.",
+    "condition": "Block 50%",
+    "file": "E3_S21_C01_A01_T01.mat",
+    "truth": "sit"
+  }
+]

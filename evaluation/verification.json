@@ -1,0 +1,8 @@
+{
+  "complete": true,
+  "runs_checked": 60,
+  "expected_runs": 60,
+  "metric_rows_checked": 3048,
+  "checks": "Saved per-file probabilities: identity, domain, truth, normalization, counts, accuracy, macro F1, NLL, Brier, ECE.",
+  "missing": []
+}

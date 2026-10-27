@@ -48,10 +48,17 @@ the underlying dataset.
 
 ## Evaluation status
 
-Five-seed, three-fold training is in progress. No final accuracy, superiority,
-robustness or novelty claim is supplied in this card before all saved
-probabilities pass independent verification. Any completed-results version must
-replace this status with the actual metrics and limitations.
+The five-seed, three-fold comparison completed all 60 fits. Saved probabilities
+passed independent recomputation of 3,048 metric rows in Colab and on the local
+computer. MIRA-CSI held-environment accuracy was 23.73% ± 2.26 on complete inputs
+and 23.00% ± 1.28 with 50% contiguous loss and linear repair. These seed SDs are
+conditional on this fixed subset. MiniRocket achieved 53.08% ± 0.33 and
+19.59% ± 0.88, respectively. The current results do not establish practical
+superiority of MIRA-CSI over the ordinary CNN or deployment readiness.
+
+The full evaluation, including failed first-file inference and all repair
+comparisons, is in `evaluation/README.md`. Authorship, an academic name and
+working code do not alone establish a first scientific invention.
 
 ## Main limits
 

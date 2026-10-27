@@ -1,0 +1,9 @@
+{
+  "verified_export_sha256": "2f50e1886a84837bf8e51fb80ec418fa06f8c46da9ba108e675f36f5bee1dfbd",
+  "fits": 60,
+  "metric_rows": 3048,
+  "probability_vectors": 896112,
+  "source_initial": "ad08ea27eaf07af4900566eddc9a3d55c096d736",
+  "matched_mask_amendment": "80a840c6960dec930ae7cccfaf4dd6336dc9336d",
+  "analysis": "fe1a795ef9dc5a32127754e8bfe8356fa285feb0"
+}
