@@ -57,8 +57,11 @@ python verify_results.py
 python summarize_results.py
 ```
 
-The fixed protocol requires 5 seeds × 3 folds for every model (60 fitted runs),
-with 31 test conditions per run. Checkpoints, validation histories and complete
+The protocol requires 5 seeds × 3 folds for every model (60 fitted runs).
+The compute amendment in `protocol_amendment_01.json` pairs training/mask seeds
+for the primary comparison: seven matched conditions per fit. CNNs retain their
+additional 31-condition grid as supplementary sensitivity data; MiniRocket runs
+use the seven matched conditions. Checkpoints, validation histories and complete
 per-file probability arrays are saved, so aggregate claims can be independently
 recomputed. Partial runs must be labeled incomplete.
 
