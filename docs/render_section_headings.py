@@ -46,9 +46,9 @@ for marks,title in headings:
     for theme,color,teal,amber in [('light','#14364b','#157b88','#b77c24'),('dark','#eef5fa','#6dd9dc','#f3c16c')]:
         svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="900" height="62" viewBox="0 0 900 62" role="img" aria-label="{html.escape(title,quote=True)}">
 <title>{html.escape(title)}</title>
-<defs><linearGradient id="rule" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{teal}"/><stop offset="0.55" stop-color="{teal}" stop-opacity="0.7"/><stop offset="0.78" stop-color="{amber}" stop-opacity="0.55"/><stop offset="1" stop-color="{amber}" stop-opacity="0"/></linearGradient></defs>
+<defs><linearGradient id="rule" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0"><stop offset="0" stop-color="{teal}"/><stop offset="0.55" stop-color="{teal}" stop-opacity="0.7"/><stop offset="0.78" stop-color="{amber}" stop-opacity="0.55"/><stop offset="1" stop-color="{amber}" stop-opacity="0"/></linearGradient></defs>
 <path fill="{color}" d="{path}"/>
-<path d="M0 50.5H900" stroke="url(#rule)" stroke-width="1"/>
+<path d="M0 50.5H900" stroke="url(#rule)" stroke-width="1.2"/>
 </svg>'''
         (out/f'{slug}-{theme}.svg').write_text(svg,encoding='utf-8')
     level=4 if small else 3
