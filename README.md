@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="docs/assets/cover-light.png">
-    <img src="docs/assets/cover-light.png" alt="MIRA-CSI — Missingness-Informed Wi-Fi Activity Recognition, Eng. Abdessamad Bourkibate" width="900">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark-transparent.png">
+    <source media="(prefers-color-scheme: light)" srcset="docs/assets/cover-light-transparent.png">
+    <img src="docs/assets/cover-light-transparent.png" alt="MIRA-CSI — Missingness-Informed Wi-Fi Activity Recognition, Eng. Abdessamad Bourkibate" width="900">
   </picture>
 </p>
 
@@ -56,7 +56,11 @@ Exact evaluated package versions are in [`evaluation/package_versions.json`](eva
 
 ## Architecture
 
-<p align="center"><img src="figures/mira_architecture.png" alt="18 amplitude bands plus observation mask and gap channels, temporal CNN, coverage-weighted pooling and seven activity logits" width="100%"></p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/architecture-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/architecture-light.png">
+  <img src="docs/assets/architecture-light.png" alt="18 amplitude bands plus observation mask and gap channels, temporal CNN, coverage-weighted pooling and seven activity logits" width="900">
+</picture></p>
 
 | Component | Implementation |
 |---|---|
@@ -75,25 +79,41 @@ The first three clips are abstract data-flow illustrations. Teal paths represent
 
 ### Complete observations
 
-<p align="center"><img src="docs/assets/case-complete.gif" alt="Conceptual complete observation streams" width="640"></p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-complete-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/case-complete-light.webp">
+  <img src="docs/assets/case-complete-light.webp" alt="Conceptual complete observation streams" width="640">
+</picture></p>
 
 Available samples enter preprocessing together. Complete input means no additional mask was imposed; it does not establish that acquisition was free from noise or packet loss.
 
 ### Random missing positions
 
-<p align="center"><img src="docs/assets/case-random-loss.gif" alt="Conceptual scattered missing observations" width="640"></p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-random-loss-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/case-random-loss-light.webp">
+  <img src="docs/assets/case-random-loss-light.webp" alt="Conceptual scattered missing observations" width="640">
+</picture></p>
 
 Scattered gaps illustrate non-contiguous unavailable positions. In the experiment, the exact requested number of positions is selected without replacement and the same temporal mask is applied to all 18 streams.
 
 ### Contiguous missing interval
 
-<p align="center"><img src="docs/assets/case-block-loss.gif" alt="Conceptual contiguous observation gap" width="640"></p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-block-loss-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/case-block-loss-light.webp">
+  <img src="docs/assets/case-block-loss-light.webp" alt="Conceptual contiguous observation gap" width="640">
+</picture></p>
 
 A common gap illustrates a continuous unavailable interval. In the evaluated 50% case, exactly 250 of 500 normalized packet positions are hidden jointly across streams. The illustration itself does not encode this fraction.
 
 ### Repair on the actual recording
 
-<p align="center"><img src="docs/assets/case-linear-repair.gif" alt="Measured CSI band with retained observations and observed-only linear repair" width="640"></p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/case-linear-repair-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/case-linear-repair-light.webp">
+  <img src="docs/assets/case-linear-repair-light.webp" alt="Measured CSI band with retained observations and observed-only linear repair" width="640">
+</picture></p>
 
 Grey is the original public recording, teal is retained input, and dashed amber is linear interpolation between observed boundaries. The grey hidden values are used only for reconstruction scoring, never for repair. These offline operators can use later observed samples. Normalized packet positions are not elapsed seconds. [Visual provenance](docs/assets/CASE-VISUAL-PROVENANCE.json).
 
@@ -110,7 +130,11 @@ Grey is the original public recording, teal is retained input, and dashed amber 
 
 Means ± sample SD across five paired seeds; each seed pools 1,260 held-environment predictions. Room and participant cohort change together, so this protocol cannot isolate a causal room-only effect.
 
-<p align="center"><img src="evaluation/expanded_comparison.png" alt="Measured familiar and held-environment accuracy under complete input and random or contiguous loss" width="100%"></p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/comparison-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/comparison-light.png">
+  <img src="docs/assets/comparison-light.png" alt="Measured familiar and held-environment accuracy under complete input and random or contiguous loss" width="900">
+</picture></p>
 
 MiniRocket is stronger on complete inputs and fails substantially under long gaps. MIRA-CSI has limited absolute recognition accuracy; these experiments do not establish a substantial practical advantage over the ordinary CNN. The **[full evaluation](evaluation/README.md)** includes per-seed metrics, repair comparisons, NLL, Brier, ECE and the retained failed first-file inference example.
 

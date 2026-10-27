@@ -17,5 +17,10 @@
     "data_attribution": "Alsaify et al., DOI 10.17632/v38wjmz6f6.2, CC BY 4.0",
     "timing": "Animation time is not recording time"
   },
-  "review": "The generated video repair scene was excluded because crossing connectors do not faithfully explain per-stream linear interpolation."
+  "review": "The generated video repair scene was excluded because crossing connectors do not faithfully explain per-stream linear interpolation.",
+  "display_edits": {
+    "conceptual": "Cream video background removed, foreground consistently recolored for each theme, exported as lossless animated WebP with alpha. Original opaque source clips retained as provenance.",
+    "measured": "Native plots rerendered with transparent canvas and theme-aware labels. The data, original scientific axes, interpolation and numerical results are unchanged.",
+    "covers": "Built-in reference-based alpha-background editing; typography/layout preserved. Decorative artwork only."
+  }
 }
