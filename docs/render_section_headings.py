@@ -50,13 +50,13 @@ for marks,title in headings:
 <path fill="{color}" d="{path}"/>
 <path d="M0 50.5H900" stroke="url(#rule)" stroke-width="1.2"/>
 </svg>'''
-        (out/f'{slug}-{theme}.svg').write_text(svg,encoding='utf-8')
+        (out/f'{slug}-{theme}-v2.svg').write_text(svg,encoding='utf-8')
     level=4 if small else 3
     block=f'''<a id="{slug}"></a>
 <h{level}><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/{slug}-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/{slug}-light.svg">
-  <img src="docs/assets/headings/{slug}-light.svg" alt="{html.escape(title,quote=True)}" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/{slug}-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/{slug}-light-v2.svg">
+  <img src="docs/assets/headings/{slug}-light-v2.svg" alt="{html.escape(title,quote=True)}" width="900">
 </picture></h{level}>'''
     text=text.replace(marks+' '+title,block,1)
 # Keep the first technical definition readable without a long italic span.

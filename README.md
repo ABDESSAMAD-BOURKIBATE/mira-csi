@@ -26,9 +26,9 @@
 
 <a id="overview"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/overview-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/overview-light.svg">
-  <img src="docs/assets/headings/overview-light.svg" alt="Overview" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/overview-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/overview-light-v2.svg">
+  <img src="docs/assets/headings/overview-light-v2.svg" alt="Overview" width="900">
 </picture></h3>
 
 **MIRA-CSI** — Missingness-Informed Recognition of Activities from Wi-Fi CSI — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides the model, trained states, a standalone predictor and a completed comparison against two CNN training regimes and official multivariate MiniRocket.
@@ -40,9 +40,9 @@ Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
 
 <a id="quick-start"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/quick-start-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/quick-start-light.svg">
-  <img src="docs/assets/headings/quick-start-light.svg" alt="Quick start" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/quick-start-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/quick-start-light-v2.svg">
+  <img src="docs/assets/headings/quick-start-light-v2.svg" alt="Quick start" width="900">
 </picture></h3>
 
 Open the [executed saved-model notebook](notebooks/quickstart.ipynb) in Colab, or use the commands below. The notebook has been run top-to-bottom on a Windows CPU and retains its actual outputs.
@@ -66,9 +66,9 @@ Exact evaluated package versions are in [`evaluation/package_versions.json`](eva
 
 <a id="architecture"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/architecture-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/architecture-light.svg">
-  <img src="docs/assets/headings/architecture-light.svg" alt="Architecture" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/architecture-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/architecture-light-v2.svg">
+  <img src="docs/assets/headings/architecture-light-v2.svg" alt="Architecture" width="900">
 </picture></h3>
 
 <p align="center"><picture>
@@ -90,18 +90,18 @@ The comparison includes an ordinary amplitude CNN (40,423 parameters), the same 
 
 <a id="measurement-availability-case-by-case"></a>
 <h4><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/measurement-availability-case-by-case-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/measurement-availability-case-by-case-light.svg">
-  <img src="docs/assets/headings/measurement-availability-case-by-case-light.svg" alt="Measurement availability, case by case" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/measurement-availability-case-by-case-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/measurement-availability-case-by-case-light-v2.svg">
+  <img src="docs/assets/headings/measurement-availability-case-by-case-light-v2.svg" alt="Measurement availability, case by case" width="900">
 </picture></h4>
 
 The first three clips are abstract data-flow illustrations. Teal paths represent parallel streams and dots represent observations; spacing and motion do not encode measured amplitudes, time, radio propagation or a numerical loss rate. The final plot uses the released real CSI example.
 
 <a id="complete-observations"></a>
 <h4><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/complete-observations-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/complete-observations-light.svg">
-  <img src="docs/assets/headings/complete-observations-light.svg" alt="Complete observations" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/complete-observations-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/complete-observations-light-v2.svg">
+  <img src="docs/assets/headings/complete-observations-light-v2.svg" alt="Complete observations" width="900">
 </picture></h4>
 
 <p align="center"><picture>
@@ -114,9 +114,9 @@ Available samples enter preprocessing together. Complete input means no addition
 
 <a id="random-missing-positions"></a>
 <h4><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/random-missing-positions-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/random-missing-positions-light.svg">
-  <img src="docs/assets/headings/random-missing-positions-light.svg" alt="Random missing positions" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/random-missing-positions-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/random-missing-positions-light-v2.svg">
+  <img src="docs/assets/headings/random-missing-positions-light-v2.svg" alt="Random missing positions" width="900">
 </picture></h4>
 
 <p align="center"><picture>
@@ -129,9 +129,9 @@ Scattered gaps illustrate non-contiguous unavailable positions. In the experimen
 
 <a id="contiguous-missing-interval"></a>
 <h4><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/contiguous-missing-interval-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/contiguous-missing-interval-light.svg">
-  <img src="docs/assets/headings/contiguous-missing-interval-light.svg" alt="Contiguous missing interval" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/contiguous-missing-interval-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/contiguous-missing-interval-light-v2.svg">
+  <img src="docs/assets/headings/contiguous-missing-interval-light-v2.svg" alt="Contiguous missing interval" width="900">
 </picture></h4>
 
 <p align="center"><picture>
@@ -144,9 +144,9 @@ A common gap illustrates a continuous unavailable interval. In the evaluated 50%
 
 <a id="repair-on-the-actual-recording"></a>
 <h4><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/repair-on-the-actual-recording-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/repair-on-the-actual-recording-light.svg">
-  <img src="docs/assets/headings/repair-on-the-actual-recording-light.svg" alt="Repair on the actual recording" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/repair-on-the-actual-recording-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/repair-on-the-actual-recording-light-v2.svg">
+  <img src="docs/assets/headings/repair-on-the-actual-recording-light-v2.svg" alt="Repair on the actual recording" width="900">
 </picture></h4>
 
 <p align="center"><picture>
@@ -159,9 +159,9 @@ Grey is the original public recording, teal is retained input, and dashed amber 
 
 <a id="evaluation"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/evaluation-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/evaluation-light.svg">
-  <img src="docs/assets/headings/evaluation-light.svg" alt="Evaluation" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/evaluation-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/evaluation-light-v2.svg">
+  <img src="docs/assets/headings/evaluation-light-v2.svg" alt="Evaluation" width="900">
 </picture></h3>
 
 **60 fitted runs · 3 excluded-environment folds · 5 paired training/mask seeds**
@@ -187,9 +187,9 @@ All **3,048 metric rows** were independently recomputed from saved probabilities
 
 <a id="technology-stack"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/technology-stack-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/technology-stack-light.svg">
-  <img src="docs/assets/headings/technology-stack-light.svg" alt="Technology stack" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/technology-stack-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/technology-stack-light-v2.svg">
+  <img src="docs/assets/headings/technology-stack-light-v2.svg" alt="Technology stack" width="900">
 </picture></h3>
 
 | Role | Languages and libraries |
@@ -202,9 +202,9 @@ All **3,048 metric rows** were independently recomputed from saved probabilities
 
 <a id="reproduce"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/reproduce-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/reproduce-light.svg">
-  <img src="docs/assets/headings/reproduce-light.svg" alt="Reproduce" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/reproduce-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/reproduce-light-v2.svg">
+  <img src="docs/assets/headings/reproduce-light-v2.svg" alt="Reproduce" width="900">
 </picture></h3>
 
 Install `requirements.txt`. Obtain the exact processed public input cache from the [release assets](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0), or rebuild it from pinned raw recordings:
@@ -236,9 +236,9 @@ SHA256 digests accompany the release. The input cache does not overwrite current
 
 <a id="task-boundaries"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/task-boundaries-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/task-boundaries-light.svg">
-  <img src="docs/assets/headings/task-boundaries-light.svg" alt="Task boundaries" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/task-boundaries-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/task-boundaries-light-v2.svg">
+  <img src="docs/assets/headings/task-boundaries-light-v2.svg" alt="Task boundaries" width="900">
 </picture></h3>
 
 - Input is processed, recorded CSI from the documented acquisition system.
@@ -248,9 +248,9 @@ SHA256 digests accompany the release. The input cache does not overwrite current
 
 <a id="citation"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/citation-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/citation-light.svg">
-  <img src="docs/assets/headings/citation-light.svg" alt="Citation" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/citation-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/citation-light-v2.svg">
+  <img src="docs/assets/headings/citation-light-v2.svg" alt="Citation" width="900">
 </picture></h3>
 
 Use **Cite this repository** on GitHub or [`CITATION.cff`](CITATION.cff).
@@ -269,9 +269,9 @@ Also cite **Alsaify et al.** for the [dataset](https://doi.org/10.17632/v38wjmz6
 
 <a id="license-and-contributions"></a>
 <h3><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/license-and-contributions-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/license-and-contributions-light.svg">
-  <img src="docs/assets/headings/license-and-contributions-light.svg" alt="License and contributions" width="900">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/headings/license-and-contributions-dark-v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/license-and-contributions-light-v2.svg">
+  <img src="docs/assets/headings/license-and-contributions-light-v2.svg" alt="License and contributions" width="900">
 </picture></h3>
 
 Original software: **GPL-3.0-or-later**, credited to Abdessamad Bourkibate. MiniRocket retains its original authors and license; the dataset is separately **CC BY 4.0**. See [NOTICE.md](NOTICE.md) and [data attribution](data/README.md).
