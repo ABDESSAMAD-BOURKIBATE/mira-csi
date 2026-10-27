@@ -1,19 +1,10 @@
-<p align="center">
-  <img src="docs/assets/mira-csi-banner.png" alt="MIRA-CSI — missingness-informed Wi-Fi activity recognition, developed by Abdessamad Bourkibate" width="100%">
-</p>
+<h1 align="center">MIRA-CSI</h1>
 
-<p align="center">
-  <a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0"><img alt="Research release" src="https://img.shields.io/badge/release-v0.1.0-176B74?style=flat-square&logo=github"></a>
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.13_tested-3776AB?style=flat-square&logo=python&logoColor=white">
-  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.11-EE4C2C?style=flat-square&logo=pytorch&logoColor=white">
-  <img alt="Evaluation" src="https://img.shields.io/badge/evaluation-60_fits_verified-14806A?style=flat-square">
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-6C5B96?style=flat-square"></a>
-  <a href="https://orcid.org/0009-0000-6186-8071"><img alt="Author ORCID" src="https://img.shields.io/badge/ORCID-0009--0000--6186--8071-A6CE39?style=flat-square&logo=orcid&logoColor=white"></a>
-</p>
+<p align="center"><strong>Missingness-Informed Recognition of Activities from Wi-Fi CSI</strong></p>
 
-<p align="center">
-  <a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Results</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#reproduce">Reproduce</a> · <a href="#citation">Cite</a>
-</p>
+<p align="center">Developed by <strong>Eng. Abdessamad Bourkibate</strong></p>
+
+<p align="center"><a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0">Download models</a> · <a href="#quick-start">Quick start</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
 
 ## Overview
 
