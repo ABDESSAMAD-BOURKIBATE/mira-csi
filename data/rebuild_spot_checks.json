@@ -1,0 +1,47 @@
+[
+  {
+    "file": "E1_S01_C01_A01_T05.mat",
+    "row": 0,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E1_S01_C03_A06_T01.mat",
+    "row": 24,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E1_S01_C05_A12_T03.mat",
+    "row": 36,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E2_S11_C01_A01_T02.mat",
+    "row": 420,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E2_S11_C03_A06_T03.mat",
+    "row": 444,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E2_S11_C05_A12_T02.mat",
+    "row": 456,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E3_S21_C01_A01_T01.mat",
+    "row": 840,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E3_S21_C03_A06_T05.mat",
+    "row": 864,
+    "exact_float32_match": true
+  },
+  {
+    "file": "E3_S21_C05_A12_T02.mat",
+    "row": 876,
+    "exact_float32_match": true
+  }
+]

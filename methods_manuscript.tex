@@ -1,0 +1,32 @@
+\section{Missingness-informed neural extension}
+The extension evaluates four fixed comparators on the same 1,260 files and participant roles: a compact CNN trained on complete source inputs, the same CNN with source-only loss augmentation, MIRA-CSI, and the official basic multivariate MiniRocket transform \cite{dempster2021}. This extension was specified after the classical-baseline audit; it is an additional controlled comparison, rather than a prospectively registered study. It includes five training seeds (20261026--20261030) in each of the three folds, yielding 60 fitted runs. Target labels are used only for scoring.
+
+MIRA-CSI denotes Missingness-Informed Recognition of Activities from Wi-Fi CSI. It adds explicit observation information and coverage-weighted pooling to a temporal CNN. Masks and temporal-gap representations have established precedents, including GRU-D \cite{che2018}; the contribution assessed here is this particular CSI implementation and comparison, not the invention of missingness-aware learning.
+
+Let $B\in\mathbb R^{18\times500}$ denote the amplitude-band representation. Its channel means and standard deviations are estimated only from source-training files. For repaired standardized amplitudes $\widehat B$, the additional gap channel and network input are
+\begin{equation}
+ d_t=\frac{\min_{s:m_s=1}|t-s|}{500},\qquad
+ Z_t=[\widehat B_{:,t};m_t;d_t].
+\label{eq:mirainput}
+\end{equation}
+Distance is measured in normalized packet positions; it is not elapsed time. Three convolutions use 32, 64 and 128 channels, kernel lengths 7, 5 and 3, stride two, GroupNorm with eight groups, and GELU. If $h_j$ is an encoded temporal feature and $\bar m_j$ the adaptively averaged observation mask at that resolution, pooling is
+\begin{equation}
+ w_j=\max(\bar m_j,0.05),\qquad
+ g=\frac{\sum_jw_jh_j}{\sum_jw_j}.
+\label{eq:mirapool}
+\end{equation}
+The weights describe local coverage, not calibrated confidence or a physical RF reliability estimate. Dropout (0.2) and a seven-logit linear head complete the network. MIRA-CSI has 40,871 trainable parameters, compared with 40,423 for the amplitude-only CNN. The ordinary CNN uses uniform temporal averaging.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{mira_architecture.pdf}
+\caption{Architecture of the implemented MIRA-CSI classifier. Observation mask and distance supplement 18 amplitude bands; mask coverage also weights temporal pooling. Both ablations retain the amplitude backbone. This is an algorithm diagram, not a body reconstruction or a measured RF field.}
+\label{fig:miraarchitecture}
+\end{figure*}
+
+All CNNs use AdamW (learning rate $10^{-3}$, weight decay $10^{-4}$), batches of 64, at most 60 epochs, and gradient clipping at norm five. Checkpoints minimize clean source-validation cross-entropy, with patience 12 and minimum improvement $10^{-4}$. In both augmented variants each training view remains clean with probability 0.5; otherwise loss pattern, fraction (0.1/0.3/0.5) and repair method are drawn uniformly from their predefined choices. The paired variants use the same independent augmentation-generator draw order for each seed and fold. No target-domain selection is performed. The package retains validation histories and every trained state.
+
+MiniRocket uses the pinned official Numba implementation with 10,000 requested features (9,996 produced), training-only feature scaling without centering, and ridge classification with $\alpha=1$. This compiled comparison is distinct from the earlier 84-feature compatibility check. For every neural or ridge model, a single temperature fitted to clean source-validation logits is frozen on all test conditions.
+
+Three offline repair operators preserve observed values: linear interpolation with held boundaries, nearest observed value (earlier observation on ties), and source-training band mean. These operators do not use hidden values or target labels; interpolation may use later observations and therefore does not establish causal streaming operation. The extended comparison focuses on 50\% random and contiguous loss. A documented compute amendment pairs each training seed with the same mask seed for the primary cross-model comparison, retaining all five fitted seeds and all three folds. The CNNs additionally retain the original five-mask grid as supplementary sensitivity data. Previously completed full-grid MiniRocket output is also retained.
+
+Primary summaries pool the three held-environment prediction sets separately for each seed, then report the mean and sample standard deviation across the five paired training/mask seeds. Familiar summaries pool fold-specific source-test predictions; some familiar files recur across folds and are not independent observations. These standard deviations combine training and mask variation, conditional on the fixed recordings and partitions; they are not population confidence intervals. Repair error is evaluated only at synthetically hidden values using root-mean-square error on the scaled dB amplitude representation.
