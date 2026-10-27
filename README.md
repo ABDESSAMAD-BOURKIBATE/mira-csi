@@ -69,11 +69,33 @@ Exact evaluated package versions are in [`evaluation/package_versions.json`](eva
 
 The comparison includes an ordinary amplitude CNN (40,423 parameters), the same CNN with source-only loss augmentation, and the official MiniRocket transform with **9,996 features**. Mask and time-gap representations have prior art; [`PRIOR-ART.md`](PRIOR-ART.md) documents attribution and the scope of this design.
 
-### A real recording through the repair pipeline
+### Measurement availability, case by case
 
-<p align="center"><img src="docs/assets/csi-repair-demo.gif" alt="Recorded CSI, synthetic 50 percent contiguous loss, and observed-only linear repair" width="100%"></p>
+The first three clips are abstract data-flow illustrations. Teal paths represent parallel streams and dots represent observations; spacing and motion do not encode measured amplitudes, time, radio propagation or a numerical loss rate. The final plot uses the released real CSI example.
 
-The animation uses the released first-E3 recording, the saved 250-position missing mask and linear interpolation. Colors encode scaled CSI amplitude. Animation time is illustrative; the horizontal axis is normalized packet position. [Visual provenance](docs/assets/VISUAL-PROVENANCE.json) records the source and display limits.
+### Complete observations
+
+<p align="center"><img src="docs/assets/case-complete.gif" alt="Conceptual complete observation streams" width="640"></p>
+
+Available samples enter preprocessing together. Complete input means no additional mask was imposed; it does not establish that acquisition was free from noise or packet loss.
+
+### Random missing positions
+
+<p align="center"><img src="docs/assets/case-random-loss.gif" alt="Conceptual scattered missing observations" width="640"></p>
+
+Scattered gaps illustrate non-contiguous unavailable positions. In the experiment, the exact requested number of positions is selected without replacement and the same temporal mask is applied to all 18 streams.
+
+### Contiguous missing interval
+
+<p align="center"><img src="docs/assets/case-block-loss.gif" alt="Conceptual contiguous observation gap" width="640"></p>
+
+A common gap illustrates a continuous unavailable interval. In the evaluated 50% case, exactly 250 of 500 normalized packet positions are hidden jointly across streams. The illustration itself does not encode this fraction.
+
+### Repair on the actual recording
+
+<p align="center"><img src="docs/assets/case-linear-repair.gif" alt="Measured CSI band with retained observations and observed-only linear repair" width="640"></p>
+
+Grey is the original public recording, teal is retained input, and dashed amber is linear interpolation between observed boundaries. The grey hidden values are used only for reconstruction scoring, never for repair. These offline operators can use later observed samples. Normalized packet positions are not elapsed seconds. [Visual provenance](docs/assets/CASE-VISUAL-PROVENANCE.json).
 
 ## Evaluation
 

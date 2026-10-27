@@ -1,0 +1,21 @@
+{
+  "conceptual_clips": {
+    "files": [
+      "case-complete.gif",
+      "case-random-loss.gif",
+      "case-block-loss.gif"
+    ],
+    "source": "Gemini video, generated for this project on 27 October 2026",
+    "role": "Abstract explanatory data-flow animation only; not measured CSI, RF propagation, a quantified missing rate or a model output",
+    "edits": "Separate intervals extracted, resized to 640 x 360, no audio",
+    "original_sha256": "0ede161a622ed368ddab0dd2fbe6249cd9f6fe99df518040f90fd7b8492f7717"
+  },
+  "repair_clip": {
+    "file": "case-linear-repair.gif",
+    "source": "Same first E3 measured public example and fixed observation mask used in the saved-model notebook",
+    "role": "Native plot of measured amplitudes and observed-only interpolation; removed positions are synthetic",
+    "data_attribution": "Alsaify et al., DOI 10.17632/v38wjmz6f6.2, CC BY 4.0",
+    "timing": "Animation time is not recording time"
+  },
+  "review": "The generated video repair scene was excluded because crossing connectors do not faithfully explain per-stream linear interpolation."
+}
