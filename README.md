@@ -1,10 +1,28 @@
-<h1 align="center">MIRA-CSI</h1>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cover-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="docs/assets/cover-light.png">
+    <img src="docs/assets/cover-light.png" alt="MIRA-CSI — Missingness-Informed Wi-Fi Activity Recognition, Eng. Abdessamad Bourkibate" width="900">
+  </picture>
+</p>
 
-<p align="center"><strong>Missingness-Informed Recognition of Activities from Wi-Fi CSI</strong></p>
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12_%7C_3.13-3776AB?style=flat-square&logo=python&logoColor=white">
+  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.11-EE4C2C?style=flat-square&logo=pytorch&logoColor=white">
+  <img alt="NumPy" src="https://img.shields.io/badge/NumPy-numerics-4DABCF?style=flat-square&logo=numpy&logoColor=white">
+  <img alt="Numba" src="https://img.shields.io/badge/Numba-MiniRocket-00A3E0?style=flat-square&logo=numba&logoColor=white">
+  <img alt="LaTeX documentation" src="https://img.shields.io/badge/LaTeX-documentation-008080?style=flat-square&logo=latex&logoColor=white">
+</p>
 
-<p align="center">Developed by <strong>Eng. Abdessamad Bourkibate</strong></p>
+<p align="center">
+  <a href="https://colab.research.google.com/github/ABDESSAMAD-BOURKIBATE/mira-csi/blob/main/notebooks/quickstart.ipynb"><img alt="Open quick start in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"></a>
+  <a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0"><img alt="Release" src="https://img.shields.io/badge/release-v0.1.0-176B74?style=flat-square&logo=github"></a>
+  <img alt="Completed evaluation" src="https://img.shields.io/badge/evaluation-60_fits_verified-14806A?style=flat-square">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-6C5B96?style=flat-square"></a>
+  <a href="https://orcid.org/0009-0000-6186-8071"><img alt="Author ORCID" src="https://img.shields.io/badge/ORCID-author-A6CE39?style=flat-square&logo=orcid&logoColor=white"></a>
+</p>
 
-<p align="center"><a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0">Download models</a> · <a href="#quick-start">Quick start</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
+<p align="center"><a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Results</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
 
 ## Overview
 
@@ -16,6 +34,8 @@ Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
 **Status:** experimental offline classifier, evaluated on seven activity labels. The results do not establish broad model superiority or live deployment readiness.
 
 ## Quick start
+
+Open the [executed saved-model notebook](notebooks/quickstart.ipynb) in Colab, or use the commands below. The notebook has been run top-to-bottom on a Windows CPU and retains its actual outputs.
 
 ```sh
 git clone https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi.git

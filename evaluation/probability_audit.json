@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "analysis": "Post-hoc descriptive audit of frozen predictions",
+  "risk_rows": 400,
+  "threshold_rows": 80,
+  "uniform_reference": {
+    "classes": 7,
+    "probability_per_class": 0.14285714285714285,
+    "nll": 1.9459101490553132,
+    "brier": 0.8571428571428571,
+    "scope": "Proper-score reference only, on balanced held sets. It supplies no useful class discrimination; no risk-coverage curve is inferred from tied uniform probabilities."
+  },
+  "no_new_model_fitting": true,
+  "no_new_calibration": true
+}
