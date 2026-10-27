@@ -18,17 +18,21 @@ for target in config['folds']:
                 errors.append('Missing '+tag); continue
             data = np.load(path); p = data['probabilities']; y = data['truth']
             indices = data['indices']; held = data['held']
-            assert p.shape == (31,588,7)
+            ids=data['condition_ids'] if 'condition_ids' in data.files else np.arange(31)
+            expected_ids=[i for i,c in enumerate(conditions) if c[1]==0 or c[2]==seed]
+            assert ids.tolist()==list(range(31)) or (model=='minirocket_9996' and ids.tolist()==expected_ids)
+            assert p.shape == (len(ids),588,7)
             assert np.isfinite(p).all() and (p >= 0).all() and (p <= 1).all()
             np.testing.assert_allclose(p.sum(-1),1,atol=1e-12)
             assert len(set(indices.tolist())) == 588
             assert np.array_equal(y,np.array([config['classes'].index(manifest[i]['activity']) for i in indices]))
             assert np.array_equal(held,np.array([manifest[i]['environment']==target for i in indices]))
             rows = list(csv.DictReader((out/'metrics'/f'{tag}.csv').open()))
-            assert len(rows) == 62
+            assert len(rows) == 2*len(ids)
             for row in rows:
                 cid = int(row['condition_id']); mask = held if row['domain']=='held' else ~held
-                pp = p[cid,mask]; yy = y[mask]; pred = pp.argmax(-1); correct = pred==yy
+                position=int(np.flatnonzero(ids==cid)[0])
+                pp = p[position,mask]; yy = y[mask]; pred = pp.argmax(-1); correct = pred==yy
                 n = 420 if row['domain']=='held' else 168
                 assert len(yy) == n == int(row['n'])
                 assert int(correct.sum()) == int(row['correct'])

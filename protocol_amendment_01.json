@@ -1,0 +1,8 @@
+{
+  "date_utc": "2026-10-27",
+  "reason": "The official basic multivariate 9996-feature MiniRocket reference took more than six minutes without completing its first 31-condition evaluated run on the allocated Colab CPU. Bound computational redundancy while preserving all five fitted seeds, all three folds, both loss patterns and all three imputers.",
+  "change": "For the primary comparison pair training seed s with mask seed s. Each MiniRocket fit evaluates clean plus six corrupted conditions (2 patterns x 3 imputers) for that matched seed. CNN runs already executing retain their entire 31-condition outputs. Only the same matched conditions enter the primary cross-model summary. All extra CNN mask results are retained as supplementary sensitivity data. If a 31-condition MiniRocket run completed before this amendment, retain it and select the same paired subset for the primary comparison.",
+  "unchanged": "Input files and preprocessing, participant partitions, class labels, all five training seeds, all three folds, architecture, optimizer, checkpoint rule, calibration, 9996 MiniRocket features and ridge alpha. No reduction of feature capacity and no outcome-based hyperparameter selection.",
+  "uncertainty": "Primary error bars are SD across five paired training/mask seeds, conditional on this fixed subset and folds. They combine training and mask variation; they are not independent estimates of either variance component or population confidence intervals.",
+  "implementation": "run_experiment.py detects this amendment for MiniRocket evaluation. Existing full-grid outputs remain valid. verify_results.py accepts exactly the full or matched subset and verifies all retained probabilities."
+}

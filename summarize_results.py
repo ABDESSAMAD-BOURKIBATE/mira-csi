@@ -11,18 +11,20 @@ root=Path(__file__).resolve().parent; out=root/'results'
 receipt=json.loads((out/'verification.json').read_text())
 assert receipt['complete'], 'Run independent verification first.'
 df=pd.concat([pd.read_csv(p) for p in sorted((out/'metrics').glob('*.csv'))],ignore_index=True)
-assert len(df)==3720
 df.to_csv(out/'all_metrics.csv',index=False)
 measures=['accuracy','macro_f1','nll','brier','ece']
 # Each row has the same number of files within a domain. Average the three
 # folds and mask realizations separately per training seed. These folds are
 # not treated as independent participants or confidence-interval replicates.
-per_seed=df.groupby(['model','training_seed','domain','pattern','imputer'],as_index=False)[measures].mean()
+primary=df[(df.pattern=='complete')|(df.mask_seed==df.training_seed)].copy()
+assert len(primary)==840  # 60 fitted runs x 7 matched conditions x 2 domains.
+primary.to_csv(out/'primary_metrics.csv',index=False)
+per_seed=primary.groupby(['model','training_seed','domain','pattern','imputer'],as_index=False)[measures].mean()
 per_seed.to_csv(out/'per_seed.csv',index=False)
 summary=per_seed.groupby(['model','domain','pattern','imputer'])[measures].agg(['mean','std'])
 summary.columns=['_'.join(c) for c in summary.columns]
 summary=summary.reset_index(); summary.to_csv(out/'summary.csv',index=False)
-folds=df.groupby(['model','held_environment','domain','pattern','imputer'],as_index=False)[measures].mean()
+folds=primary.groupby(['model','held_environment','domain','pattern','imputer'],as_index=False)[measures].mean()
 folds.to_csv(out/'per_fold.csv',index=False)
 models=['cnn_clean','cnn_augmented','mira_csi','minirocket_9996']
 labels=['CNN','CNN + loss augmentation','MIRA-CSI','MiniRocket (9,996)']
@@ -43,7 +45,7 @@ for ax,domain,title in zip(axes,['familiar','held'],['Familiar source environmen
     ax.set_xticks(range(3),['Complete','Random 50%','Block 50%']); ax.set_title(title)
     ax.set_ylim(0,100); ax.grid(axis='y',alpha=.2)
 axes[0].set_ylabel('Accuracy (%)'); axes[1].legend(fontsize=8,loc='upper right')
-fig.text(.5,-.02,'Points: mean of five training seeds; bars: sample SD across seeds.\nEach corrupted point averages five matched masks and three folds; linear repair.',ha='center',fontsize=9)
+fig.text(.5,-.02,'Points: mean of five paired training/mask seeds; bars: sample SD.\nEach seed averages three folds; linear repair. Fixed subset and participant partitions.',ha='center',fontsize=9)
 fig.tight_layout(); fig.savefig(out/'expanded_comparison.pdf'); fig.savefig(out/'expanded_comparison.png',dpi=200); plt.close(fig)
 
 fig,axes=plt.subplots(1,2,figsize=(10.2,4),sharey=True)
@@ -57,7 +59,7 @@ for ax,pattern,title in zip(axes,['random','contiguous'],['Random 50% missingnes
     ax.set_xticks(range(3),['Linear','Nearest','Source mean']); ax.set_title(title); ax.grid(axis='y',alpha=.2)
     ax.set_ylim(0,1)
 axes[0].set_ylabel('Held-environment macro F1'); axes[1].legend(fontsize=8)
-fig.text(.5,-.01,'All methods retain observed samples. Means ± SD over five training seeds; five masks per seed.',ha='center',fontsize=9)
+fig.text(.5,-.01,'Observed samples retained. Means ± SD over five paired training/mask seeds; three folds per seed.',ha='center',fontsize=9)
 fig.tight_layout(); fig.savefig(out/'imputation_comparison.pdf'); fig.savefig(out/'imputation_comparison.png',dpi=200); plt.close(fig)
 
 changes=[]

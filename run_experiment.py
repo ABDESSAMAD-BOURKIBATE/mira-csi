@@ -145,7 +145,10 @@ def evaluate(predict, X, y, entries, indices, mean, vp_logits, val_y, name, seed
     assert optimum.success
     temperature = float(optimum.x); rows = []; predictions = []
     domains = np.array([e['environment'] == target for e in entries])[indices]
-    for cid, condition in enumerate(CONDITIONS):
+    active = list(enumerate(CONDITIONS))
+    if name == 'minirocket_9996' and (ROOT/'protocol_amendment_01.json').exists():
+        active = [(cid,c) for cid,c in active if c[1] == 0 or c[2] == seed]
+    for cid, condition in active:
         xx, mm, dd = prepare_test(X, entries, indices, condition, mean.ravel())
         p = probabilities(predict(xx, mm, dd), temperature)
         assert p.shape == (len(indices), 7) and np.isfinite(p).all()
@@ -160,7 +163,8 @@ def evaluate(predict, X, y, entries, indices, mean, vp_logits, val_y, name, seed
     tag = f'{name}_E{target}_s{seed}'
     np.savez_compressed(OUT/'predictions'/f'{tag}.npz',
                         probabilities=np.asarray(predictions), indices=indices,
-                        truth=y[indices], held=domains)
+                        truth=y[indices], held=domains,
+                        condition_ids=np.array([cid for cid,c in active]))
     write_rows(OUT/'metrics'/f'{tag}.csv', rows)
     metadata.update(temperature=temperature, validation_nll=float(optimum.fun),
                     clean_held_accuracy=rows[0]['accuracy'], clean_familiar_accuracy=rows[1]['accuracy'])
