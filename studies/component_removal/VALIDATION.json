@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "date": "2026-10-28",
+  "scope": "Relocated exact code execution and provenance checks only; not a new research result",
+  "frozen_files_byte_identical": {
+    "models.py": "04b6b4e938787a3f428091c6b7b4d32add1c187b575905d2e77d2a0a19fd0b03",
+    "operators.py": "cb3f9392dfe1818417a3add6cbb349f2054bba717b84c50408495e9a63851694",
+    "run_ablation.py": "6a6a0af4204fcbd5099d609eada3e8cc25e453fa5114c2fabdecb9ef094f38fd",
+    "protocol.json": "2de83950b8aa40b601b11976ca4c2eeadb77cf9bd054fb4fedfac2147d7a8231",
+    "analysis_evaluation.py": "b8c4468e958816498016d929fe3a21e1fc841fd65b80a9ffde1aeb95675f3d2e"
+  },
+  "input_hashes_checked": {
+    "band_streams.npy": "a30b0cc456a5bafb6e8e20f740cc33a547f9a45bd3d166093dc3adc75230455a",
+    "manifest.json": "9e5d8eeac1f37d75462048bb22c0ed28c588dc253debf09530616c5a04462953"
+  },
+  "source_partition_and_archive_hash_checks_passed": true,
+  "supplement_archives_checked": 3,
+  "analysis_self_check": "Scoring and Bonferroni quantile checks on explicitly synthetic helper inputs; no study predictions read",
+  "source_only_smoke": {
+    "variant": "mira_full",
+    "held_environment_id": 1,
+    "training_seed": 20261026,
+    "epochs": 1,
+    "mode": "SMOKE_NOT_RESEARCH",
+    "source_train_files": 504,
+    "source_validation_files": 168,
+    "source_participants_disjoint": true,
+    "target_evaluation_requested": false,
+    "target_scored": false,
+    "metric_files": 0,
+    "prediction_files": 0,
+    "output_subtree": "local-runs/execution-check/smoke/",
+    "checkpoint_sha256": "c54bdc5c470d1a47ce190ddc3a60dcaa18da62343bf7199b9d712a7473eede8c"
+  },
+  "runtime": {
+    "python_major_minor": "3.12",
+    "torch": "2.11.0+cpu",
+    "numpy": "2.3.5",
+    "device": "cpu"
+  },
+  "git_scope": "Source and small receipts only. Local smoke files and future assets/caches are ignored. No commit or push.",
+  "relocated_saved_result_replay": {
+    "passed": true,
+    "fits": 90,
+    "metric_rows": 5580,
+    "saved_probability_vectors": 1640520,
+    "bootstrap_draws": 10000,
+    "exact_numeric_outputs": {
+      "component-contrasts-all.csv": true,
+      "held-summary.csv": true,
+      "per-environment-confusions-summary.csv": true,
+      "per-environment-mask-averaged-per-seed.csv": true,
+      "per-environment-summary.csv": true,
+      "pooled-held-mask-averaged-per-seed.csv": true,
+      "pooled-held-per-training-mask.csv": true,
+      "primary-component-family-b50-linear-f1.csv": true,
+      "verified-per-fit-metrics.csv": true,
+      "paired-bootstrap-statistics.npz": true,
+      "participant-bootstrap-indices.npz": true,
+      "per-environment-confusions-all-cells.npz": true
+    },
+    "source_archive_sha256": "a17fe3cfbf3e4618fde0b08acdf3b8f4ac35436e473fbe1fad587df12b9b88cc",
+    "evaluation_archive_sha256": "7528949fb0de0c52f8dced4dbcb1c47fffa4f0be83a6dc913bfa498e15662dc4",
+    "archives_unchanged": true,
+    "training_runs": 0,
+    "target_inference": 0,
+    "output_subtree": "local-runs/replay-check/",
+    "paths": "All --source-archive, --evaluation-archive, --data-root, --protocol, --output-root and --bootstrap-indices supplied explicitly; historical defaults unchanged."
+  }
+}

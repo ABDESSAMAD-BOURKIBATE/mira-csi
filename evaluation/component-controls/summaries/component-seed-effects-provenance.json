@@ -1,0 +1,21 @@
+{
+  "source_file": "evaluation/component-controls/summaries/held-mask-averaged-per-seed.csv",
+  "source_sha256": "096cf52e58f0367ce541ef1b491db7a3d4c7a27b5bd48b3a27027e0b3c205301",
+  "selection": "contiguous 50 percent loss, linear repair; all five training seeds for full MIRA and each of three component controls",
+  "calculation": "For each training seed, subtract control macro F1 from full-MIRA macro F1 after the existing five-mask average. Summary uses arithmetic mean, sample SD (ddof=1), and strict positive/negative/zero counts across the five paired differences.",
+  "estimator_note": "Each underlying training/mask score pools 1260 held recordings across all three folds; neither probabilities nor fold F1 scores are averaged to obtain pooled F1.",
+  "scope": "Descriptive variation over five fixed training seeds. These are not confidence intervals or independent participant samples and do not establish a guarantee over future retraining.",
+  "participant_interval_distinction": "The existing participant-bootstrap intervals condition on the fitted seed grid and do not include retraining uncertainty. They were not recalculated or modified.",
+  "outputs": {
+    "component-differences-per-seed.csv": {
+      "rows": 15,
+      "sha256": "4455c8421a3e1283691f79040b160b1ade9b5df727d6fbbc033720e2a1122396"
+    },
+    "component-differences-seed-summary.csv": {
+      "rows": 3,
+      "sha256": "f561771b82e6de4bbdb85afbe1bcfbf9f05fecd54d5b5daf039dbc07d897a81c"
+    }
+  },
+  "model_fitting_performed": false,
+  "original_analysis_or_weights_modified": false
+}

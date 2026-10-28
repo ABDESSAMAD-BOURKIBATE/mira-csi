@@ -1,0 +1,32 @@
+{
+  "study": "Completed MIRA-CSI component-removal and residual-control follow-up",
+  "developer": "Abdessamad Bourkibate",
+  "date": "2026-10-28",
+  "status": "Completed exploratory follow-up; source files relocated without edits",
+  "original_study": "MIRA-CSI v0.1.0 remains separate; this directory does not overwrite its protocol",
+  "frozen_files_sha256": {
+    "models.py": "04b6b4e938787a3f428091c6b7b4d32add1c187b575905d2e77d2a0a19fd0b03",
+    "operators.py": "cb3f9392dfe1818417a3add6cbb349f2054bba717b84c50408495e9a63851694",
+    "run_ablation.py": "6a6a0af4204fcbd5099d609eada3e8cc25e453fa5114c2fabdecb9ef094f38fd",
+    "protocol.json": "2de83950b8aa40b601b11976ca4c2eeadb77cf9bd054fb4fedfac2147d7a8231",
+    "analysis_evaluation.py": "b8c4468e958816498016d929fe3a21e1fc841fd65b80a9ffde1aeb95675f3d2e"
+  },
+  "input_sha256": {
+    "band_streams.npy": "a30b0cc456a5bafb6e8e20f740cc33a547f9a45bd3d166093dc3adc75230455a",
+    "manifest.json": "9e5d8eeac1f37d75462048bb22c0ed28c588dc253debf09530616c5a04462953"
+  },
+  "source_copy": "Byte-identical to executed source freeze and validated supplementary code",
+  "supplement_asset": "MIRA-CSI-reproducibility-supplement-20261028-validated.zip",
+  "supplement_bytes": 227447001,
+  "supplement_sha256": "b06802d9e3cd064d94c3caead3f37c4dee5bea7b7fe3f73a157dbfbf4d79ee9e",
+  "supplement_archive_sha256": {
+    "archives/MIRA-CSI-source-trained-final-20261028.zip": "a17fe3cfbf3e4618fde0b08acdf3b8f4ac35436e473fbe1fad587df12b9b88cc",
+    "archives/MIRA-CSI-source-training-20261028.zip": "222c0bfbb4f9f7a72b94b0e0aecbbcb7acebed02109479a25f7040966e8eb864",
+    "archives/MIRA-CSI-verified-evaluation-20261028.zip": "7528949fb0de0c52f8dced4dbcb1c47fffa4f0be83a6dc913bfa498e15662dc4"
+  },
+  "files_in_git": "Source, instructions and small provenance/validation receipts only; no data cache or model states",
+  "doi": null,
+  "patent_claim": false,
+  "licensing": "Original study code GPL-3.0-or-later; Alsaify et al. data CC BY 4.0; scaling source retains MIT notice",
+  "defaults_preserved": "Always provide explicit --data-root and --output-root; original defaults refer to the historical experiment layout."
+}

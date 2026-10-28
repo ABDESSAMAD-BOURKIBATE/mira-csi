@@ -1,0 +1,4 @@
+comparison,comparator,pattern,imputer,metric,difference,conditional95_low,conditional95_high,bonferroni98_333_low,bonferroni98_333_high,primary_family_of_three,bootstrap_draws,bootstrap_seed,direction_favouring_full
+mira_full minus no_mask_input,no_mask_input,contiguous,linear,macro_f1,0.0039057108599638846,-0.007436893123826068,0.015543719790751535,-0.009581011491154472,0.01804883130267672,True,10000,20261028,positive
+mira_full minus no_distance_input,no_distance_input,contiguous,linear,macro_f1,-0.00466817943007905,-0.007956633820685222,-0.0014760918861152598,-0.008639333673341154,-0.0007128665481573247,True,10000,20261028,positive
+mira_full minus uniform_pool,uniform_pool,contiguous,linear,macro_f1,0.0136717563085125,0.00010767445284144216,0.027487220378189445,-0.002276706464324464,0.03017728033464923,True,10000,20261028,positive

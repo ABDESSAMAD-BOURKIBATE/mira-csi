@@ -1,0 +1,4 @@
+comparator,training_seeds,difference_mean,difference_sample_sd,positive_seeds,negative_seeds,zero_seeds,pattern,missing_fraction,imputer,masks_averaged_per_training_seed
+no_mask_input,5,0.0039057108599639566,0.012553526888491784,3,2,0,contiguous,0.5,linear,5
+no_distance_input,5,-0.0046681794300789834,0.011676878877379077,2,3,0,contiguous,0.5,linear,5
+uniform_pool,5,0.013671756308512579,0.018952977365227587,4,1,0,contiguous,0.5,linear,5

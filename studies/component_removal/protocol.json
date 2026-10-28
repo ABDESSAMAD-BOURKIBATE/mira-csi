@@ -1,0 +1,115 @@
+{
+  "name": "MIRA-CSI component-removal study",
+  "version": "1.0.1-execution-candidate",
+  "date_utc": "2026-10-28",
+  "status": "Frozen execution candidate; no new held-out scores have been inspected. Component effects are post-hoc follow-up to already observed original targets, not fresh confirmatory evidence.",
+  "classes": [
+    "sit",
+    "fall_from_sit",
+    "lie",
+    "stand",
+    "walk_tx_rx",
+    "sit_down",
+    "pick_up"
+  ],
+  "input_shape": [
+    1260,
+    18,
+    500
+  ],
+  "input_sha256": {
+    "band_streams.npy": "a30b0cc456a5bafb6e8e20f740cc33a547f9a45bd3d166093dc3adc75230455a",
+    "manifest.json": "9e5d8eeac1f37d75462048bb22c0ed28c588dc253debf09530616c5a04462953"
+  },
+  "base_protocol_sha256": "0e68d85b02e063df53d1524bc86f35b49a28f0398f4b7866204a3d15f852661b",
+  "original_missingness_sha256": "c3c31bc4f06bf08cb4fbaf78e21ce5a793a39e9936870e84eafb93bb34c2ca2d",
+  "implementation_sha256": {
+    "models.py": "04b6b4e938787a3f428091c6b7b4d32add1c187b575905d2e77d2a0a19fd0b03",
+    "operators.py": "cb3f9392dfe1818417a3add6cbb349f2054bba717b84c50408495e9a63851694",
+    "run_ablation.py": "6a6a0af4204fcbd5099d609eada3e8cc25e453fa5114c2fabdecb9ef094f38fd"
+  },
+  "training_seeds": [
+    20261026,
+    20261027,
+    20261028,
+    20261029,
+    20261030
+  ],
+  "mask_seeds": [
+    20261026,
+    20261027,
+    20261028,
+    20261029,
+    20261030
+  ],
+  "folds": [
+    1,
+    2,
+    3
+  ],
+  "imputers": [
+    "linear",
+    "nearest",
+    "source_mean"
+  ],
+  "primary_variants": [
+    "no_mask_input",
+    "no_distance_input",
+    "uniform_pool"
+  ],
+  "variants": {
+    "mira_full": "Exact 20-channel reference architecture and coverage pool; can be rerun to check hardware/backend differences.",
+    "no_mask_input": "20 channels retained; mask input is always zero. True mask still controls coverage pooling and distance still contains missingness information. NOT removal of all mask information.",
+    "no_distance_input": "20 channels retained; distance input always zero; true mask input and coverage pooling retained.",
+    "uniform_pool": "Both mask and distance input retained; replace coverage-weighted pooling by unweighted mean.",
+    "cnn_augmented": "Original amplitude-only 18-channel augmented CNN comparator, 40423 parameters.",
+    "resnet1d_augmented": "Separate standard residual 1D CNN baseline, no architecture novelty claimed. Three blocks 64/128/128, each 7/5/3 convolutions, first conv stride2; GroupNorm/GELU; fixed 8-bin temporal pooling. Secondary source-selected comparator, not a MIRA component ablation.",
+    "resnet1d_clean": "Same fixed residual architecture without loss augmentation. Secondary candidate; select or compare only via source validation until explicit frozen evaluation."
+  },
+  "parameter_control": "All four 20-channel ControlledMIRA configurations have 40871 nominal trainable parameters and identical initialization at a given seed. Zeroed input channels have no data gradient; effective information availability intentionally differs.",
+  "training": {
+    "channels": [
+      32,
+      64,
+      128
+    ],
+    "kernels": [
+      7,
+      5,
+      3
+    ],
+    "strides": [
+      2,
+      2,
+      2
+    ],
+    "normalization": "GroupNorm(8 groups)",
+    "activation": "GELU",
+    "dropout": 0.2,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 64,
+    "max_epochs": 60,
+    "patience": 12,
+    "min_delta": 0.0001,
+    "checkpoint_selection": "minimum clean source-validation cross-entropy only"
+  },
+  "training_augmentation": "For cnn_augmented and mira_csi, each source-training sample is clean with probability 0.5; otherwise random/contiguous loss, fraction 0.1/0.3/0.5 and linear/nearest/source-mean imputer selected uniformly. Same draw order for the paired models at a given seed and fold.",
+  "split": "Existing manifest unchanged. Per fold: source train 504, source validation 168, source familiar test 168, excluded environment 420. Participants disjoint within each fold.",
+  "normalization": "Band mean/std computed only from source-training files, exactly as v0.1. Zero-log-amplitude floor and all other preprocessing unchanged.",
+  "selection": "Minimum clean source-validation NLL; patience12, max60 epochs; no target metric influences fitting, early stopping, calibration, hyperparameters, or model family choice.",
+  "calibration": "One scalar temperature per model/fold/training seed fit on clean source-validation logits, bounds 0.1 to 10; frozen on all test conditions.",
+  "evaluation": "Default train-only; --evaluate is explicit opt-in. 31 conditions, full 5x5 training/mask grid per masked pattern/imputer. Preserve all probabilities and exact file indices. Smoke mode cannot evaluate either target or familiar test.",
+  "causality": "Nearest-observed distance and repair remain bidirectional/offline. Do not substitute causal elapsed-since-previous observation within this ablation.",
+  "scope": "Environment, participant cohort and LOS/NLOS vary jointly; no causal room-effect identification. No 60% target accuracy guarantee. New choices need an independent benchmark or untouched confirmation split for confirmatory novelty claims.",
+  "resume": "Checkpoint each epoch including optimizer and NumPy/Torch RNG state, best weights and stale counter. Resume/completed skip verifies pinned protocol, code, input and final checkpoint hashes. Smoke outputs live in a separate subtree and never count as completed research fits.",
+  "pre_training_execution_fix": "Before any new study/ResNet fit, replaced only ResNet AdaptiveAvgPool1d call by mathematically equivalent explicit floor/ceil mean bins to avoid nondeterministic CUDA-backward kernel. The MIRA quartet architecture and operators were not changed. CPU forward/backward equivalence verified; GPU runtime still must be checked.",
+  "smoke_provenance": {
+    "executed_protocol_sha256": "8a776e0a83a06918ea086d5c371e9a4bf15035eafede5204f8d19dd92ec59018",
+    "variant": "no_mask_input",
+    "epochs": 1,
+    "target_scored": false,
+    "note": "The subsequent implementation-only fix affected the as-yet-untrained ResNet pooling call, not this smoke model. Smoke remains an execution diagnostic, not a completed study fit."
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "component_control_evaluation": {
+    "fitted_models": 90,
+    "configurations": 6,
+    "outer_folds": 3,
+    "training_seeds": 5,
+    "conditions_per_model": 31,
+    "independently_reconstructed_metric_rows": 5580,
+    "saved_probability_vectors": 1640520,
+    "maximum_absolute_saved_metric_difference": 4.440892098500626e-16,
+    "source_checkpoint_byte_hashes_verified_locally": 90,
+    "source_validation_prediction_views_reinferred_locally": 15120,
+    "source_validation_class_label_mismatches": 0,
+    "maximum_source_validation_cpu_t4_logit_difference": 6.198883056640625e-6,
+    "colab_post_evaluation_checkpoint_hashes_reported_unchanged": true,
+    "local_post_evaluation_checkpoint_byte_verification_claimed": false,
+    "protocol_sha256": "2de83950b8aa40b601b11976ca4c2eeadb77cf9bd054fb4fedfac2147d7a8231",
+    "source_training_archive_sha256": "42377340cda4a3007d8e113015d625928eba64d970a9e9402cd757906472649c",
+    "verified_evaluation_archive_sha256": "7528949fb0de0c52f8dced4dbcb1c47fffa4f0be83a6dc913bfa498e15662dc4"
+  },
+  "participant_bootstrap": {
+    "status": "exploratory post-hoc analysis",
+    "draws": 10000,
+    "seed": 20261028,
+    "strata": 3,
+    "people_sampled_per_stratum_with_replacement": 10,
+    "shared_draws_across_configurations": true,
+    "adjusted_family": "Three full-MIRA-minus-component-control B50-linear macro-F1 contrasts only",
+    "unadjusted_percentile_coverage": 0.95,
+    "bonferroni_marginal_percentile_coverage": 0.9833333333333333,
+    "scope": "Conditional on fixed fitted models, calibration, selected recordings, environments/cohorts and masks; excludes new-room and retraining uncertainty.",
+    "independent_direct_probability_spotcheck": {
+      "draw_ids": [0, 17, 928, 5678, 9999],
+      "configurations": 4,
+      "training_mask_cells_per_configuration": 25,
+      "scalar_values_by_metric": {"accuracy": 500, "macro_f1": 500, "nll": 500, "brier": 500},
+      "scalar_values_total": 2000,
+      "maximum_absolute_difference": 8.881784197001252e-16
+    }
+  },
+  "component_seed_effects": {
+    "source_file": "evaluation/component-controls/summaries/held-mask-averaged-per-seed.csv",
+    "source_sha256": "096cf52e58f0367ce541ef1b491db7a3d4c7a27b5bd48b3a27027e0b3c205301",
+    "condition": "contiguous 50 percent loss with linear repair",
+    "estimator": "Full minus control macro F1, paired within training seed after the existing average of five masks; mean and sample SD use five seed differences.",
+    "paired_difference_rows": 15,
+    "summary_rows": 3,
+    "positive_counts_favour_full": {"no_mask_input": 3, "no_distance_input": 2, "uniform_pool": 4},
+    "training_seeds_per_contrast": 5,
+    "scope": "Descriptive seed variation; not confidence intervals, new participant samples, or a guarantee under future retraining. The existing conditional participant-bootstrap analysis and weights were not changed.",
+    "mask_distance_identity": "m_t = I[d_t = 0]; the zero-mask-input control tests an explicit encoding, not removal of missingness information."
+  },
+  "clean_minirocket_sensitivity": {
+    "fitted_models": 30,
+    "reused_first_seed_fits": 6,
+    "additional_fits": 24,
+    "saved_held_probability_vectors_checked": 12600,
+    "fitted_checkpoint_hashes_checked": 30,
+    "selection_per_outer_fold_source_validation_only": true,
+    "clean_only": true,
+    "new_mira_architecture_claimed": false,
+    "missing_input_robustness_claimed": false,
+    "protocol_sha256": "983e7f7339588a99e3ff5577752aa309bc9adec9a5ce1a8814e07bae2ca0394e",
+    "source_fit_freeze_sha256": "c01683896110e7aa9d477244af898e4c25442fae60ee72cbb9178a9ea40f19a4"
+  },
+  "counting_note": "All seeds, masks and bootstrap replicates reuse the same 1260 recordings from 30 people. Probability-vector and scalar-check counts are not sample sizes.",
+  "initial_release_note": "v0.1.0 contains the original 60-fit comparison, not the new 90-fit component checkpoints. MIRA B50 accuracy 23.00 percent is the original five paired-seed summary; 22.56 percent is the follow-up full mask grid.",
+  "evidence_scope": "Arithmetic verification does not establish universal novelty, state-of-the-art superiority or deployment readiness."
+}

@@ -17,12 +17,12 @@
 <p align="center">
   <a href="https://colab.research.google.com/github/ABDESSAMAD-BOURKIBATE/mira-csi/blob/main/notebooks/quickstart.ipynb"><img alt="Open quick start in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"></a>
   <a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0"><img alt="Release" src="https://img.shields.io/badge/release-v0.1.0-176B74?style=flat-square&logo=github"></a>
-  <img alt="Completed evaluation" src="https://img.shields.io/badge/evaluation-60_fits_verified-14806A?style=flat-square">
+  <img alt="Frozen component controls" src="https://img.shields.io/badge/follow--up-90_fits_verified-14806A?style=flat-square">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-6C5B96?style=flat-square"></a>
   <a href="https://orcid.org/0009-0000-6186-8071"><img alt="Author ORCID" src="https://img.shields.io/badge/ORCID-author-A6CE39?style=flat-square&logo=orcid&logoColor=white"></a>
 </p>
 
-<p align="center"><a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Results</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
+<p align="center"><a href="paper/README.md">Research paper</a> · <a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Verified results</a> · <a href="#repository-map">Repository map</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
 
 <a id="overview"></a>
 <h3><picture>
@@ -31,12 +31,26 @@
   <img src="docs/assets/headings/overview-light-v2.svg" alt="Overview" width="900">
 </picture></h3>
 
-**MIRA-CSI** — Missingness-Informed Recognition of Activities from Wi-Fi CSI — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides the model, trained states, a standalone predictor and a completed comparison against two CNN training regimes and official multivariate MiniRocket.
+**MIRA-CSI** — Missingness-Informed Recognition of Activities from Wi-Fi CSI — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides a runnable saved-model predictor, the original evaluated release, and a documented follow-up that tests the individual components against conventional residual CNN controls.
 
 **Developer and research lead:** Eng. **Abdessamad Bourkibate**  
 Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
 
-**Status:** experimental offline classifier, evaluated on seven activity labels. The results do not establish broad model superiority or live deployment readiness.
+**Status:** experimental offline classifier, evaluated on seven activity labels. The original release contains 60 fits; a separate frozen follow-up contains 90 fits across six configurations. The component results are mixed and recognition accuracy remains limited. A clean-only representation study improves the **MiniRocket comparator** to 57.44%; that is a separate result, not MIRA's accuracy. [Evidence and scope](evaluation/component-controls/README.md).
+
+**Read the study:** [complete research manuscript — PDF](paper/manuscript.pdf) · [source and page previews](paper/README.md) · [recalculate the frozen analysis](studies/component_removal/README.md). The 21-page author version includes all reported controls and limitations; it is not journal peer reviewed and has no assigned DOI.
+
+<details>
+<summary><strong>Preview actual manuscript pages</strong></summary>
+
+<p align="center">
+  <a href="paper/manuscript.pdf"><img src="paper/first-page.png" alt="Actual first page of the complete research manuscript" width="340"></a>
+  <a href="paper/manuscript.pdf"><img src="paper/component-page.png" alt="Actual manuscript page with six-model score plots and paired component contrasts" width="340"></a>
+</p>
+
+These are rendered pages of the linked PDF. See [paper/MANIFEST.json](paper/MANIFEST.json) for the matching PDF and source hashes.
+
+</details>
 
 <a id="quick-start"></a>
 <h3><picture>
@@ -86,7 +100,7 @@ Exact evaluated package versions are in [`evaluation/package_versions.json`](eva
 | Output | Seven logits, with source-validation temperature scaling |
 | Model size | 40,871 trainable parameters |
 
-The comparison includes an ordinary amplitude CNN (40,423 parameters), the same CNN with source-only loss augmentation, and the official MiniRocket transform with **9,996 features**. Mask and time-gap representations have prior art; [`PRIOR-ART.md`](PRIOR-ART.md) documents attribution and the scope of this design.
+The initial comparison includes an ordinary amplitude CNN (40,423 parameters), the same CNN with source-only loss augmentation, and the official MiniRocket transform with **9,996 features**. The follow-up tests zero explicit-mask input, zero distance input and uniform pooling in otherwise matched compact networks, plus two conventional residual CNN controls. Under the defined nearest-support distance, **`m_t = I[d_t = 0]`**: the mask is fully recoverable from the distance channel. Zero mask input therefore tests an explicit encoding, rather than removal of missingness information; mask-dependent coverage pooling also remains available. Mask, gap and learned missing-CSI recovery methods have prior art; [`PRIOR-ART.md`](PRIOR-ART.md) documents attribution and the limits of the novelty claim.
 
 <a id="measurement-availability-case-by-case"></a>
 <h4><picture>
@@ -164,26 +178,94 @@ Grey is the original public recording, teal is retained input, and dashed amber 
   <img src="docs/assets/headings/evaluation-light-v2.svg" alt="Evaluation" width="900">
 </picture></h3>
 
-**60 fitted runs · 3 excluded-environment folds · 5 paired training/mask seeds**
+<h4>Frozen follow-up · six configurations on the same recordings</h4>
+
+**90 fits · 3 excluded-domain folds · 5 training seeds · 31 conditions per fit**
+
+The follow-up retains **5,580 metric rows** and **1,640,520 probability vectors** across familiar and held sets. These are repeated views of **1,260 recordings from 30 participants**, not additional people. Checkpoints and source-validation temperatures were frozen before scoring. Room and participant cohort change together, so these splits cannot isolate a causal room-only effect.
+
+| Configuration | Complete accuracy (%) | Random 50%, linear (%) | Block 50%, linear (%) |
+|---|---:|---:|---:|
+| Full MIRA | 23.73 ± 2.26 | 22.68 ± 2.03 | 22.56 ± 1.28 |
+| Zero explicit mask input | 23.41 ± 1.03 | 23.22 ± 1.23 | 21.90 ± 0.53 |
+| Zero distance input | 24.03 ± 1.87 | 22.85 ± 1.87 | 22.77 ± 1.02 |
+| Uniform temporal pooling | 24.17 ± 2.54 | 23.22 ± 1.86 | 21.30 ± 1.57 |
+| Residual CNN, clean training | 33.83 ± 0.82 | 33.33 ± 0.87 | 26.72 ± 0.67 |
+| Residual CNN, augmented | 30.25 ± 1.65 | 30.09 ± 1.70 | 25.72 ± 1.35 |
+
+Each training/mask cell first pools the three held sets into 1,260 predictions. Corrupted-case scores are averaged over five masks within each training seed; cells show the mean ± sample SD across five training seeds. F1 uses each pooled confusion matrix, not the mean of fold F1. The four compact configurations retain **40,871 nominal parameters**; each residual control has **511,111**.
+
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/followup-models-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/followup-models-light.png">
+  <img src="docs/assets/followup-models-light.png" alt="Real held results for all six frozen configurations: accuracy, macro F1 and source-calibrated NLL, with five-seed SD" width="900">
+</picture></p>
+
+C denotes complete input; R50/B50 denote random/contiguous 50% loss with linear repair. Error bars show sample SD across training seeds. Higher accuracy/F1 and lower NLL are preferred. The plots are rendered directly from the saved numerical results.
+
+**Why the earlier block result was 23.00%:** the original v0.1.0 primary summary uses five paired training/mask seeds. The follow-up's **22.56%** averages the full five-by-five training/mask grid. Both use the same selected recordings; the change is the aggregation grid. The original release remains available below and its predictor is unchanged.
+
+<h4>What the component controls establish</h4>
+
+The three exploratory contrasts are full MIRA minus each removal control in B50-linear macro F1. All use the same **10,000 participant-cluster bootstrap draws**, sampling ten people within each fixed environment. Positive differences favour full MIRA; only this three-comparison family receives the stated Bonferroni adjustment.
+
+| Control | Δ Macro F1 | Conditional 95% | Bonferroni 98.333% |
+|---|---:|---:|---:|
+| Zero explicit mask input | +0.0039 | [−0.0074, +0.0155] | [−0.0096, +0.0180] |
+| Zero distance input | −0.0047 | [−0.0080, −0.0015] | [−0.0086, −0.0007] |
+| Uniform temporal pooling | +0.0137 | [+0.0001, +0.0275] | [−0.0023, +0.0302] |
+
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/followup-components-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/followup-components-light.png">
+  <img src="docs/assets/followup-components-light.png" alt="Three actual component F1 contrasts, showing unadjusted 95 percent and adjusted 98.333 percent conditional participant-bootstrap ranges" width="900">
+</picture></p>
+
+The fitted-grid mean slightly favours removing distance in this condition. The explicit-mask contrast is inconclusive, and the pooling benefit does not survive the family correction. These participant-bootstrap ranges condition on the existing fitted models, recordings, rooms and masks; **they do not cover retraining uncertainty**. A family-adjusted interval excluding zero is therefore not a guarantee that the effect has the same direction for each training seed or a future fit.
+
+| Control | Paired F1 difference, mean ± seed SD | Seeds favouring full MIRA |
+|---|---:|---:|
+| Zero explicit mask input | +0.0039 ± 0.0126 | 3/5 |
+| Zero distance input | −0.0047 ± 0.0117 | 2/5 |
+| Uniform temporal pooling | +0.0137 ± 0.0190 | 4/5 |
+
+These descriptive differences subtract each control's F1 from full MIRA **within the same training seed, after averaging all five masks**. Their signs vary across the fitted seeds. Computed from the saved [mask-averaged seed scores](evaluation/component-controls/summaries/held-mask-averaged-per-seed.csv); [all 15 paired differences](evaluation/component-controls/summaries/component-differences-per-seed.csv) and their [three-row summary](evaluation/component-controls/summaries/component-differences-seed-summary.csv) retain the calculation. The evidence does **not** establish an independently beneficial or retraining-stable effect for every MIRA addition. [All repairs and inference scope](evaluation/component-controls/README.md).
+
+<h4>A separate clean-input MiniRocket result</h4>
+
+Source-only, fold-specific representation selection raises the official MiniRocket comparator from **53.08 ± 0.33%** to **57.44 ± 1.04%** clean held accuracy. Each outer fold chooses among five fixed representations using only its own source-validation macro F1, then retains that representation across five seeds. Validation scores are never pooled across folds for selection.
+
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/followup-minirocket-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/followup-minirocket-light.png">
+  <img src="docs/assets/followup-minirocket-light.png" alt="Real clean MiniRocket results for E1, E2, E3 and the pooled held set; original versus source-selected representations" width="900">
+</picture></p>
+
+All environments are shown: E1 changes from 57.24% to 66.43%, E2 from 50.67% to 50.43%, and E3 from 51.33% to 55.48%. The improvement is not uniform. **This is MiniRocket's result, not MIRA's.** Full-recording normalization in this clean-only study establishes neither missing-input robustness nor a safe normalization procedure when values are hidden. [Exact results and selection rules](evaluation/component-controls/README.md#separate-clean-input-minirocket-sensitivity).
+
+<details>
+<summary><strong>Original v0.1.0 comparison · 60 fits · five paired training/mask seeds</strong></summary>
 
 | Model | Complete accuracy (%) | Block 50%, linear (%) |
 |---|---:|---:|
 | CNN | 24.52 ± 2.17 | 22.19 ± 2.15 |
 | CNN + augmentation | 22.54 ± 1.82 | 20.76 ± 1.33 |
-| **MIRA-CSI** | **23.73 ± 2.26** | **23.00 ± 1.28** |
+| MIRA-CSI | 23.73 ± 2.26 | 23.00 ± 1.28 |
 | MiniRocket (9,996) | 53.08 ± 0.33 | 19.59 ± 0.88 |
 
-Means ± sample SD across five paired seeds; each seed pools 1,260 held-environment predictions. Room and participant cohort change together, so this protocol cannot isolate a causal room-only effect.
+These means ± sample SD use five paired training/mask seeds; each seed pools 1,260 held files. This is the original summary, not the full mask-grid component comparison above.
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/comparison-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/comparison-light.png">
-  <img src="docs/assets/comparison-light.png" alt="Measured familiar and held-environment accuracy under complete input and random or contiguous loss" width="900">
+  <img src="docs/assets/comparison-light.png" alt="Original v0.1.0 familiar and held-environment results under complete input and imposed loss" width="900">
 </picture></p>
 
-MiniRocket is stronger on complete inputs and fails substantially under long gaps. MIRA-CSI has limited absolute recognition accuracy; these experiments do not establish a substantial practical advantage over the ordinary CNN. The **[full evaluation](evaluation/README.md)** includes per-seed metrics, repair comparisons, NLL, Brier, ECE and the retained failed first-file inference example.
+The [original evaluation](evaluation/README.md) includes 3,048 independently reconstructed metric rows and 896,112 saved probability vectors, including dependent supplementary mask views. It retains per-seed metrics, repairs, NLL, Brier, ECE and a failed first-file inference example. Those counts describe v0.1.0, not the new 90-fit follow-up.
 
-All **3,048 metric rows** were independently recomputed from saved probabilities in Colab and again locally. The package retains 896,112 probability vectors, including dependent supplementary mask views of the same 1,260 recordings.
+</details>
+
+The follow-up's 5,580 scores were independently reconstructed with maximum absolute difference 4.44×10⁻¹⁶. A separate CPU audit verified all 90 source checkpoint hashes and reproduced 15,120 source-validation prediction views without a class-label mismatch. The [audit summary](evaluation/component-controls/summaries/verification-summary.json) distinguishes local source-weight verification from the Colab post-evaluation hash check. None of these checks establishes deployment readiness or broad model superiority.
 
 <a id="technology-stack"></a>
 <h3><picture>
@@ -219,7 +301,7 @@ python verify_results.py
 python summarize_results.py
 ```
 
-[`protocol.json`](protocol.json) fixes the selection, participant roles, model settings and seeds. The [compute amendment](protocol_amendment_01.json) pairs training/mask seeds for the primary comparison. Extra CNN masks and a previously completed full-grid MiniRocket run remain supplementary sensitivity data.
+[`protocol.json`](protocol.json) fixes the original selection, participant roles, model settings and seeds. The [compute amendment](protocol_amendment_01.json) pairs training/mask seeds for the original primary comparison. Extra CNN masks and a previously completed full-grid MiniRocket run remain supplementary sensitivity data. The separate [component-control protocol](studies/component_removal/protocol.json) records the frozen follow-up. [Follow-up CSVs and analysis instructions](evaluation/component-controls/README.md) keep its full-grid summaries distinct from v0.1.0.
 
 <details>
 <summary><strong>Download contents and provenance</strong></summary>
@@ -230,9 +312,25 @@ python summarize_results.py
 | `mira-csi-public-inputs.zip` | Exact public input tensor, manifest, attribution and hashes |
 | GitHub source archive | Source code, model card, evaluation summaries and documentation |
 
-SHA256 digests accompany the release. The input cache does not overwrite current software source. Raw-data reconstruction downloads approximately 395 MB; the optional processed cache is smaller.
+SHA256 digests accompany v0.1.0. Those release assets cover the original 60 fits; they do not contain the new 90-fit component checkpoints. The input cache does not overwrite current software source. Raw-data reconstruction downloads approximately 395 MB; the optional processed cache is smaller.
 
 </details>
+
+<a id="repository-map"></a>
+<h4>Repository map</h4>
+
+| Start here | Purpose |
+|---|---|
+| [`paper/manuscript.pdf`](paper/manuscript.pdf) · [`paper/source/`](paper/source/) | Complete author manuscript, actual page previews and matching LaTeX source |
+| [`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb) · [`predict.py`](predict.py) | Executed v0.1.0 saved-model example and standalone inference |
+| [`mira_model.py`](mira_model.py) · [`missingness.py`](missingness.py) | Released model and observed-only repair operators |
+| [`protocol.json`](protocol.json) · [`protocol_amendment_01.json`](protocol_amendment_01.json) | Original experiment and paired-seed amendment |
+| [`studies/component_removal/protocol.json`](studies/component_removal/protocol.json) | Separate frozen component/capacity experiment |
+| [`evaluation/README.md`](evaluation/README.md) | Original 60-fit results, including failures |
+| [`evaluation/component-controls/README.md`](evaluation/component-controls/README.md) | New 90-fit full-grid results, component contrasts and clean MiniRocket sensitivity |
+| [`MODEL_CARD.md`](MODEL_CARD.md) · [`PRIOR-ART.md`](PRIOR-ART.md) | Task boundaries, evidence limits and upstream research |
+| [`data/README.md`](data/README.md) · [`NOTICE.md`](NOTICE.md) | Public-data provenance and attribution |
+| [`docs/render_followup_visuals.py`](docs/render_followup_visuals.py) | Rebuilds the transparent day/night result plots from saved summary CSVs |
 
 <a id="task-boundaries"></a>
 <h3><picture>

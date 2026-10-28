@@ -19,7 +19,7 @@ The weights describe local coverage, not calibrated confidence or a physical RF 
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{mira_architecture.pdf}
-\caption{Architecture of the implemented MIRA-CSI classifier. Observation mask and distance supplement 18 amplitude bands; mask coverage also weights temporal pooling. Both ablations retain the amplitude backbone. This is an algorithm diagram, not a body reconstruction or a measured RF field.}
+\caption{Architecture of the implemented MIRA-CSI classifier. Observation mask and distance supplement 18 amplitude bands; mask coverage also weights temporal pooling. The amplitude-only CNN comparators use the same convolutional backbone. These comparators do not isolate the three added components individually. This is an algorithm diagram, not a body reconstruction or a measured RF field.}
 \label{fig:miraarchitecture}
 \end{figure*}
 

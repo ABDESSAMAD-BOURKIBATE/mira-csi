@@ -1,73 +1,161 @@
 # MIRA-CSI model card
 
-Developer / research lead: Abdessamad Bourkibate. Status: experimental.
+**Developer and research lead:** Eng. Abdessamad Bourkibate<br>
+**Task:** offline classification of recorded Wi-Fi CSI into seven activity labels<br>
+**Status:** experimental software; the runnable release is v0.1.0.
 
-## Intended task
+## Input and output
 
-Offline recognition of seven predefined activities from the specified public
-CSI recordings. The model consumes a processed `(18, 500)` amplitude array,
-not images and not the laptop's ordinary RSSI reading.
+The predictor consumes a processed `(18, 500)` amplitude array and optionally
+an observation mask. It returns seven model probabilities and their highest
+scoring activity label. The evaluation uses 1,260 public recordings from 30
+participants in three environments. Each environment contains a different
+participant cohort.
 
-It cannot display the current user, reconstruct a body, measure body water,
-diagnose a fall in a live deployment or infer temperature/vital signs.
+These inputs require the documented CSI acquisition and preprocessing system.
+An ordinary laptop RSSI reading is insufficient. The evaluated classifier does
+not produce a body image, pose mesh, thermal image or a live view of a user.
+Water content, vital signs and clinical fall diagnosis are outside its task.
 
 ## Computation
 
-For an observation mask `m[t]` equal to 1 for retained samples, define
-`d[t] = min_{s:m[s]=1} |t-s| / 500`. After the selected offline repair, amplitudes
-are standardized using each band's source-training mean and standard
-deviation. The input concatenates 18 standardized streams with `m` and `d`.
+For `m[t] = 1` at retained positions, define
+`d[t] = min_{s:m[s]=1} |t-s| / 500`. Offline repair uses retained observations
+or a source-training mean. Per-band means and standard deviations are fitted
+on source-training recordings only. The input concatenates 18 standardized
+amplitude streams, the observation mask and the nearest-support distance.
 
-Three temporal convolutions use 32, 64 and 128 channels, kernel lengths 7, 5
-and 3, stride 2, GroupNorm and GELU. Local observation coverage is computed
-by adaptive average pooling of `m` to the encoded temporal length. With
-`w[j] = max(coverage[j], 0.05)`, the pooled representation is
-`sum_j w[j] h[j] / sum_j w[j]`. Dropout and a linear head produce seven logits.
+Three temporal convolutions use 32/64/128 channels, kernel lengths 7/5/3,
+stride two, GroupNorm and GELU. Adaptive temporal binning of `m` supplies
+coverage weights `w[j] = max(coverage[j], 0.05)`. The representation is
+`sum_j w[j] h[j] / sum_j w[j]`; dropout and a linear head produce seven logits.
+There are **40,871 nominal trainable parameters**. The amplitude-only CNN
+has 40,423.
 
-Coverage weights express where observations exist. They are not calibrated
-prediction confidence, measured signal reliability or a physical inverse model.
-The model has 40,871 trainable parameters; the ordinary CNN has 40,423.
+Coverage is a heuristic for observation availability. It is neither calibrated
+prediction confidence nor measured RF reliability. Because GroupNorm aggregates
+across time, a bin's coverage is not the observed fraction of its feature's
+complete dependency set. Distance and interpolation may use later retained
+positions; this is an offline procedure.
 
-Training minimizes seven-class cross-entropy with AdamW. Checkpoint selection
-and temperature scaling use source validation only. No excluded-environment
-labels inform the trained state or hyperparameters. Exact settings and seeds
-are fixed in `protocol.json`.
+Training minimizes seven-class cross-entropy with AdamW. Source validation
+selects the checkpoint and scalar temperature. Target labels are used for
+scoring only. The [original protocol](protocol.json), its
+[compute amendment](protocol_amendment_01.json), and the
+[component-control protocol](studies/component_removal/protocol.json) distinguish
+the evaluated stages.
 
-## Contribution being tested
+## What the contribution tests
 
-The testable proposal is the joint use of explicit missingness inputs and
-coverage-weighted pooling in a compact CSI classifier. The comparison includes
-the same amplitude CNN with and without corruption augmentation. This does not
-establish the novelty or isolated effect of every component: there is no
-separate mask-only, distance-only or pooling-only ablation in the current plan.
+MIRA-CSI implements a particular combination of explicit missingness inputs
+and coverage-weighted pooling. Masks, time gaps, CNNs and missing-CSI recovery
+have prior art; see [PRIOR-ART.md](PRIOR-ART.md). Authorship of this implementation
+does not establish invention of those ideas or ownership of upstream methods.
 
-Mask inputs and time-gap representations already appear in prior work such as
-GRU-D. Standard CNN layers and MiniRocket belong to their respective authors.
-The project's authorship does not confer ownership of those prior methods or
-the underlying dataset.
+The initial comparison changes three additions together. A subsequent controlled
+experiment tests full MIRA, zero explicit-mask input, zero distance input, and
+uniform pooling. All four retain the same 20-channel architecture and 40,871
+nominal parameters. A disabled channel has zero input and no data-dependent
+weight gradient; nominal parameter matching does not make the active information
+or effective capacity identical. Under the defined nearest-support distance,
+**`m_t = I[d_t = 0]`**: distance fully determines the mask, while distance is also
+a deterministic function of the complete mask. The zero-mask-input control tests
+the explicit encoding rather than removal of missingness information; distance
+and mask-dependent coverage pooling remain available.
 
-## Evaluation status
+Two conventional residual 1D CNN controls, trained clean or with loss augmentation,
+each have 511,111 parameters. They are reference architectures, not new MIRA
+components.
 
-The five-seed, three-fold comparison completed all 60 fits. Saved probabilities
-passed independent recomputation of 3,048 metric rows in Colab and on the local
-computer. MIRA-CSI held-environment accuracy was 23.73% ± 2.26 on complete inputs
-and 23.00% ± 1.28 with 50% contiguous loss and linear repair. These seed SDs are
-conditional on this fixed subset. MiniRocket achieved 53.08% ± 0.33 and
-19.59% ± 0.88, respectively. The current results do not establish practical
-superiority of MIRA-CSI over the ordinary CNN or deployment readiness.
+## Evaluation stages
 
-The full evaluation, including failed first-file inference and all repair
-comparisons, is in `evaluation/README.md`. Authorship, an academic name and
-working code do not alone establish a first scientific invention.
+| Stage | Scope | Principal result |
+|---|---|---|
+| Released v0.1.0 comparison | 60 fits: four models × three folds × five seeds | MIRA: complete 23.73 ± 2.26%; B50 linear 23.00 ± 1.28% under the five paired-seed summary |
+| Frozen component controls | 90 fits: six configurations × three folds × five seeds; 31 conditions per fit | Full MIRA: complete 23.73 ± 2.26%; R50 linear 22.68 ± 2.03%; B50 linear 22.56 ± 1.28% under the full mask grid |
+| Clean MiniRocket representation sensitivity | 30 reference/selected fits; five seeds and three folds | Official MiniRocket: original 53.08 ± 0.33%; source-selected 57.44 ± 1.04% |
 
-## Main limits
+Accuracy values are means ± sample SD. In the follow-up, each training/mask cell
+first pools all 1,260 held files. Five mask scores are averaged within a training
+seed; the mean and sample SD then use five training seeds. Macro F1 is computed
+from each pooled confusion matrix, not averaged from fold F1 scores. The initial
+**23.00%** block result uses one paired mask per training seed; **22.56%** uses
+all five masks for every training seed. They summarize different retained views
+of the same recordings, not different datasets or a model replacement.
 
-- Room and participant cohort are confounded in this dataset.
-- 1,260 selected files and seven classes do not represent every Wi-Fi activity.
-- Synthetic removal at normalized packet positions does not reproduce every
-  burst-loss mechanism or hardware failure.
-- Offline linear/nearest repair may use later observations, so this protocol
-  does not establish real-time causal operation.
-- Standard deviation across five seeds measures training variation conditional
-  on this fixed subset and protocol; it is not population-level certainty.
-- Source-only scalar temperature need not calibrate probabilities in a new room.
+The 90-fit follow-up preserves 5,580 metric rows and 1,640,520 probability vectors
+over familiar and held sets. These are repeated views, not additional people.
+Independent arithmetic reconstruction reproduced every row to maximum absolute
+error 4.44×10⁻¹⁶. A CPU audit verified 90 source checkpoint hashes and reproduced
+15,120 source-validation prediction views with no class-label mismatch; its
+maximum CPU/T4 logit difference was 6.20×10⁻⁶. The Colab post-evaluation audit
+reported unchanged checkpoint hashes. Post-evaluation weights were not reloaded
+locally during the probability-only audit.
+
+### Component findings
+
+The exploratory B50-linear macro-F1 family has three full-minus-control contrasts:
+
+| Control | Difference | Conditional 95% range | Bonferroni 98.333% range |
+|---|---:|---:|---:|
+| Zero explicit mask input | +0.0039 | [−0.0074, +0.0155] | [−0.0096, +0.0180] |
+| Zero distance input | −0.0047 | [−0.0080, −0.0015] | [−0.0086, −0.0007] |
+| Uniform temporal pooling | +0.0137 | [+0.0001, +0.0275] | [−0.0023, +0.0302] |
+
+The 10,000 paired bootstrap draws resample ten participants with replacement
+within each of three fixed environments. Each sampled person retains the full
+seed/mask grid; all configurations share the same draws. The explicit mask-input
+contrast is inconclusive here. The fitted-grid mean slightly favours removing
+distance. The apparent pooling benefit does not survive the three-comparison
+adjustment. These participant intervals condition on the already fitted seed grid;
+they do not describe the distribution of effects under retraining.
+
+| Control | Paired F1 difference, mean ± seed SD | Seeds favouring full MIRA |
+|---|---:|---:|
+| Zero explicit mask input | +0.0039 ± 0.0126 | 3/5 |
+| Zero distance input | −0.0047 ± 0.0117 | 2/5 |
+| Uniform temporal pooling | +0.0137 ± 0.0190 | 4/5 |
+
+Each difference is full minus control at the same training seed after averaging
+the five B50-linear masks. These descriptive five-seed SDs and sign counts reveal
+mixed directions; they are not confidence intervals. In particular, the adjusted
+participant range for distance does not imply that removing distance helps at
+every seed or under future retraining. The results do not establish individual,
+retraining-stable benefits for all additions. See the
+[15 paired differences](evaluation/component-controls/summaries/component-differences-per-seed.csv)
+and [seed-effect summary](evaluation/component-controls/summaries/component-differences-seed-summary.csv),
+derived from the saved mask-averaged seed scores without new fitting.
+
+### MiniRocket sensitivity is a separate comparator result
+
+Five representations were fixed before fitting. Each outer fold selects a
+representation using only that fold's source-validation macro F1 at the first
+training seed, and then keeps it fixed across five seeds. E1 selects temporal
+per-band standardization; E2/E3 select scalar per-recording standardization.
+Validation scores are not pooled across folds for selection. All 30 states were
+sealed before held scoring; six first-seed fits were reused and 24 more were fitted.
+
+The selected comparator reaches 57.44% overall clean accuracy. Per-environment
+means change from 57.24% to 66.43% in E1, 50.67% to 50.43% in E2 and 51.33% to
+55.48% in E3. The gain is not uniform. This is **MiniRocket**, not a MIRA result.
+This stage uses complete recordings and does not establish missing-input
+robustness or leakage-safe standardization when values are hidden.
+
+## Practical limits and evidence scope
+
+- Room and participant cohort change together; a causal room-only effect cannot
+  be identified from these splits.
+- The follow-up was designed after earlier results on these data were observed.
+  Its frozen execution is exploratory, not an untouched external confirmation.
+- Synthetic removal of normalized packet positions does not cover all packet
+  acquisition failures, sampling irregularities or real deployment conditions.
+- Source-only temperatures need not remain calibrated after transfer or loss.
+- Seed SD measures training variation conditional on fixed data and partitions.
+  Participant-bootstrap ranges condition on fixed fitted models, recordings,
+  rooms and masks; they exclude new-room and retraining uncertainty.
+- Absolute recognition performance remains limited. These results do not establish
+  general superiority, state-of-the-art performance or deployment readiness.
+
+[Initial evaluation](evaluation/README.md) ·
+[Follow-up summaries, inference scope and real plots](evaluation/component-controls/README.md) ·
+[Saved-model quick start](README.md#quick-start)

@@ -1,0 +1,61 @@
+{
+  "source": "Saved real-evaluation summary CSVs; no illustrative or generated experimental values.",
+  "files": [
+    {
+      "file": "docs/assets/followup-models-light.png",
+      "width": 2160,
+      "height": 920,
+      "sha256": "c0b1fe165a5aea1a52879952d1d50ead324ccd0cfa3cfe10bf17fc0911796826",
+      "transparent": true
+    },
+    {
+      "file": "docs/assets/followup-components-light.png",
+      "width": 2160,
+      "height": 840,
+      "sha256": "8a1c55a2097b8342642a6f73e3057bfff6e0a049c2537cfef625f78bd87f5248",
+      "transparent": true
+    },
+    {
+      "file": "docs/assets/followup-minirocket-light.png",
+      "width": 2160,
+      "height": 840,
+      "sha256": "d955f2182ea511a8f25d5d312f657f8500cced7db7aec471ec698a4f06512504",
+      "transparent": true
+    },
+    {
+      "file": "docs/assets/followup-models-dark.png",
+      "width": 2160,
+      "height": 920,
+      "sha256": "2216d5dd91367baec1f7711bea84b23b4e3bdff9c6cf66b80c43c77335239cd9",
+      "transparent": true
+    },
+    {
+      "file": "docs/assets/followup-components-dark.png",
+      "width": 2160,
+      "height": 840,
+      "sha256": "572749dae1e9e32c2c8e0dc787db3bcde59a48ce7b8a139d8767e74480670ed5",
+      "transparent": true
+    },
+    {
+      "file": "docs/assets/followup-minirocket-dark.png",
+      "width": 2160,
+      "height": 840,
+      "sha256": "485d4ce4926ef6ddcaff775c0bacff96704a2e3e0bead6c0f6bec0f23377f074",
+      "transparent": true
+    }
+  ],
+  "input_sha256": {
+    "evaluation/component-controls/summaries/held-summary.csv": "5a7ef9a752498316f1ce34282d005b1aa5a5a4283231fe5a232b9487d42122a1",
+    "evaluation/component-controls/summaries/primary-component-contrasts.csv": "c5a85ab91ebdb1e8c5263bc76de5626886a808d9ff15b60acf8eabd5bc18fd6e",
+    "evaluation/component-controls/summaries/minirocket-clean-per-fold-seed.csv": "50b58938fd519fce008ece45abd916969e7661eb16058d094c5c1fd68fab1c45",
+    "evaluation/component-controls/summaries/minirocket-clean-summary.csv": "53b751108be61c4b2182c266a6504cd834e6a24d90ffd997663edcc8e1d9241e"
+  },
+  "renderer": "docs/render_followup_visuals.py",
+  "renderer_sha256": "09b69bae515cbcf5d178c6c445e27c025b09a9fcec33ba47925d3bbc8b16a3c3",
+  "source_models": 6,
+  "source_component_fits": 90,
+  "clean_reference_selected_fits": 30,
+  "uncertainty": "Sample SD across five training seeds after averaging masks; component intervals use the separate fixed-model participant bootstrap.",
+  "distinction": "MiniRocket source-selected results are clean-only and are not attributed to MIRA.",
+  "backgrounds": "RGBA transparent in both themes; no external frame or fake interface."
+}

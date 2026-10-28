@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+local-runs/
+local-assets/
+results/
+*.zip
+*.pt
+*.npy
+*.npz
+*.log
+.venv*/

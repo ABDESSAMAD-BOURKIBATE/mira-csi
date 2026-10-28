@@ -5,3 +5,11 @@
 *.joblib binary
 *.png binary
 *.pdf binary
+# These artifacts carry published SHA256 receipts; retain their executed bytes.
+paper/source/** -text
+studies/component_removal/models.py -text
+studies/component_removal/operators.py -text
+studies/component_removal/run_ablation.py -text
+studies/component_removal/protocol.json -text
+studies/component_removal/analysis_evaluation.py -text
+evaluation/component-controls/summaries/** -text
