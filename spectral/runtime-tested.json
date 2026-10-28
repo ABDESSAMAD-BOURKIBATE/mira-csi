@@ -1,0 +1,10 @@
+{
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.18.1",
+  "torch": "2.11.0+cpu",
+  "threadpoolctl": "3.7.0",
+  "device": "CPU",
+  "torch_threads": 2,
+  "note": "Tested environment, not an instruction to replace an existing CUDA-compatible Torch installation. No dependency package is bundled."
+}

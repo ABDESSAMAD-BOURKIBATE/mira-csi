@@ -1,0 +1,50 @@
+{
+  "selection": "First E1 held recording in immutable manifest order; not selected by prediction outcome.",
+  "manifest_index": 0,
+  "record_name": "E1_S01_C01_A01_T05.mat",
+  "classes": [
+    "sit",
+    "fall_from_sit",
+    "lie",
+    "stand",
+    "walk_tx_rx",
+    "sit_down",
+    "pick_up"
+  ],
+  "dataset_doi": "10.17632/v38wjmz6f6.2",
+  "data_license": "CC-BY-4.0",
+  "raw_record_sha256": "f5cf5ff2390469567037deadab5524355e3b98f6da4abd4c600463e005f3ba7f",
+  "power_cache_sha256": "e418b7e7061697f4100b7a071b2478226761ff614eb6a97ae482997593353523",
+  "representation_rule": {
+    "id": "log_mean_scaled_power_v1",
+    "epsilon_power": 1e-24,
+    "operation": "10*log10(max(mean(abs(H_scaled)**2 over each five exported subcarriers), epsilon_power))",
+    "scaling": "Original author/Halperin sqrt(SNR) scaling, same RSSI/AGC/noise handling as prepare_data.py",
+    "bands": "Three RX antennas x six consecutive exported-subcarrier groups of five = 18 streams",
+    "resampling": "Linear interpolation to 500 equally spaced valid packet-index positions per record; physical duration/timestamp gaps are not preserved",
+    "fitting": "None. No pooled source or target statistics. Each record transformed independently by the fixed formula.",
+    "labels": "No labels or model predictions used by conversion; manifest file order and hash receipts only."
+  },
+  "model_tag": "E_E1_s20261026",
+  "checkpoint_sha256": "9181794a86cded1ed9b13c758d393bdf13776eaab7a13efd365c01465ec5d806",
+  "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+  "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+  "stored_prediction_file_sha256": "a76a0900b4708db069672f84f9a3d713d3496f9af9a951c0ebf4cf9f88d56b4b",
+  "complete_condition": {
+    "condition_id": 0,
+    "pattern": "complete",
+    "missing_fraction": 0.0,
+    "mask_seed": 0
+  },
+  "block_condition": {
+    "condition_id": 6,
+    "pattern": "contiguous",
+    "missing_fraction": 0.5,
+    "mask_seed": 20261026
+  },
+  "files_sha256": {
+    "first-held-E1-B50-mask.npy": "496df9d2d6fa8d4828a0fb67517bda2aea537431a499eaa99a4f4d45dfe0bf88",
+    "first-held-E1-power18.npy": "e6e9869d106ce8f44c0416f572df2716b4655216fd172330ed4a22b7fb4e4185",
+    "stored-reference.json": "6cc3a1929a1f2f9eee3d80ca76916c60163c1095da78bd48012330967cdee714"
+  }
+}

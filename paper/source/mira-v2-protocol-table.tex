@@ -1,0 +1,34 @@
+\begin{table*}[t]
+\centering
+\caption{Executed extension protocol. This is an exploratory follow-up with historical target outcomes already known; freezing this execution does not make the research direction a fresh preregistered hypothesis.}
+\label{tab:m2-protocol}
+\begingroup\fontsize{9.5}{12}\selectfont
+\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.13}
+\setlength{\extrarowheight}{1.3pt}\setlength{\arrayrulewidth}{0.5pt}\arrayrulecolor{m2border}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{.22\textwidth}>{\raggedright\arraybackslash}X|}
+\hline\rowcolor{m2head}
+\mTwoHead{Item} & \mTwoHead{Executed setting} \\
+\hline
+\rowcolor{m2Afill} Input & 1,260 selected real recordings; 18 fixed log-mean-power streams by 500 normalized packet positions. \\
+\hline
+\rowcolor{m2Bfill} Outer-fold roles & 504 training, 168 validation, 168 familiar-test, 420 held-environment recordings. Participants are disjoint within each fold. \\
+\hline
+\rowcolor{m2Afill} Fixed feature grid & Whole record and two half-record cells; lags 1, 2, 4, 8, 16, 32; at least 36 observed endpoint pairs; 360 features. \\
+\hline
+\rowcolor{m2Bfill} Numerical choices & Relative covariance eigenvalue threshold $10^{-8}$; log mixture $10^{-3}$; bound violation tolerance $10^{-4}$. \\
+\hline
+\rowcolor{m2Afill} Training & AdamW, learning rate $10^{-3}$, weight decay $10^{-4}$, batch 64, gradient-norm clip 5, dropout 0.2, at most 60 epochs. \\
+\hline
+\rowcolor{m2Bfill} Stopping and calibration & Clean source-validation NLL, minimum decrease $10^{-4}$, patience 12; one validation temperature in $[0.1,10]$. \\
+\hline
+\rowcolor{m2Afill} Augmentation & Probability 0.5 complete; otherwise uniform random/contiguous loss and uniform fraction 0.1/0.3/0.5, same record order and draw sequence for all arms. \\
+\hline
+\rowcolor{m2Bfill} Repetitions & Training seeds 20261026--20261030; five arms by three folds by five seeds = 75 fits. Five fixed test masks per loss pattern. \\
+\hline
+\rowcolor{m2Afill} Evaluation & Complete, random 50\%, contiguous 50\%; 11 realizations per fit; all 75 weights and calibration values frozen before held/familiar inference. \\
+\hline
+\rowcolor{m2Bfill} Primary comparison & A minus B pooled held macro F1 under contiguous 50\% loss. Other arms, input conditions and metrics remain visible. \\
+\hline
+\end{tabularx}
+\arrayrulecolor{black}\endgroup
+\end{table*}

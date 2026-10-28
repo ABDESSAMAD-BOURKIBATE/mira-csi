@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Frozen comparison arms. All arms use the same source partitions, augmentation draw sequence and optimization settings. A--C have identical nominal trainable parameter counts; D and E change capacity as well as their input paths. The table defines controls, not claims of isolated causal mechanisms.}
+\label{tab:m2-arms}
+\begingroup\fontsize{9.5}{12}\selectfont
+\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.13}
+\setlength{\extrarowheight}{1.3pt}\setlength{\arrayrulewidth}{0.5pt}\arrayrulecolor{m2border}
+\begin{tabularx}{\textwidth}{|llr>{\raggedright\arraybackslash}X|}
+\hline\rowcolor{m2head}
+\mTwoHead{Arm} & \mTwoHead{Paths} & \mTwoHead{Parameters} & \mTwoHead{Fixed-feature construction} \\
+\hline
+\rowcolor{m2Afill} A & Temporal + feature MLP & 66,279 & Matched-endpoint generalized lagged-increment spectrum. \\
+\hline
+\rowcolor{m2Bfill} B & Temporal + feature MLP & 66,279 & Same increment numerator; covariance denominator over all observed cell positions. \\
+\hline
+\rowcolor{m2Cfill} C & Temporal + feature MLP & 66,279 & Matched per-channel diagonal ratios, kept in channel order. \\
+\hline
+\rowcolor{m2Dfill} D & Temporal only & 40,871 & No fixed spectral or ratio feature branch. \\
+\hline
+\rowcolor{m2Efill} E & Feature MLP only & 25,415 & Exactly A's fixed features, without the temporal CNN. \\
+\hline
+\end{tabularx}
+\arrayrulecolor{black}\endgroup
+\end{table*}

@@ -1,0 +1,50 @@
+\begin{table*}[t]
+\centering
+\caption{Pooled held-environment results for every prespecified arm. R50 and B50 delete exactly 250 of 500 normalized positions, respectively at random or in one contiguous block. Values are mean $\pm$ sample SD across five training seeds after averaging the five masks within each seed. Accuracy and macro F1 are percentages; NLL and summed multiclass Brier are unitless (lower is better). The same scalar source-validation temperature is retained for every condition.}
+\label{tab:m2-pooled}
+\begingroup\fontsize{9.5}{12}\selectfont
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.13}
+\setlength{\extrarowheight}{1.3pt}\setlength{\arrayrulewidth}{0.5pt}\arrayrulecolor{m2border}
+\begin{tabularx}{\textwidth}{|ll*{4}{>{\raggedleft\arraybackslash}X}|}
+\hline
+\rowcolor{m2head}
+\mTwoHead{Arm} & \mTwoHead{Input} & \mTwoHead{Accuracy (\%)} & \mTwoHead{Macro F1 (\%)} & \mTwoHead{NLL} & \mTwoHead{Brier} \\
+\hline
+\rowcolor{m2Afill}
+A & Complete & 48.30\,\(\pm\)\,2.63 & 47.55\,\(\pm\)\,2.93 & 1.395\,\(\pm\)\,0.052 & 0.690\,\(\pm\)\,0.028 \\
+\rowcolor{m2Afill}
+A & R50 & 49.58\,\(\pm\)\,1.76 & 49.15\,\(\pm\)\,1.99 & 1.327\,\(\pm\)\,0.032 & 0.665\,\(\pm\)\,0.024 \\
+\rowcolor{m2Afill}
+A & B50 & 34.77\,\(\pm\)\,1.37 & 34.04\,\(\pm\)\,1.38 & 2.127\,\(\pm\)\,0.084 & 0.902\,\(\pm\)\,0.021 \\
+\hline
+\rowcolor{m2Bfill}
+B & Complete & 48.05\,\(\pm\)\,2.56 & 47.24\,\(\pm\)\,2.78 & 1.412\,\(\pm\)\,0.046 & 0.696\,\(\pm\)\,0.029 \\
+\rowcolor{m2Bfill}
+B & R50 & 49.23\,\(\pm\)\,1.89 & 48.48\,\(\pm\)\,2.19 & 1.361\,\(\pm\)\,0.040 & 0.673\,\(\pm\)\,0.029 \\
+\rowcolor{m2Bfill}
+B & B50 & 34.19\,\(\pm\)\,1.60 & 33.49\,\(\pm\)\,1.56 & 2.143\,\(\pm\)\,0.083 & 0.908\,\(\pm\)\,0.021 \\
+\hline
+\rowcolor{m2Cfill}
+C & Complete & 44.54\,\(\pm\)\,1.81 & 44.00\,\(\pm\)\,1.99 & 1.524\,\(\pm\)\,0.073 & 0.739\,\(\pm\)\,0.028 \\
+\rowcolor{m2Cfill}
+C & R50 & 43.66\,\(\pm\)\,1.47 & 42.81\,\(\pm\)\,1.89 & 1.534\,\(\pm\)\,0.059 & 0.733\,\(\pm\)\,0.025 \\
+\rowcolor{m2Cfill}
+C & B50 & 32.31\,\(\pm\)\,0.74 & 31.55\,\(\pm\)\,0.85 & 2.205\,\(\pm\)\,0.113 & 0.924\,\(\pm\)\,0.029 \\
+\hline
+\rowcolor{m2Dfill}
+D & Complete & 25.22\,\(\pm\)\,1.61 & 23.84\,\(\pm\)\,1.97 & 2.076\,\(\pm\)\,0.079 & 0.897\,\(\pm\)\,0.023 \\
+\rowcolor{m2Dfill}
+D & R50 & 23.43\,\(\pm\)\,1.95 & 21.32\,\(\pm\)\,2.40 & 2.051\,\(\pm\)\,0.077 & 0.889\,\(\pm\)\,0.023 \\
+\rowcolor{m2Dfill}
+D & B50 & 21.54\,\(\pm\)\,2.04 & 19.47\,\(\pm\)\,1.87 & 2.518\,\(\pm\)\,0.136 & 0.997\,\(\pm\)\,0.038 \\
+\hline
+\rowcolor{m2Efill}
+E & Complete & 75.17\,\(\pm\)\,1.00 & 74.61\,\(\pm\)\,1.21 & 0.773\,\(\pm\)\,0.018 & 0.365\,\(\pm\)\,0.008 \\
+\rowcolor{m2Efill}
+E & R50 & 73.82\,\(\pm\)\,0.94 & 73.33\,\(\pm\)\,1.10 & 0.831\,\(\pm\)\,0.018 & 0.386\,\(\pm\)\,0.009 \\
+\rowcolor{m2Efill}
+E & B50 & 60.60\,\(\pm\)\,1.37 & 59.16\,\(\pm\)\,1.61 & 1.160\,\(\pm\)\,0.014 & 0.552\,\(\pm\)\,0.011 \\
+\hline
+\end{tabularx}
+\arrayrulecolor{black}\endgroup
+\end{table*}

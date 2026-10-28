@@ -1,0 +1,257 @@
+{
+  "E_E1_s20261026": {
+    "temperature": 0.8688099152312774,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "9181794a86cded1ed9b13c758d393bdf13776eaab7a13efd365c01465ec5d806",
+    "validation_sha256": "271f638b871d2694105cd0808558f611476ca20d322c32d70306cf59c17b7ee8",
+    "training_receipt_sha256": "55bf65e4e27ce6b506490276e3df3c7895b027071e98ad398e13c76cc619c44c"
+  },
+  "E_E1_s20261027": {
+    "temperature": 0.8834049870496706,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "776fae3934c071cd42c454f7c086937fe95ca76e769f90e4bdf223d5a4fd79b8",
+    "validation_sha256": "2bedd13865b82535f035f8e05fbe2d44e8fbcd56d3943b54bf87ed2a3b1665ff",
+    "training_receipt_sha256": "da420069b721df74b9119f7651a4c9593022a8dad648507ebb5a8fd06cd5a453"
+  },
+  "E_E1_s20261028": {
+    "temperature": 0.8532362298840844,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "fa2502e625e8caebcb037015c72cbd3215f8b2c27fe89faac47c5738c2494446",
+    "validation_sha256": "495bc2280cfe05c621d382b24f346ce7089e684354d56ed6dd881a5bde16981c",
+    "training_receipt_sha256": "34fe56c4052347fdbdac1ae61a7d17136ef8e692d159bd7952cd2d9c3e30c4db"
+  },
+  "E_E1_s20261029": {
+    "temperature": 0.8415574835154248,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "84058e9fd2d2ac33000b509c103e5f291a4adad369acff062977349c8fe5e32a",
+    "validation_sha256": "4dd5005b897b14f85768825323880d7f8091aac7c0edc62c94ea9561c42cbb89",
+    "training_receipt_sha256": "b9407f7628c56a7b6ede0df817ff36dfe5c65af6bdc5a725fdc0ec52e84eaf87"
+  },
+  "E_E1_s20261030": {
+    "temperature": 0.8839505974975322,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "d5f9e09ed64ec466d25fa173f8701cf49d173e09297c2ad99eb0532456ba9b3b",
+    "validation_sha256": "1ab5cc2b4a81edacca954aa97ff7c4dad79b3501bd22bed2e3d1d87b238cea43",
+    "training_receipt_sha256": "213cced93ef22985e60a6346f1edf04db63e41a51aac746abd37c8e88ce395e5"
+  },
+  "E_E2_s20261026": {
+    "temperature": 0.7980692361575614,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "4450886c88cb0f5cf9bf093a39e6f71dc9594c1e1eb7c026ce86a670630ef880",
+    "validation_sha256": "9455d3b6d2bc3552084f03f8b2ccf2bc4d859aeeb5c0b29bb115e14ca2434f34",
+    "training_receipt_sha256": "23e830e11776fc802875a343226aff810f4a306a7170e58f241affa64cc3ed8e"
+  },
+  "E_E2_s20261027": {
+    "temperature": 0.7800765086017917,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "4f9007856f5eec80ad9f77e78fd094910091c49545316be01bdfba94270cdefb",
+    "validation_sha256": "eb70ad593f23be02daf0ddeb97f94be30344b55c5142d5a8e93d8b8fec96c865",
+    "training_receipt_sha256": "740cafa3355eca1fd0d51e50ed1f3dffa3722a251576ff104f61283ca6899cdc"
+  },
+  "E_E2_s20261028": {
+    "temperature": 0.9151179388899735,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "d92e36602843d3957678fa1acadf2381cd14c7f0268791521177372b45f9e8b0",
+    "validation_sha256": "e504627387b27e63ef037bd3126858c7e3f44e17f1d2e19e2febcfffefd4bf38",
+    "training_receipt_sha256": "2790803fdac8f52b5d51c4023bfa4c2b92115afc252801cecbaf1e2288ce76a0"
+  },
+  "E_E2_s20261029": {
+    "temperature": 0.7780218926021453,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "9f7710cfbc72b90bd0b7926ce71fb2d95a55bf7781cfcaf46912f65d6ad637c8",
+    "validation_sha256": "a9df0cae8b1ceee0df144c62251ab81163e72d303b87acd0f12eadb4b078dcc7",
+    "training_receipt_sha256": "d0749d8c688e9baaa81dc0cfac91d1e9434fc2e7f0cbf5c98620a67fe9f4cbef"
+  },
+  "E_E2_s20261030": {
+    "temperature": 0.7589868898187606,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "4bd286734c8ea50a9e62556dcf477413c05220815471a7070096223b7f17b701",
+    "validation_sha256": "276311d691f29348cfcc3355e049c9df7cd223a133c54052e1ac3bb3a1195686",
+    "training_receipt_sha256": "2e85d28d1321e4d7e23ace99a5c6644049ee6472c740378cd157d00b0af13f7c"
+  },
+  "E_E3_s20261026": {
+    "temperature": 0.9591296235977665,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "b46fd92a0ed5c9b170706db08db9c4ab2b95e4d853a9e6d5016f3ab9d20b4d42",
+    "validation_sha256": "a34956460c5a593ba0aef0f6595d60bf1d1a72e61430284ab1e619f3daee23ef",
+    "training_receipt_sha256": "6a8f0a0cfd319bcb5d38c196d870f5c1b1e7f8b7b42a87abfce7e248149aa739"
+  },
+  "E_E3_s20261027": {
+    "temperature": 0.9608376165130808,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "d1d40c0ed52a851af73507cbc720b9d3ad1ac818aaa706cf0bd147d4f6277b92",
+    "validation_sha256": "5a51f145f8f6360dd84a13caf2a412d700ae9abfbc541c8c40c5ddc296c09eae",
+    "training_receipt_sha256": "568bf7e878ee19991f71cc20e0751f31acb10bc22961d318179097017a9b6631"
+  },
+  "E_E3_s20261028": {
+    "temperature": 0.9893260924503091,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "19d854fe69b94cb076360b2f93cde18b1615b009e28a87d5ab7c07323428a872",
+    "validation_sha256": "94198cdb0fc4c29626f88b2f5be5daa1607b020a722806e2bcae422eae748a9d",
+    "training_receipt_sha256": "76547e5706bad156a49f88fcad869fc3f7e4960dc6fd8751fb974911eef0d67e"
+  },
+  "E_E3_s20261029": {
+    "temperature": 0.9741192811622205,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "d8ed51d4821c9da2d558b7ee3f4ea3dd31e825c392b0e0c630e180e3cb6c2b7b",
+    "validation_sha256": "1f6f1f2634ef71eaf717e67f60cd248ace9ed6104d7101b89b5dd9f65e8a65ff",
+    "training_receipt_sha256": "1f6c1d84475c2fa2f7da22cb098cc05055b3dc5be8a82d67a69fde9278d90497"
+  },
+  "E_E3_s20261030": {
+    "temperature": 1.03160270009503,
+    "classes": [
+      "sit",
+      "fall_from_sit",
+      "lie",
+      "stand",
+      "walk_tx_rx",
+      "sit_down",
+      "pick_up"
+    ],
+    "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+    "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+    "checkpoint_sha256": "34e11447b171ee56bc83b62c9c995dd6d3ce688c6c8a45171bd45ead62993082",
+    "validation_sha256": "c861679c5ca1f8c975a005b6a5b8626719578786ad34e8ad52156d8613ed1ec8",
+    "training_receipt_sha256": "2b78e8b98a1b575af30dd188d92b470021997486c2295beea5bb9a4c0d56143d"
+  }
+}

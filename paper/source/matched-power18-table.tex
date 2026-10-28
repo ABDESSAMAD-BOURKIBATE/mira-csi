@@ -1,0 +1,66 @@
+\begin{table*}[t]
+\centering
+\caption{Fixed-power-input comparison, retaining E, the clean-trained MiniRocket reference (MR-P18), and both hybrid controls. C: complete; R50/B50: random/contiguous 50\% loss. Values are mean $\pm$ sample SD across five training seeds after mask averaging, not confidence intervals. Accuracy and macro F1 are percentages; NLL and summed multiclass Brier are unitless. Held pools 1,260 recordings; familiar pools 504 fold-specific prediction occurrences, with possible repeated recordings/participants across folds. E is loss-augmented; MR-P18 is clean-trained with source-band-mean fill and no mask input, so this is not a training-policy-matched architectural comparison.}
+\label{tab:matched-p18}
+\begingroup\fontsize{9.5}{12}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.13}
+\setlength{\extrarowheight}{1.3pt}\setlength{\arrayrulewidth}{0.5pt}\arrayrulecolor{mrefBorder}
+\begin{tabularx}{\textwidth}{|lll*{4}{>{\raggedleft\arraybackslash}X}|}
+\hline\rowcolor{mrefHead}
+\mrefHeadText{Model} & \mrefHeadText{Cohort} & \mrefHeadText{Input} & \mrefHeadText{Accuracy (\%)} & \mrefHeadText{Macro F1 (\%)} & \mrefHeadText{NLL} & \mrefHeadText{Brier} \\
+\hline
+\rowcolor{mrefE}
+E & Held & C & 75.17\,\(\pm\)\,1.00 & 74.61\,\(\pm\)\,1.21 & 0.773\,\(\pm\)\,0.018 & 0.365\,\(\pm\)\,0.008 \\
+\rowcolor{mrefE}
+E & Held & R50 & 73.82\,\(\pm\)\,0.94 & 73.33\,\(\pm\)\,1.10 & 0.831\,\(\pm\)\,0.018 & 0.386\,\(\pm\)\,0.009 \\
+\rowcolor{mrefE}
+E & Held & B50 & 60.60\,\(\pm\)\,1.37 & 59.16\,\(\pm\)\,1.61 & 1.160\,\(\pm\)\,0.014 & 0.552\,\(\pm\)\,0.011 \\
+\rowcolor{mrefE}
+E & Familiar & C & 68.41\,\(\pm\)\,1.26 & 67.97\,\(\pm\)\,1.39 & 0.883\,\(\pm\)\,0.051 & 0.448\,\(\pm\)\,0.019 \\
+\rowcolor{mrefE}
+E & Familiar & R50 & 66.40\,\(\pm\)\,0.84 & 65.77\,\(\pm\)\,0.93 & 0.946\,\(\pm\)\,0.051 & 0.470\,\(\pm\)\,0.014 \\
+\rowcolor{mrefE}
+E & Familiar & B50 & 53.33\,\(\pm\)\,1.48 & 51.51\,\(\pm\)\,1.64 & 1.341\,\(\pm\)\,0.059 & 0.648\,\(\pm\)\,0.019 \\
+\hline
+\rowcolor{mrefMR}
+MR-P18 & Held & C & 53.84\,\(\pm\)\,0.94 & 53.87\,\(\pm\)\,1.01 & 1.363\,\(\pm\)\,0.037 & 0.634\,\(\pm\)\,0.009 \\
+\rowcolor{mrefMR}
+MR-P18 & Held & R50 & 22.30\,\(\pm\)\,1.10 & 16.11\,\(\pm\)\,0.84 & 3.486\,\(\pm\)\,0.151 & 1.109\,\(\pm\)\,0.023 \\
+\rowcolor{mrefMR}
+MR-P18 & Held & B50 & 19.41\,\(\pm\)\,2.33 & 15.64\,\(\pm\)\,4.15 & 4.852\,\(\pm\)\,1.764 & 1.275\,\(\pm\)\,0.168 \\
+\rowcolor{mrefMR}
+MR-P18 & Familiar & C & 58.85\,\(\pm\)\,0.57 & 58.30\,\(\pm\)\,0.77 & 1.295\,\(\pm\)\,0.043 & 0.588\,\(\pm\)\,0.010 \\
+\rowcolor{mrefMR}
+MR-P18 & Familiar & R50 & 22.38\,\(\pm\)\,1.37 & 15.84\,\(\pm\)\,1.40 & 3.388\,\(\pm\)\,0.282 & 1.105\,\(\pm\)\,0.043 \\
+\rowcolor{mrefMR}
+MR-P18 & Familiar & B50 & 20.58\,\(\pm\)\,4.08 & 16.75\,\(\pm\)\,5.85 & 4.812\,\(\pm\)\,1.797 & 1.263\,\(\pm\)\,0.194 \\
+\hline
+\rowcolor{mrefA}
+A & Held & C & 48.30\,\(\pm\)\,2.63 & 47.55\,\(\pm\)\,2.93 & 1.395\,\(\pm\)\,0.052 & 0.690\,\(\pm\)\,0.028 \\
+\rowcolor{mrefA}
+A & Held & R50 & 49.58\,\(\pm\)\,1.76 & 49.15\,\(\pm\)\,1.99 & 1.327\,\(\pm\)\,0.032 & 0.665\,\(\pm\)\,0.024 \\
+\rowcolor{mrefA}
+A & Held & B50 & 34.77\,\(\pm\)\,1.37 & 34.04\,\(\pm\)\,1.38 & 2.127\,\(\pm\)\,0.084 & 0.902\,\(\pm\)\,0.021 \\
+\rowcolor{mrefA}
+A & Familiar & C & 49.76\,\(\pm\)\,1.86 & 48.59\,\(\pm\)\,1.62 & 1.402\,\(\pm\)\,0.061 & 0.677\,\(\pm\)\,0.020 \\
+\rowcolor{mrefA}
+A & Familiar & R50 & 49.33\,\(\pm\)\,0.45 & 48.39\,\(\pm\)\,0.48 & 1.352\,\(\pm\)\,0.029 & 0.660\,\(\pm\)\,0.009 \\
+\rowcolor{mrefA}
+A & Familiar & B50 & 40.16\,\(\pm\)\,1.30 & 39.46\,\(\pm\)\,1.05 & 1.904\,\(\pm\)\,0.072 & 0.822\,\(\pm\)\,0.012 \\
+\hline
+\rowcolor{mrefB}
+B & Held & C & 48.05\,\(\pm\)\,2.56 & 47.24\,\(\pm\)\,2.78 & 1.412\,\(\pm\)\,0.046 & 0.696\,\(\pm\)\,0.029 \\
+\rowcolor{mrefB}
+B & Held & R50 & 49.23\,\(\pm\)\,1.89 & 48.48\,\(\pm\)\,2.19 & 1.361\,\(\pm\)\,0.040 & 0.673\,\(\pm\)\,0.029 \\
+\rowcolor{mrefB}
+B & Held & B50 & 34.19\,\(\pm\)\,1.60 & 33.49\,\(\pm\)\,1.56 & 2.143\,\(\pm\)\,0.083 & 0.908\,\(\pm\)\,0.021 \\
+\rowcolor{mrefB}
+B & Familiar & C & 49.68\,\(\pm\)\,1.36 & 48.67\,\(\pm\)\,1.11 & 1.413\,\(\pm\)\,0.056 & 0.681\,\(\pm\)\,0.016 \\
+\rowcolor{mrefB}
+B & Familiar & R50 & 48.98\,\(\pm\)\,0.87 & 48.08\,\(\pm\)\,0.26 & 1.364\,\(\pm\)\,0.030 & 0.665\,\(\pm\)\,0.008 \\
+\rowcolor{mrefB}
+B & Familiar & B50 & 39.73\,\(\pm\)\,1.35 & 39.31\,\(\pm\)\,0.96 & 1.930\,\(\pm\)\,0.060 & 0.831\,\(\pm\)\,0.015 \\
+\hline
+\end{tabularx}
+\arrayrulecolor{black}\endgroup
+\end{table*}

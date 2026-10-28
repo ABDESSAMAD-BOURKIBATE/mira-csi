@@ -1,0 +1,51 @@
+{
+  "model": "MIRA-CSI spectral variant E (experimental)",
+  "developer": "Abdessamad Bourkibate",
+  "variant": "E",
+  "held_environment": 1,
+  "training_seed": 20261026,
+  "class_order": [
+    "sit",
+    "fall_from_sit",
+    "lie",
+    "stand",
+    "walk_tx_rx",
+    "sit_down",
+    "pick_up"
+  ],
+  "predicted_index": 3,
+  "predicted_label": "stand",
+  "probabilities": [
+    0.09849665885189059,
+    0.0050413742039427225,
+    0.009674767988926017,
+    0.8103290831779363,
+    3.15551189749334e-05,
+    0.0699598804085203,
+    0.00646668024980892
+  ],
+  "log_probabilities": [
+    -2.3177326516647745,
+    -5.290076574551264,
+    -4.638234020826591,
+    -0.21031483829489217,
+    -10.363774732536402,
+    -2.659833338259722,
+    -5.041092401097255
+  ],
+  "logits": [
+    1.4341909885406494,
+    -1.148210883140564,
+    -0.5818836092948914,
+    3.265136480331421,
+    -5.556290149688721,
+    1.1369705200195312,
+    -0.9318909645080566
+  ],
+  "observed_positions": 250,
+  "temperature": 0.8688099152312774,
+  "checkpoint_sha256": "9181794a86cded1ed9b13c758d393bdf13776eaab7a13efd365c01465ec5d806",
+  "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+  "source_fit_freeze_sha256": "c7575d16aefd0a12348f0e3997683cb1d6895641ebf5e0c8541780b86be15b5b",
+  "status": "Experimental offline classification; hash consistency is not authenticity."
+}

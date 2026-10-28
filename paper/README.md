@@ -3,15 +3,24 @@
 **Reliability Assessment of Wi-Fi CSI-Based Activity Recognition under Environmental Shift and Structured Measurement Loss**<br>
 Eng. **Abdessamad Bourkibate** · 28 October 2026
 
-[Read the complete PDF](manuscript.pdf) · [LaTeX source](source/main.tex) · [File hashes](MANIFEST.json) · [Verified evaluation](../evaluation/component-controls/README.md)
+[Read the complete PDF](manuscript.pdf) · [Four-page result supplement](supplementary-results.pdf) · [LaTeX source](source/main.tex) · [File hashes](MANIFEST.json) · [Spectral software](../spectral/README.md)
 
-This is the **unreviewed author manuscript**: 21 pages, 14 tables, 14 figures and
-21 references. It has not been accepted by a journal and has no assigned DOI.
-The current author version includes the author-approved AI-assistance declaration
-on page 20. Numerical results are unchanged. The [v0.2.0 archived PDF](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reliability-manuscript-20261028.pdf)
-predates that declaration; its published checksums remain valid for that archived version.
-The contribution is an executable model and a bounded, reproducible reliability study; the reported
-component findings are mixed and do not establish broad model superiority.
+This is the **unreviewed author manuscript**: **32 pages, 19 tables, 18 figures
+and 25 references**, with a separate **four-page A–E result supplement**. It has
+not been accepted by a journal and has **no assigned DOI**. It retains the
+author-approved AI-assistance declaration and the negative results from the
+earlier studies. The [v0.2.0 archived PDF](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reliability-manuscript-20261028.pdf)
+is an earlier author version; its published checksums continue to identify
+that archived file, not this expanded version.
+
+The current version adds the 75-fit spectral A–E extension and an additional
+15-configuration MiniRocket power18 reference (three source fits reused,
+12 additional source fits). It reports the feature-only E result alongside
+the weaker hybrids and the small original A−B contrast. The E/reference
+comparison is post-hoc and uses different augmentation/mean-fill policies;
+it does not isolate architecture or support matching or establish SOTA,
+patent novelty or independent confirmation. All uncertainty ranges retain
+their fixed-data/room/model scope.
 
 <p align="center"><a href="manuscript.pdf"><img src="first-page.png" alt="Actual first page of the MIRA-CSI reliability manuscript" width="480"></a></p>
 
@@ -20,15 +29,24 @@ component findings are mixed and do not establish broad model superiority.
 | File | Purpose |
 |---|---|
 | [manuscript.pdf](manuscript.pdf) | Complete compiled author version |
-| [source/](source/) | Main TeX file, two included result files, referenced figures and retained CAS support files |
-| [results-page.png](results-page.png) | Actual rendered page with the six-configuration result table |
-| [component-page.png](component-page.png) | Actual rendered page with model-score plots and paired component contrasts |
+| [supplementary-results.pdf](supplementary-results.pdf) | Four pages retaining all 90 A–E fold/domain/condition rows, including unfavourable familiar results |
+| [source/](source/) | Main TeX file, included result fragments, referenced figures, modified author class and unchanged CAS support files |
+| [spectral-results-page.png](spectral-results-page.png) | Current rendered manuscript page with spectral A–E results |
+| [matched-reference-page.png](matched-reference-page.png) | Current rendered manuscript page with the power18 reference comparison |
+| [results-page.png](results-page.png) · [component-page.png](component-page.png) | Retained earlier author-version result previews |
 | [MANIFEST.json](MANIFEST.json) | SHA256 values tying this source package to the PDF |
 
-The 90-fit follow-up and the separate clean-input MiniRocket representation
-sensitivity retain their own frozen protocols and numerical artifacts. They
-are distinct from the original 60-fit v0.1.0 comparison. Read the captions before
-comparing paired-mask summaries with full-mask-grid summaries.
+The original 60-fit study, 90-fit component study, clean-input MiniRocket
+representation sensitivity, 75-fit A–E extension and later power18 reference
+retain distinct protocols and numerical artifacts. Reused source fits are not
+new independent data. Read the captions before comparing paired-mask summaries
+with full-mask-grid summaries, or different representations/training policies.
+
+The v0.3.0 release assets use these exact names:
+
+- [`MIRA-CSI-completed-A-E-spectral-evidence-20261028-validated.zip`](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-completed-A-E-spectral-evidence-20261028-validated.zip)
+- [`MIRA-CSI-matched-power-MiniRocket-evidence-20261028.zip`](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-matched-power-MiniRocket-evidence-20261028.zip)
+- [`MIRA-CSI-spectral-E-package.zip`](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-E-package.zip), [`MIRA-CSI-spectral-E-weights.zip`](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-E-weights.zip) and [`MIRA-CSI-spectral-training-inputs.zip`](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-training-inputs.zip)
 
 The manuscript discloses room/cohort confounding, synthetic masking after packet
 normalization, offline future-aware repair, conditional uncertainty and known
@@ -37,15 +55,34 @@ concepts; they are not measured poses, thermal images or solved RF fields.
 
 ## Compile the source
 
-Open `source/` as a LaTeX project and select `main.tex` as the main document.
-Overleaf compilation was checked. A local TeX installation with the referenced
-packages can compile from that directory using `latexmk -pdf main.tex`.
-Local package versions can affect line breaks; the checked PDF and its hash
-identify the version distributed here.
+Open `source/` as a LaTeX project and select `main.tex`. Use **XeLaTeX** on
+Overleaf or locally, or **Tectonic** (XeTeX). The current source uses
+`unicode-math` and TeX Gyre Pagella Math on that engine path, including the
+matrix and logical symbols. From `paper/source/`, for example:
 
-The CAS class, style and bibliography files retain their LaTeX Project Public
-License notices and upstream README/manifest. Dataset and scaling-code rights
-remain separate, as recorded in [NOTICE.md](../NOTICE.md) and [data attribution](../data/README.md).
+```sh
+latexmk -xelatex -interaction=nonstopmode main.tex
+```
+
+Or with Tectonic:
+
+```sh
+tectonic -X compile --untrusted main.tex
+```
+
+The local Tectonic build was checked. Package/font versions can change line
+breaks and page counts; the distributed PDF and [MANIFEST.json](MANIFEST.json)
+identify the checked version. These commands compile the main manuscript;
+the supplementary-results PDF is supplied separately.
+
+The main document selects **`mira-author.cls`**, a renamed, modified derivative
+of the CAS 2.4 double-column class. Its modification notice records that font
+selection moved to `main.tex`. The original `cas-dc.cls` remains unchanged and
+distributed alongside the CAS style/bibliography files, original notices and
+upstream README/manifest. The class and derivative retain the **LaTeX Project
+Public License, version 1.2 or later**, as stated in their headers. They are
+separate from the software GPL licence. Dataset and scaling-code rights remain
+separate as recorded in [NOTICE.md](../NOTICE.md) and [data attribution](../data/README.md).
 
 ## Cite this author version
 

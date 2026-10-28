@@ -16,13 +16,15 @@
 
 <p align="center">
   <a href="https://colab.research.google.com/github/ABDESSAMAD-BOURKIBATE/mira-csi/blob/main/notebooks/quickstart.ipynb"><img alt="Open quick start in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"></a>
-  <a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.0"><img alt="Research release" src="https://img.shields.io/badge/research_release-v0.2.0-176B74?style=flat-square&logo=github"></a>
+  <a href="https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.3.0"><img alt="Research version" src="https://img.shields.io/badge/research_version-v0.3.0-176B74?style=flat-square&logo=github"></a>
   <img alt="Frozen component controls" src="https://img.shields.io/badge/follow--up-90_fits_verified-14806A?style=flat-square">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-6C5B96?style=flat-square"></a>
   <a href="https://orcid.org/0009-0000-6186-8071"><img alt="Author ORCID" src="https://img.shields.io/badge/ORCID-author-A6CE39?style=flat-square&logo=orcid&logoColor=white"></a>
 </p>
 
 <p align="center"><a href="paper/README.md">Research paper</a> · <a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#evaluation">Verified results</a> · <a href="#repository-map">Repository map</a> · <a href="MODEL_CARD.md">Model card</a> · <a href="#citation">Citation</a></p>
+
+**New in v0.3.0:** [`spectral/`](spectral/) contains **MIRA-CSI spectral variant E (experimental)**, a feature-only classifier with 15 saved E checkpoints, source calibration and a checked standalone predictor. Start with the spectral commands below. The root [`predict.py`](predict.py) and existing Colab notebook retain the **original temporal model** and its different amplitude representation; the two predictors and their checkpoints are not interchangeable.
 
 <a id="overview"></a>
 <h3><picture>
@@ -31,14 +33,16 @@
   <img src="docs/assets/headings/overview-light-v2.svg" alt="Overview" width="900">
 </picture></h3>
 
-**MIRA-CSI** — Missingness-Informed Recognition of Activities from Wi-Fi CSI — is a compact PyTorch research model that makes observation availability explicit when classifying incomplete CSI recordings. This repository provides a runnable saved-model predictor, the original evaluated release, and a documented follow-up that tests the individual components against conventional residual CNN controls.
+**MIRA-CSI** — Missingness-Informed Recognition of Activities from Wi-Fi CSI — is a PyTorch research project for offline activity classification from incomplete CSI recordings. It preserves the original temporal model and component controls, and adds **spectral variant E**: observed-endpoint lagged-increment features followed by a compact MLP. The repository provides runnable saved-model predictors, frozen execution records and results that include unsuccessful controls.
 
 **Developer and research lead:** Eng. **Abdessamad Bourkibate**  
 Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
 
-**Status:** experimental offline classifier, evaluated on seven activity labels. The original release contains 60 fits; a separate frozen follow-up contains 90 fits across six configurations. The component results are mixed and recognition accuracy remains limited. A clean-only representation study improves the **MiniRocket comparator** to 57.44%; that is a separate result, not MIRA's accuracy. [Evidence and scope](evaluation/component-controls/README.md).
+**Status:** experimental, **unreviewed research software; no assigned DOI**. The new spectral study contains 75 A–E fits; a subsequent fixed-power MiniRocket reference contains 15 configurations, comprising three reused source fits and 12 additional fits. E reaches **75.175 ± 1.005%** held accuracy on complete input and **60.597 ± 1.375%** under contiguous 50% loss. Its B50 macro F1 is **59.159 ± 1.610%**. These are exploratory, fixed-data results, not a deployment guarantee, SOTA ranking or patent claim. The original 60-fit comparison, separate 90-fit component study and clean-only MiniRocket representation sensitivity remain available below.
 
-**Read the study:** [complete research manuscript — PDF](paper/manuscript.pdf) · [source and page previews](paper/README.md) · [recalculate the frozen analysis](studies/component_removal/README.md). The 21-page author version includes all reported controls and limitations; it is not journal peer reviewed and has no assigned DOI.
+**Read the study:** [complete research manuscript — PDF](paper/manuscript.pdf) · [four-page supplementary results](paper/supplementary-results.pdf) · [source and page previews](paper/README.md). The current author version has **32 pages, 19 tables, 18 figures and 25 references**. It is not journal peer reviewed, has no assigned DOI and retains the limitations of the earlier studies. The [original component analysis](studies/component_removal/README.md) remains separately reproducible.
+
+**v0.3.0 evidence assets:** [completed A–E study, validated](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-completed-A-E-spectral-evidence-20261028-validated.zip) · [fixed-power MiniRocket reference](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-matched-power-MiniRocket-evidence-20261028.zip) · [standalone E package](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-E-package.zip) · [E weights/calibration](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-E-weights.zip) · [separate power18 training inputs](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-training-inputs.zip). Each evidence bundle retains its protocol, hashes, numerical results and scope; the three stages must not be counted as independent new datasets.
 
 **Download the evidence:** [v0.2.0 research release](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.0) · [validated reproducibility supplement](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reproducibility-supplement-20261028-validated.zip) · [SHA256 checksums](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/SHA256SUMS.txt). The original v0.1.0 predictor package remains linked in Quick start.
 
@@ -52,7 +56,12 @@ Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
   <a href="paper/manuscript.pdf"><img src="paper/component-page.png" alt="Actual manuscript page with six-model score plots and paired component contrasts" width="340"></a>
 </p>
 
-These are rendered pages of the linked PDF. See [paper/MANIFEST.json](paper/MANIFEST.json) for the matching PDF and source hashes.
+The first page is from the current author version; the component-page preview is retained from the earlier author version. Current spectral and reference pages appear below. See [paper/MANIFEST.json](paper/MANIFEST.json) for the versioned PDF and source hashes.
+
+<p align="center">
+  <a href="paper/manuscript.pdf"><img src="paper/spectral-results-page.png" alt="Current manuscript page with spectral A–E results" width="340"></a>
+  <a href="paper/manuscript.pdf"><img src="paper/matched-reference-page.png" alt="Current manuscript page with the fixed-power MiniRocket reference" width="340"></a>
+</p>
 
 </details>
 
@@ -63,7 +72,25 @@ These are rendered pages of the linked PDF. See [paper/MANIFEST.json](paper/MANI
   <img src="docs/assets/headings/quick-start-light-v2.svg" alt="Quick start" width="900">
 </picture></h3>
 
-Open the [executed saved-model notebook](notebooks/quickstart.ipynb) in Colab, or use the commands below. The notebook has been run top-to-bottom on a Windows CPU and retains its actual outputs.
+**Spectral variant E — current saved-model entry point**
+
+Run from the repository root with Python 3.12 and the dependencies in [`spectral/requirements.txt`](spectral/requirements.txt):
+
+```sh
+python -m pip install -r spectral/requirements.txt
+python spectral/tools/verify_release.py
+python spectral/predict_spectral_e.py --input spectral/demo/first-held-E1-power18.npy
+python spectral/predict_spectral_e.py --input spectral/demo/first-held-E1-power18.npy --mask spectral/demo/first-held-E1-B50-mask.npy
+python -m unittest discover -s spectral/tests -v
+```
+
+The predictor consumes an **unnormalized processed log-mean-power18** array of shape `(18, 500)`, not raw complex CSI or the original predictor's amplitude tensor. Its optional `(500,)` mask is Boolean or finite binary, with 1 meaning observed. It rejects invalid masks before Boolean conversion, non-finite observed values, numerical feature failures and non-finite outputs. The package binds 15 E checkpoints, class order and source temperatures to the recorded freeze; hashes establish file consistency, not authenticity. [Full input contract and tested environment](spectral/README.md).
+
+The demo is the first E1 held recording in manifest order, not a successful example selected for display: its true label is `sit`, while the model predicts `pick_up` on complete input and `stand` under the included block mask. Both errors are retained. The saved replay agrees with the stored batched probabilities within the declared float32 tolerance; subsequent interface hardening was tested without additional real-record inference.
+
+**Original temporal predictor — retained historical entry point**
+
+The [executed saved-model notebook](notebooks/quickstart.ipynb) and commands below use the original v0.1.0 temporal model. The notebook has been run top-to-bottom on a Windows CPU and retains its actual outputs. Use its own checkpoint, calibration and amplitude input together; do not substitute spectral files.
 
 ```sh
 git clone https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi.git
@@ -96,6 +123,8 @@ See the [software integrity checks](evaluation/software-integrity/README.md) for
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/architecture-light.png">
   <img src="docs/assets/architecture-light.png" alt="18 amplitude bands plus observation mask and gap channels, temporal CNN, coverage-weighted pooling and seven activity logits" width="900">
 </picture></p>
+
+**The diagram above and the following table describe the original temporal model.** Spectral E instead extracts 360 actual-mask features over whole/half-record cells and six lags, then uses a 360 → 64 → 32 MLP and seven-class head, with **25,415 parameters and no temporal CNN**. A–C are the corresponding hybrid controls; D is temporal-only. Covariance spectra and temporal normalization have prior art in SFA/SOBI, and PADS is earlier CSI covariance/eigen-feature work. [Spectral model and attribution](spectral/MODEL-CARD.md) · [primary methodological sources](spectral/NOTICE.md).
 
 | Component | Implementation |
 |---|---|
@@ -183,6 +212,27 @@ Grey is the original public recording, teal is retained input, and dashed amber 
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/headings/evaluation-light-v2.svg">
   <img src="docs/assets/headings/evaluation-light-v2.svg" alt="Evaluation" width="900">
 </picture></h3>
+
+<h4>Spectral E and the fixed-power MiniRocket reference · v0.3.0</h4>
+
+The 75-fit A–E study evaluates three held-environment folds and five training seeds. A further MiniRocket reference uses the **same power18 representation, participant roles, seeds and test masks**: three source fits were reused and 12 new source fits completed its 15 configurations. E uses loss augmentation and actual-mask features; this MiniRocket is **clean-trained, with source-band-mean fill and no mask input**. The comparison therefore includes training and loss-treatment differences and does not isolate architecture or support matching.
+
+| Model | Input | Held accuracy (%) | Macro F1 (%) | NLL | Brier |
+|---|---|---:|---:|---:|---:|
+| Spectral E | Complete | 75.175 ± 1.005 | 74.607 ± 1.207 | 0.773 ± 0.018 | 0.365 ± 0.008 |
+| Spectral E | Random 50% | 73.822 ± 0.942 | 73.329 ± 1.105 | 0.831 ± 0.018 | 0.386 ± 0.009 |
+| Spectral E | Contiguous 50% | 60.597 ± 1.375 | 59.159 ± 1.610 | 1.160 ± 0.014 | 0.552 ± 0.011 |
+| MiniRocket power18 | Complete | 53.841 ± 0.938 | 53.868 ± 1.009 | 1.363 ± 0.037 | 0.634 ± 0.009 |
+| MiniRocket power18 | Random 50% | 22.305 ± 1.102 | 16.112 ± 0.841 | 3.486 ± 0.151 | 1.109 ± 0.023 |
+| MiniRocket power18 | Contiguous 50% | 19.406 ± 2.330 | 15.636 ± 4.147 | 4.852 ± 1.764 | 1.275 ± 0.168 |
+
+Each training/mask cell pools the three held folds before scoring. Masks are averaged within a training seed; entries show **mean ± sample SD over five training seeds**, not population confidence intervals. Brier is summed over seven classes. Complete input has one realization; each loss condition has five masks.
+
+The hybrid A/B controls remain weaker than this reference on complete held input: **48.302 ± 2.627%** and **48.048 ± 2.559%** accuracy. The original primary A−B B50 macro-F1 contrast is only **+0.543 ± 0.654 percentage points**, with four positive and one negative training seed. It changes endpoint weighting and centering even on complete data; E's feature-only counterpart with B's denominator was not tested.
+
+The additional, **post-hoc** E−MiniRocket B50 macro-F1 contrast is **+43.524 ± 3.639 percentage points**. Its 10,000-draw participant-bootstrap range, **[39.879, 47.054]**, is descriptive and conditional on the fixed rooms, fitted models, seeds and masks; it is not selection-corrected confirmation or an uncertainty interval for new rooms/training datasets. Historical target outcomes were already known during development. E's B50 pooled familiar accuracy is **53.325 ± 1.480%**, and two pooled held seed accuracies are below 60%. The results do not establish a universally successful classifier, a matching mechanism, SOTA or patent novelty. [All A–E results](spectral/results/pooled_held_mean_sampleSD_5seeds.csv) · [full fold/domain supplement](paper/supplementary-results.pdf) · [reference evidence asset](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-matched-power-MiniRocket-evidence-20261028.zip).
+
+**Earlier temporal-model study (v0.2.0):** the following plots, headings and results are retained as historical evidence; they describe the original CNN, not spectral E.
 
 <h4>Frozen follow-up · six configurations on the same recordings</h4>
 
@@ -295,7 +345,15 @@ The follow-up's 5,580 scores were independently reconstructed with maximum absol
   <img src="docs/assets/headings/reproduce-light-v2.svg" alt="Reproduce" width="900">
 </picture></h3>
 
-Install `requirements.txt`. Obtain the exact processed public input cache from the [release assets](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0), or rebuild it from pinned raw recordings:
+**Spectral study:** the checked E predictor and exact frozen A–E source are in [`spectral/`](spectral/). For a fresh 75-fit source-training reproduction, extract the [separate power18 input asset](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.3.0/MIRA-CSI-spectral-training-inputs.zip) into `spectral/`, so that its `data/` contains the cache and manifest. Then run:
+
+```sh
+python spectral/frozen/run_training.py --data-root spectral/data --output-root spectral-reproduction
+```
+
+The default trains source models only. The frozen runner permits its separate evaluation stage only after all 75 new source fits are completed and frozen; the supplied 15 E checkpoints do not bypass that gate. The validated A–E and MiniRocket evidence assets above retain the completed-study outputs. [Input lineage, commands and licences](spectral/README.md).
+
+**Original temporal study:** install `requirements.txt`. Obtain its own processed public input cache from the [v0.1.0 release assets](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0), or rebuild it from pinned raw recordings:
 
 ```sh
 python -m pip install -r requirements.txt
@@ -331,6 +389,8 @@ SHA256 digests accompany v0.1.0. Those release assets cover the original 60 fits
 
 | Start here | Purpose |
 |---|---|
+| [`spectral/README.md`](spectral/README.md) · [`spectral/predict_spectral_e.py`](spectral/predict_spectral_e.py) | Current experimental spectral E, 15 saved weights, strict input checks and source-bound calibration |
+| [`paper/supplementary-results.pdf`](paper/supplementary-results.pdf) | Four-page full A–E fold/domain/condition result tables |
 | [`paper/manuscript.pdf`](paper/manuscript.pdf) · [`paper/source/`](paper/source/) | Complete author manuscript, actual page previews and matching LaTeX source |
 | [`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb) · [`predict.py`](predict.py) | Executed v0.1.0 saved-model example and standalone inference |
 | [`mira_model.py`](mira_model.py) · [`missingness.py`](missingness.py) | Released model and observed-only repair operators |
@@ -368,12 +428,12 @@ Use **Cite this repository** on GitHub or [`CITATION.cff`](CITATION.cff).
   author  = {Bourkibate, Abdessamad},
   title   = {{MIRA-CSI}: Missingness-Informed Recognition of Activities from Wi-Fi CSI},
   year    = {2026},
-  version = {0.2.1},
-  url     = {https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.1}
+  version = {0.3.0},
+  url     = {https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.3.0}
 }
 ```
 
-Also cite **Alsaify et al.** for the [dataset](https://doi.org/10.17632/v38wjmz6f6.2) and **Dempster, Schmidt and Webb** for [MiniRocket](https://doi.org/10.1145/3447548.3467231) when using those components. This software release has no assigned DOI.
+Also cite **Alsaify et al.** for the [dataset](https://doi.org/10.17632/v38wjmz6f6.2) and **Dempster, Schmidt and Webb** for [MiniRocket](https://doi.org/10.1145/3447548.3467231) when using those components. Spectral covariance/temporal precedents include [PADS](https://doi.org/10.1109/PADSW.2014.7097784), [SFA](https://doi.org/10.1162/089976602317318938) and [SOBI](https://doi.org/10.1109/78.554307); [attribution](spectral/NOTICE.md) distinguishes the implementation from known ideas. Neither this software version nor the unreviewed manuscript has an assigned DOI.
 
 <a id="license-and-contributions"></a>
 <h3><picture>

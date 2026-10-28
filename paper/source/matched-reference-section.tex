@@ -1,0 +1,92 @@
+\subsection*{Additional MiniRocket reference on the fixed power18 input}
+\label{sec:matched-p18}
+
+To reduce the input-representation mismatch in the earlier comparison, we
+added an official MiniRocket reference~\cite{dempster2021} on the same fixed
+18-stream, 500-position log-mean-power input used by the spectral extension.
+The reference retains the same participant roles, three outer folds, five
+training seeds and test masks. Three previously fitted source configurations
+were reused, and 12 further source fits completed the 15 fold/seed
+configurations. These are 15 reference models, not 15 new datasets or an
+additional selection among target scores. The source and evaluation freezes
+and independent output checks bind the saved configurations and predictions.
+No E weights were retrained for this comparison. The official multivariate MiniRocket transform uses 9,996 features (10,000 requested), maximum dilations per kernel 32, and separately reset NumPy and Numba random generators for each training seed. Transform parameters and a feature scaler with no centering are fitted only on the 504 source-training recordings; ridge regularization is fixed at $\alpha=1$. A scalar temperature in $[0.1,10]$ minimizes NLL only on the 168 clean source-validation recordings and is retained under loss.
+
+The alignment is deliberately limited. E uses loss augmentation and
+actual-mask features, whereas MiniRocket is clean-trained. At test time the
+reference receives missing power18 entries filled with source-training band
+means; it has no explicit mask or distance channel. The comparison therefore
+aligns input representation and prediction roles, but not training policy,
+loss treatment or classifier family. It is a useful additional reference,
+not a controlled attribution of a difference to architecture or to support
+matching. It was added after E's outcomes were known, so its status is
+post-hoc and exploratory; it is not a new confirmation of the original
+primary hypothesis or a state-of-the-art claim.
+
+Table~\ref{tab:matched-p18} reports every complete, random-loss and
+contiguous-loss condition for E, MiniRocket and the A/B hybrid controls,
+including familiar-environment results. Metrics are calculated from saved
+probabilities. For each training seed and loss-mask realization, held-fold
+predictions are concatenated before calculating accuracy, seven-class macro
+F1, NLL and summed multiclass Brier. Masks are then averaged within the
+training seed; the displayed mean and sample SD are over five training
+seeds. Complete input has one realization; each loss condition has five.
+These SDs are not confidence intervals. The pooled familiar summary contains
+504 fold-specific prediction occurrences, with possible repeat recordings
+and participants across folds, rather than 504 independent new recordings.
+
+\paragraph{Results and retained controls.}
+E's pooled held accuracy is $75.175\pm1.005$\% on complete input, compared
+with $53.841\pm0.938$\% for this MiniRocket reference. Under random 50\% loss,
+the respective values are $73.822\pm0.942$\% and $22.305\pm1.102$\%;
+under contiguous 50\% loss they are $60.597\pm1.375$\% and
+$19.406\pm2.330$\%. Corresponding held macro F1 under contiguous loss is
+$59.159\pm1.610$\% for E and $15.636\pm4.147$\% for the reference.
+NLL is $1.160\pm0.014$ versus $4.852\pm1.764$, and Brier is
+$0.552\pm0.011$ versus $1.275\pm0.168$, in that condition. This reference
+degrades sharply under its declared mean-fill policy; the observation does
+not establish that all MiniRocket training or repair configurations behave
+similarly. Figure~\ref{fig:matched-p18} retains the full complete-to-loss
+comparison on a common percentage scale.
+
+The A/B hybrid controls remain weaker on complete held input than this
+reference: their accuracies are $48.302\pm2.627$\% and
+$48.048\pm2.559$\%, respectively. Thus the added reference does not reverse
+the negative result for the main hybrid A. E also remains imperfect under
+loss: its contiguous-loss macro F1 is below 60\%, and its pooled familiar
+accuracy is $53.325\pm1.480$\% in that condition, compared with
+$20.579\pm4.082$\% for MiniRocket. Familiar and held cohorts must not be
+treated as an isolated causal room intervention.
+
+\paragraph{Paired contrasts and conditional uncertainty.}
+The additional E-minus-MiniRocket held macro-F1 contrast under contiguous
+50\% loss is $+43.524\pm3.639$ percentage points across the five paired
+training-seed differences, after mask averaging. All five seed differences
+are positive. The reported 95\% conditional bootstrap range is
+$[39.879,47.054]$ percentage points. For each of 10,000 paired bootstrap
+draws (seed 20261028), ten participants are sampled with replacement from
+the ten observed participants in each fixed environment. The same participant
+multiplicities apply to both models, all five training seeds and all five
+contiguous-loss masks. Weighted pooled confusion counts yield macro F1 for
+each training-seed/mask cell, and the 25 cell contrasts are averaged.
+This preserves pairing and repeated-view dependence. Environments, trained
+models, training/mask seeds and the observed dataset remain fixed.
+The range is descriptive and conditional: it does not represent uncertainty
+over new rooms or training datasets and is not corrected for post-hoc
+selection or multiple comparisons. No p-value or population-level
+confirmation is inferred from its exclusion of zero.
+
+The original A-minus-B primary comparison is kept separate. It remains
+$+0.543\pm0.654$ macro-F1 percentage points under contiguous loss, with four
+positive and one negative training-seed difference; its corresponding
+descriptive conditional range is $[0.041,1.068]$ points. A--B changes
+endpoint weighting, centering and covariance normalization even on complete
+input. Both A and B share ideal full-effective-support congruence invariance,
+and E's feature-only counterpart with B's denominator was not evaluated.
+Consequently the large additional E--reference contrast does not isolate a
+benefit caused by support matching, replace the small primary contrast, or
+confirm its proposed mechanism. A training-policy-matched comparison and
+independent data remain necessary for broader claims.
+
+\input{matched-power18-table.tex}
+\input{matched-power18-figure.tex}

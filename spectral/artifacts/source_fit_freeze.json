@@ -1,0 +1,548 @@
+{
+  "frozen_utc": "2026-10-28T18:06:31.189235+00:00",
+  "completed_source_fits": 75,
+  "protocol_sha256": "cc407a98f343dcac0230c3fe2a733a429e8f980b6748ddfd8240e4542696fc32",
+  "implementation_sha256": {
+    "features.py": "5eee7fb2e9b3461de25852cde4a0c7fd87a15b3417e1170a69cccd04adbcbee1",
+    "models.py": "4aeb8a9d003a5bf13c2659753ba8512c3446a1388fafe9f0fe4d75c2be774771",
+    "operators.py": "cd1635919621413c951e03bc4b2ec7853e4e04df02ebc1d885c53ea39c606e2a",
+    "pipeline.py": "1ffa8d11e3df6ecbf509843bf1cbeb0f71d6c5d077550d83c28f7b4dce4a011f",
+    "run_training.py": "080009d0d2f2ed6ea17960cb0df0a366fd2e7513429b9df7fda1ebd48f4881b8",
+    "stream_source_training.py": "bf4c718901112b93c56c35483ae97a9fca5f2f76f8981a50312538f40a7a1f56",
+    "test_supportmatched.py": "e3174a4600e1284ae432193d000ceb9546c594880072d11f9d4311f0ee40bf71",
+    "test_pipeline.py": "c4aaab7498dcec79e8017f8e59597177f248b2b8519a53fead1c9ae65452592b"
+  },
+  "input_sha256": {
+    "power_band_streams.npy": "e418b7e7061697f4100b7a071b2478226761ff614eb6a97ae482997593353523",
+    "manifest.json": "9e5d8eeac1f37d75462048bb22c0ed28c588dc253debf09530616c5a04462953"
+  },
+  "fits": {
+    "A_E1_s20261026": {
+      "checkpoint_sha256": "13362b112287d0b37ce8395e8374acb3da9d8b20c0a85d470db77773239cce1d",
+      "validation_sha256": "2873c24f3a1518a7b200d2bfdd812b5e3f324eba8bd905d3402a3ceb1699a1bb",
+      "receipt_sha256": "410c62e2360139cd25fae2640e500b3cc7375aa6b5955187452669b0cb37aeb2",
+      "temperature": 1.0351020947749452,
+      "completed_utc": "2026-10-28T17:29:58.733153+00:00"
+    },
+    "B_E1_s20261026": {
+      "checkpoint_sha256": "bfc4cd2bf28bddbb35830d07175f528ca56842c15a034e7088102553b28bfb5d",
+      "validation_sha256": "88dd13adb031d8a1ba750b5d72621e70db58fd6a60fe9dc9d88f8ac2b9591b13",
+      "receipt_sha256": "2d8dbee6537629a36a31cc3b484df3bc21d3e162bdc5ab6cc4b71f6abf135a07",
+      "temperature": 1.0270933195674576,
+      "completed_utc": "2026-10-28T17:30:29.703720+00:00"
+    },
+    "C_E1_s20261026": {
+      "checkpoint_sha256": "0e9c78b306b3e84ad334c6a5099aac72195f84bcfb170001c8c4f4870094432b",
+      "validation_sha256": "99d525c77a3e562365996e8f6b20fff8b1230670fbaa0bda8378d1a53b100507",
+      "receipt_sha256": "a15d638f63cb1c0b3dfc165fd2ae01126c2cea85964cdf970c62ef5dfd8c1dfc",
+      "temperature": 1.0513282359197855,
+      "completed_utc": "2026-10-28T17:30:46.776846+00:00"
+    },
+    "D_E1_s20261026": {
+      "checkpoint_sha256": "8b6cbc50a23f6a7765d28218816c673b276817cf5fb16c0deea2ed88c4302c52",
+      "validation_sha256": "f7eea229f65f4b5587cb0d7bb0a9c711f4493130fb9a95ae3edb3c1b23474e30",
+      "receipt_sha256": "38572e55aba1acb8b4774fc2d2a347e07f462526a7435360512eea406ceade94",
+      "temperature": 1.4739700666015172,
+      "completed_utc": "2026-10-28T17:30:53.028623+00:00"
+    },
+    "E_E1_s20261026": {
+      "checkpoint_sha256": "9181794a86cded1ed9b13c758d393bdf13776eaab7a13efd365c01465ec5d806",
+      "validation_sha256": "271f638b871d2694105cd0808558f611476ca20d322c32d70306cf59c17b7ee8",
+      "receipt_sha256": "55bf65e4e27ce6b506490276e3df3c7895b027071e98ad398e13c76cc619c44c",
+      "temperature": 0.8688099152312774,
+      "completed_utc": "2026-10-28T17:31:40.417102+00:00"
+    },
+    "A_E1_s20261027": {
+      "checkpoint_sha256": "659373eada45f68b48efe79140b88a2cd9f77aada53ab97674c7d80840893314",
+      "validation_sha256": "ba87700654a794586ed6c7e2a85d732d839249e599bbe90b1d45d9757a8a8e0b",
+      "receipt_sha256": "99f7a960ae4340a2bc0ba6b69b352ee908facba6026bb24e292908df4616de20",
+      "temperature": 1.0752788815804888,
+      "completed_utc": "2026-10-28T17:32:02.719059+00:00"
+    },
+    "B_E1_s20261027": {
+      "checkpoint_sha256": "e94c81cdf0959ec099cbca30707af0c1c4facc25dadb05bfdfb5a2db4987459f",
+      "validation_sha256": "452c1dc7e96a7267e00c8ade37fb681233ae47368c4c58630404f30719fb4364",
+      "receipt_sha256": "aa1e59757f630cd37f3a22909207a9f170a80fb7cfcd80c371816db540bdcf3a",
+      "temperature": 1.084590944090042,
+      "completed_utc": "2026-10-28T17:32:24.858334+00:00"
+    },
+    "C_E1_s20261027": {
+      "checkpoint_sha256": "d8bcf3981dcff0046303d6c478828aed3c7a2827f68a12ecc934a4585405b878",
+      "validation_sha256": "1e0109cb46fa38bc213dad1e15a3e3999c88ea6fae0255cbd5685c5aff10a6b9",
+      "receipt_sha256": "57822aaa1b91be28a601de21261d340ae06759d4c39e619a5361d45b39e4cb36",
+      "temperature": 1.2452939668029221,
+      "completed_utc": "2026-10-28T17:32:41.333153+00:00"
+    },
+    "D_E1_s20261027": {
+      "checkpoint_sha256": "d51f6c045f547a1b742f5674245ab519e44d1e3ae3bdbc845745f4ff920c1e58",
+      "validation_sha256": "8d10d6564d8d67c73e64eabc2fbb86496b2ad68e20fdf13b3dd9b7503eedbe46",
+      "receipt_sha256": "9e0f501bc5acb6c544353f03e18514ad882fb943787aec3aedba5e37ee369218",
+      "temperature": 0.8831789033093732,
+      "completed_utc": "2026-10-28T17:32:45.831506+00:00"
+    },
+    "E_E1_s20261027": {
+      "checkpoint_sha256": "776fae3934c071cd42c454f7c086937fe95ca76e769f90e4bdf223d5a4fd79b8",
+      "validation_sha256": "2bedd13865b82535f035f8e05fbe2d44e8fbcd56d3943b54bf87ed2a3b1665ff",
+      "receipt_sha256": "da420069b721df74b9119f7651a4c9593022a8dad648507ebb5a8fd06cd5a453",
+      "temperature": 0.8834049870496706,
+      "completed_utc": "2026-10-28T17:33:33.590176+00:00"
+    },
+    "A_E1_s20261028": {
+      "checkpoint_sha256": "7d64e4c964fa0951b985059b40ec5e272b5fbc858167ada1f992ad3523f75e5d",
+      "validation_sha256": "a8f3d8241297dd4898a0e0f54fbd894c451ec5911075412b9e6e5b7d0604d65f",
+      "receipt_sha256": "ef8a885f4972516bfa155e669ea6e6a7a80e95586c35a3666b8600479eba88cf",
+      "temperature": 1.0634528959456315,
+      "completed_utc": "2026-10-28T17:33:53.028155+00:00"
+    },
+    "B_E1_s20261028": {
+      "checkpoint_sha256": "77467cd32fca722dea036de39cea679f502dc7449dbbf32a7c0fa2790ee6b56a",
+      "validation_sha256": "f96357129923c051771e28af1057203613563124e13f94d982316526868790bf",
+      "receipt_sha256": "d2f7d6f12c9f9e6a5ede965dcf52a555ecc9764ccc61d1e8b534bc654768056b",
+      "temperature": 1.0643980334113012,
+      "completed_utc": "2026-10-28T17:34:13.602394+00:00"
+    },
+    "C_E1_s20261028": {
+      "checkpoint_sha256": "53970bab1bdfebe68e1442485e5918160839a9538597e201b3b64a410fbe9061",
+      "validation_sha256": "ef70272e6162897b3d4c2cd4b28543afcfc0d61e07643ed326ad5f90c64b577c",
+      "receipt_sha256": "d14d52b0f02430d391758cc48cf0f13d70494c17fee6c090d02c47ac257eea23",
+      "temperature": 1.1423228853079983,
+      "completed_utc": "2026-10-28T17:34:27.353160+00:00"
+    },
+    "D_E1_s20261028": {
+      "checkpoint_sha256": "57a2a1a21717a16ae9a85fc0062ea6da3d6b47efe28af1bea52c4bc97eeaf5a5",
+      "validation_sha256": "eafdce3ffb458edd358e6896a86ada57d143c6c1f9bc2d8880c19f76bbc14aa4",
+      "receipt_sha256": "c840cdc5267dec24a6664ad11df5dbe09e7179f544283d69e1df8cde62b86c27",
+      "temperature": 1.4104557868140857,
+      "completed_utc": "2026-10-28T17:34:33.770668+00:00"
+    },
+    "E_E1_s20261028": {
+      "checkpoint_sha256": "fa2502e625e8caebcb037015c72cbd3215f8b2c27fe89faac47c5738c2494446",
+      "validation_sha256": "495bc2280cfe05c621d382b24f346ce7089e684354d56ed6dd881a5bde16981c",
+      "receipt_sha256": "34fe56c4052347fdbdac1ae61a7d17136ef8e692d159bd7952cd2d9c3e30c4db",
+      "temperature": 0.8532362298840844,
+      "completed_utc": "2026-10-28T17:35:39.488694+00:00"
+    },
+    "A_E1_s20261029": {
+      "checkpoint_sha256": "f72ace4a6fb8e7248b4d092c5eea067063c5616ff83ece19f36557e71a168063",
+      "validation_sha256": "bccc66fa907b809f55a2f9bf4372c21a0b47e403233fb3c2c6e8e765466896e7",
+      "receipt_sha256": "03de642f5bdd87c4211ceb34ad7975e416d64bd44fc4987bdadb8cc536aabaf9",
+      "temperature": 1.1618492682215098,
+      "completed_utc": "2026-10-28T17:36:07.210609+00:00"
+    },
+    "B_E1_s20261029": {
+      "checkpoint_sha256": "ffd72623282d5c1cf38dcde2c26a68e12437b25ecd8d5084e81774f8cca9fe9e",
+      "validation_sha256": "d2f0330a1758ab65fef2616bf448c6d6fb836bfcec61f2c4fdcbec76786d4109",
+      "receipt_sha256": "950da3db2d1843b9db479a2b029977e089b968ae68b997065fa8d280b0cf06c0",
+      "temperature": 1.1619243070951562,
+      "completed_utc": "2026-10-28T17:36:42.661738+00:00"
+    },
+    "C_E1_s20261029": {
+      "checkpoint_sha256": "a40834bd7205bbc8375a0293878ccd67d9c973b4a091c32a584f00c6c4be18f1",
+      "validation_sha256": "701fa737b0c69bb1f77ef2aa43ba285516a4a292900a5cb8c88a2e85de1f1653",
+      "receipt_sha256": "61097fd7c56b29c078a4dd841d9e36b882e046b5b48f176aac0f0528630e33d8",
+      "temperature": 1.1115570971832636,
+      "completed_utc": "2026-10-28T17:36:59.975014+00:00"
+    },
+    "D_E1_s20261029": {
+      "checkpoint_sha256": "ad11d8fc1816466dcf35e41821a2dc12d98694b72e1c9352586989f956b25dfc",
+      "validation_sha256": "8c62bb5ecc3da0ef058a03e4d7ba123084f24a06ffb1f3feed12bf95337bc67d",
+      "receipt_sha256": "223d96c51baa85ab7759bc4831309f08348a514ca27c01b253c85b39fc56223c",
+      "temperature": 0.9043496406144803,
+      "completed_utc": "2026-10-28T17:37:05.592753+00:00"
+    },
+    "E_E1_s20261029": {
+      "checkpoint_sha256": "84058e9fd2d2ac33000b509c103e5f291a4adad369acff062977349c8fe5e32a",
+      "validation_sha256": "4dd5005b897b14f85768825323880d7f8091aac7c0edc62c94ea9561c42cbb89",
+      "receipt_sha256": "b9407f7628c56a7b6ede0df817ff36dfe5c65af6bdc5a725fdc0ec52e84eaf87",
+      "temperature": 0.8415574835154248,
+      "completed_utc": "2026-10-28T17:38:10.187595+00:00"
+    },
+    "A_E1_s20261030": {
+      "checkpoint_sha256": "414249ec88b611c4d92f243a4da3c485eb545a630e22eddbca1891ae9c483d3e",
+      "validation_sha256": "449de05ed7fa8956fa714179e0522b8da5eb8e8e05f44adad8203cc7e10efe7c",
+      "receipt_sha256": "14e6abe56ac8639964884dcacb8c5342edef31a1387c11052124a49f04144fda",
+      "temperature": 1.3833206413704497,
+      "completed_utc": "2026-10-28T17:38:52.088704+00:00"
+    },
+    "B_E1_s20261030": {
+      "checkpoint_sha256": "7907670334218c80f226505e82831d79cdbeb5d51c4a028b06a9da16ea8b1d1d",
+      "validation_sha256": "6adc552885305dd6277138c115bcc1164465070ec01c499c8e2f9e23f44f8427",
+      "receipt_sha256": "920b9bf33944859ea589dcfadce217c046a98ced9958d86bebf265334f466c29",
+      "temperature": 1.1457300742726508,
+      "completed_utc": "2026-10-28T17:39:29.303708+00:00"
+    },
+    "C_E1_s20261030": {
+      "checkpoint_sha256": "25f7e1b65b1f6d2600cfbe66f6119bb6ba6753cd7def9e212752ee86e811ff67",
+      "validation_sha256": "d50a3d05d7d1f69e61f719ddf9de08a3ee273f11d4381c13c0e35022a2826348",
+      "receipt_sha256": "0ad789fc62a959398d2cc55ea88711318932da7a8c428a67d065111a1a39c08c",
+      "temperature": 1.357640173322477,
+      "completed_utc": "2026-10-28T17:39:55.456192+00:00"
+    },
+    "D_E1_s20261030": {
+      "checkpoint_sha256": "d18824fea78736e0f4e6e94cb8f32309ffc041b195791311ec279ba2f302aff8",
+      "validation_sha256": "5e03038b1c4e4697363f430ab0910424cd67885d1fd1bf33ad84e15c8619fd28",
+      "receipt_sha256": "7d77dbc8fa18d2fd7e103b41d4d85aff94df3e2bfa06aed45e5eb39622d41307",
+      "temperature": 1.7346967949896066,
+      "completed_utc": "2026-10-28T17:40:03.545762+00:00"
+    },
+    "E_E1_s20261030": {
+      "checkpoint_sha256": "d5f9e09ed64ec466d25fa173f8701cf49d173e09297c2ad99eb0532456ba9b3b",
+      "validation_sha256": "1ab5cc2b4a81edacca954aa97ff7c4dad79b3501bd22bed2e3d1d87b238cea43",
+      "receipt_sha256": "213cced93ef22985e60a6346f1edf04db63e41a51aac746abd37c8e88ce395e5",
+      "temperature": 0.8839505974975322,
+      "completed_utc": "2026-10-28T17:41:12.813857+00:00"
+    },
+    "A_E2_s20261026": {
+      "checkpoint_sha256": "997054c00a31c6b01365e7892f8f1e5722e4588549d842d6b7a8f06851884266",
+      "validation_sha256": "de9d1aef5faaba3a1f0548d3d99ec05f79d8c9db73b29b1698b9f30de2dbf430",
+      "receipt_sha256": "d46a7804f2810089a087e31cbae6d530c0a4ce59ae9424a43f5c8f4c7033b374",
+      "temperature": 1.0796141026979083,
+      "completed_utc": "2026-10-28T17:41:43.081741+00:00"
+    },
+    "B_E2_s20261026": {
+      "checkpoint_sha256": "3c12d80c3a3b045738e7c651eec8d4cbcc9fbbafae1cc4a2972a8663ac87fc5d",
+      "validation_sha256": "20c41d1a7cf336b4414780248eb28f7be3d16134a5c744f1ea521d18fd261160",
+      "receipt_sha256": "b26b3edf5b7088f7ce6a0fe268d8180aef1ba4ef7551b619ce19755fd482a1ea",
+      "temperature": 1.0623589264690878,
+      "completed_utc": "2026-10-28T17:42:13.313567+00:00"
+    },
+    "C_E2_s20261026": {
+      "checkpoint_sha256": "3b3ef407457b688c66aa675da3aeaccacfbb5007e13c47f8bb0f55dc9a626ea1",
+      "validation_sha256": "94cbbda85534d2306488eaf847c9b5b1970929d231c53177cff9cfc8c8208a1d",
+      "receipt_sha256": "b64c70e435a033e9c537e5ecf7aff4515759185c2fc24342947cf15216f96c0d",
+      "temperature": 1.0804166763909093,
+      "completed_utc": "2026-10-28T17:42:34.219516+00:00"
+    },
+    "D_E2_s20261026": {
+      "checkpoint_sha256": "ed54200488ec3802a0b222893834bfccbf5206d9636a7525f04dbf37c48ca0cb",
+      "validation_sha256": "3733c693a70533c4e7d93a8d02270bd89eedf24cf5a0c1fab71dbc0d3a3a4bb6",
+      "receipt_sha256": "b29292d4fdd21400a98748f2ed390b1db3e55b6eec51101b22bc94421366b937",
+      "temperature": 0.8587752562529467,
+      "completed_utc": "2026-10-28T17:42:40.338391+00:00"
+    },
+    "E_E2_s20261026": {
+      "checkpoint_sha256": "4450886c88cb0f5cf9bf093a39e6f71dc9594c1e1eb7c026ce86a670630ef880",
+      "validation_sha256": "9455d3b6d2bc3552084f03f8b2ccf2bc4d859aeeb5c0b29bb115e14ca2434f34",
+      "receipt_sha256": "23e830e11776fc802875a343226aff810f4a306a7170e58f241affa64cc3ed8e",
+      "temperature": 0.7980692361575614,
+      "completed_utc": "2026-10-28T17:43:34.714640+00:00"
+    },
+    "A_E2_s20261027": {
+      "checkpoint_sha256": "4352ed002da5ea465b1d620018088426816256de343a670b072eafae4f541433",
+      "validation_sha256": "71726bf7fafb5b87625bd5bbe16ba40da2a7c782d7d76f0900e452b857d6bd65",
+      "receipt_sha256": "d14c2d23bd76254c4d9aabe035111f83576767ef4c352fb4b50cd7c208f0ee9b",
+      "temperature": 1.1571662573342612,
+      "completed_utc": "2026-10-28T17:44:10.761811+00:00"
+    },
+    "B_E2_s20261027": {
+      "checkpoint_sha256": "275572081aa8f0345f1cb7a0a8f20421316ed7a7ba1ad366c8c706b076a56cb2",
+      "validation_sha256": "30a95ad9720b5893062c1ae969e0d9f91dad08bed1da1a2bf7f97e528d8f0714",
+      "receipt_sha256": "1132d59b49a57ab508e0ff17e416dfbbd9c9dc8f307703b50a7eecf41192bd07",
+      "temperature": 1.260058764418503,
+      "completed_utc": "2026-10-28T17:44:49.768771+00:00"
+    },
+    "C_E2_s20261027": {
+      "checkpoint_sha256": "e3ae666a04a2070987043328dc81987eb86463ccf1e34ab8a5a290150c0034c8",
+      "validation_sha256": "51f6c32744c422ee3a7f1253aec66422ba139998b1cd2408aab8543f8fb94c4c",
+      "receipt_sha256": "4f4cefae813c9c977486a786118adc2df617a9fc191d301e54f710b99699af52",
+      "temperature": 1.4332555842959653,
+      "completed_utc": "2026-10-28T17:45:15.286246+00:00"
+    },
+    "D_E2_s20261027": {
+      "checkpoint_sha256": "3ec580b619b3bcfdf2cc1ea948ae2883ae02ab63adbfb1cb50e3a77eeb914745",
+      "validation_sha256": "7e5c6caec04d4b14eb85d0d28f9f3c23914cbc558c5f90529c0590e11ba8aca2",
+      "receipt_sha256": "e80436fd2a535aabdefb18a363ed26981e5a11c49a3693d5eefac17fa4baf464",
+      "temperature": 1.4565611181253357,
+      "completed_utc": "2026-10-28T17:45:22.375620+00:00"
+    },
+    "E_E2_s20261027": {
+      "checkpoint_sha256": "4f9007856f5eec80ad9f77e78fd094910091c49545316be01bdfba94270cdefb",
+      "validation_sha256": "eb70ad593f23be02daf0ddeb97f94be30344b55c5142d5a8e93d8b8fec96c865",
+      "receipt_sha256": "740cafa3355eca1fd0d51e50ed1f3dffa3722a251576ff104f61283ca6899cdc",
+      "temperature": 0.7800765086017917,
+      "completed_utc": "2026-10-28T17:46:08.880860+00:00"
+    },
+    "A_E2_s20261028": {
+      "checkpoint_sha256": "2c5ccda53133241be5ca01b59ae5bf9b5efa6c1e18bc98c9fed3e6f18161d882",
+      "validation_sha256": "fa737aca450c4312cfad653bb48ce24019d13617ec144acb9b81d45fe614d81b",
+      "receipt_sha256": "4b0a9ceff2f701ed38888364efe2d418cc028099c3a46ca652bc524fba3cce96",
+      "temperature": 1.024906555431449,
+      "completed_utc": "2026-10-28T17:46:40.800148+00:00"
+    },
+    "B_E2_s20261028": {
+      "checkpoint_sha256": "d45d3e94b266b15a48218d37d6d8a86256f7738e25d3faedf4caf8f1be224aeb",
+      "validation_sha256": "a3ded4cabc447367180c42a5810de06c77c662b8991a5cbffe3a95964b33f3bb",
+      "receipt_sha256": "30e55dbf7758e34c1c63e3fffe1606e8a9600be0c9be56776b33356a077309ea",
+      "temperature": 1.0016369550845312,
+      "completed_utc": "2026-10-28T17:47:10.539007+00:00"
+    },
+    "C_E2_s20261028": {
+      "checkpoint_sha256": "914041eb4cf279b674f8e43f525ff0f73645d3dcc9eedf1b4d7d25a5be810587",
+      "validation_sha256": "29c165b0545f7551e5002638ae675de53f5ee9c5531b8595207709f05991717c",
+      "receipt_sha256": "7aa9a6b375f45f3c1c46ad89d44d88e42b3a4a12d04a456e21dfc5d1cad58581",
+      "temperature": 1.4831099109244619,
+      "completed_utc": "2026-10-28T17:47:37.293739+00:00"
+    },
+    "D_E2_s20261028": {
+      "checkpoint_sha256": "6ed1def0623cac275fd1839bc0400f5095760a2a324ceda364284f307400b2cd",
+      "validation_sha256": "42697bd671b4bb66ed354c4ca13d415260c1f1fcc4d7fd0e00f56cf2486d17a9",
+      "receipt_sha256": "03d5674f77a2e7f931d7bcccc22e2ddcae5fb4296b1d7c338cb4350d3b15195a",
+      "temperature": 1.3158750627693367,
+      "completed_utc": "2026-10-28T17:47:43.973089+00:00"
+    },
+    "E_E2_s20261028": {
+      "checkpoint_sha256": "d92e36602843d3957678fa1acadf2381cd14c7f0268791521177372b45f9e8b0",
+      "validation_sha256": "e504627387b27e63ef037bd3126858c7e3f44e17f1d2e19e2febcfffefd4bf38",
+      "receipt_sha256": "2790803fdac8f52b5d51c4023bfa4c2b92115afc252801cecbaf1e2288ce76a0",
+      "temperature": 0.9151179388899735,
+      "completed_utc": "2026-10-28T17:48:33.443379+00:00"
+    },
+    "A_E2_s20261029": {
+      "checkpoint_sha256": "0d6502875aaa2032635de1eac8206e7881d327257345749aaee1391adb5a0f76",
+      "validation_sha256": "3456125678b301cd127750519f94e8cda8c1371e82377d90755a77d0d0c3b141",
+      "receipt_sha256": "83be0721fe7e59b9ddfcafad85bd619b4da692ed075412a4fd59555f108a76fd",
+      "temperature": 0.863841404727911,
+      "completed_utc": "2026-10-28T17:48:58.547262+00:00"
+    },
+    "B_E2_s20261029": {
+      "checkpoint_sha256": "8b9e3f8dd47f69596e36d9eefdd3c7d32f623d5cb96338efdff6c146cb43cd9f",
+      "validation_sha256": "d496c9089dd6a64ec0274a9076c7f98ee256da133770826b511143798de4aeef",
+      "receipt_sha256": "d79f52ac62a72a3122dee91194b44b228eca9d05c7569c1684dd9b04f56dd13f",
+      "temperature": 0.8689528802392864,
+      "completed_utc": "2026-10-28T17:49:22.100720+00:00"
+    },
+    "C_E2_s20261029": {
+      "checkpoint_sha256": "e46515ed80fd9b1add78e434b4021abd164ccace48a8c9251057f6a418cf0646",
+      "validation_sha256": "8417a39febc3254d357c0013de843780c402ceb58ef798edf1cdff532b40269f",
+      "receipt_sha256": "ae0bdf6f7aeb3bb084988f5c7708ac81fae6e45e5cf18ff3b0b4c72d1fc044ee",
+      "temperature": 0.9427867845635508,
+      "completed_utc": "2026-10-28T17:49:39.355063+00:00"
+    },
+    "D_E2_s20261029": {
+      "checkpoint_sha256": "cb749ce48f8c38545e86e11f2cc385e13a30768a3b9954de16dc80c596c78871",
+      "validation_sha256": "ff6c1c12ed22851a6bfb35c3ad309d446c27c82a2fce8a41b452818be29bdd49",
+      "receipt_sha256": "a8afb95f276b7d91e6ba5497a63c911f6af230707cb0b0e1957a0aff844b7934",
+      "temperature": 1.0393086751173612,
+      "completed_utc": "2026-10-28T17:49:45.125414+00:00"
+    },
+    "E_E2_s20261029": {
+      "checkpoint_sha256": "9f7710cfbc72b90bd0b7926ce71fb2d95a55bf7781cfcaf46912f65d6ad637c8",
+      "validation_sha256": "a9df0cae8b1ceee0df144c62251ab81163e72d303b87acd0f12eadb4b078dcc7",
+      "receipt_sha256": "d0749d8c688e9baaa81dc0cfac91d1e9434fc2e7f0cbf5c98620a67fe9f4cbef",
+      "temperature": 0.7780218926021453,
+      "completed_utc": "2026-10-28T17:50:35.474532+00:00"
+    },
+    "A_E2_s20261030": {
+      "checkpoint_sha256": "a39fc975deec71c734cbbfe529bd4845bb8d6105079ea961e9175f3809cad97d",
+      "validation_sha256": "fa320a013955f4bd1f292f233202fb7d4b2cfa8524b6615f70fd7d66889031d7",
+      "receipt_sha256": "41bc6c42b640e7e6e75c21a345dfbd483cb7fd8d264e0524a46cfe6b067b1f31",
+      "temperature": 0.838071275661287,
+      "completed_utc": "2026-10-28T17:51:04.738756+00:00"
+    },
+    "B_E2_s20261030": {
+      "checkpoint_sha256": "5dd10130265c3e9bb9457af8d496c15da1d654b6bd57967fb821c71153f55014",
+      "validation_sha256": "7519d0d10ebd23e599f42d61fde8fe4d26a7a6194d1ff33e51771e0825bd458b",
+      "receipt_sha256": "ea689e88d81ba457f68b248ba7097354b305eb50763f3ace0cbca958b08bb40a",
+      "temperature": 0.8289751556534656,
+      "completed_utc": "2026-10-28T17:51:30.467160+00:00"
+    },
+    "C_E2_s20261030": {
+      "checkpoint_sha256": "28e0393773968f22cc58ba152e6c828523b6bc6e1ebd01e0456ab756952b986d",
+      "validation_sha256": "17d743425848310c785f532ff94dd2c7e35ec5bf545d3d0f32bb81330645de09",
+      "receipt_sha256": "7102cf62811d33e5e909969c49cdb64956ce396e122e644ef78bae441d7d61ba",
+      "temperature": 0.8579135295290358,
+      "completed_utc": "2026-10-28T17:51:48.595555+00:00"
+    },
+    "D_E2_s20261030": {
+      "checkpoint_sha256": "582317e097627f4d87fc1021f513cdc397c440a65814e0343f7e99a7caa58ce7",
+      "validation_sha256": "12ef08d36ec54be856ddec625e2fe05752cbe5ff98c2b6fb70e947aa26a16918",
+      "receipt_sha256": "903a84df9c942e999b5b6386256654385bbccf76780d78f1b589a26cbf5fb997",
+      "temperature": 0.982391622763082,
+      "completed_utc": "2026-10-28T17:51:56.469014+00:00"
+    },
+    "E_E2_s20261030": {
+      "checkpoint_sha256": "4bd286734c8ea50a9e62556dcf477413c05220815471a7070096223b7f17b701",
+      "validation_sha256": "276311d691f29348cfcc3355e049c9df7cd223a133c54052e1ac3bb3a1195686",
+      "receipt_sha256": "2e85d28d1321e4d7e23ace99a5c6644049ee6472c740378cd157d00b0af13f7c",
+      "temperature": 0.7589868898187606,
+      "completed_utc": "2026-10-28T17:53:05.206479+00:00"
+    },
+    "A_E3_s20261026": {
+      "checkpoint_sha256": "4e6fb8aa859b835933701b94abe9b1d48d3626aa83a0829d582769dad80bee2a",
+      "validation_sha256": "bc532414f6c196af68bd2b970447ad9d517560e741551580061286efa55383f7",
+      "receipt_sha256": "205f4118a52bd5699fcf29580a820078a4f30e25a6e21e91578795ba79307e52",
+      "temperature": 0.9968013006152169,
+      "completed_utc": "2026-10-28T17:53:39.452239+00:00"
+    },
+    "B_E3_s20261026": {
+      "checkpoint_sha256": "87d5796d03750ed032900b2071c23e6f52e235cdab1121824a1364fdff94099f",
+      "validation_sha256": "3aee283e07d4d8b22e9533b23e344aa223096d1df78dc20b467f36fd340f948f",
+      "receipt_sha256": "358e3285880311a6dcf18e45db6acfd727409891b49f2c28b0a6a149bdbd742c",
+      "temperature": 0.9985143020338818,
+      "completed_utc": "2026-10-28T17:54:10.802263+00:00"
+    },
+    "C_E3_s20261026": {
+      "checkpoint_sha256": "79edeff5880e1d6b24bb8c08d06e1787e7bc6825b64733af403e6dd15d70b026",
+      "validation_sha256": "0804a56da8bce84a046191f9adda269e6acdb64fd0405c88b0ba9eb1a3d05b2b",
+      "receipt_sha256": "c5093a1ac5bb409c3035cf4e1b52e36a66ac8e0bbc90808a4aa22cb6d19454b2",
+      "temperature": 0.9645875093409464,
+      "completed_utc": "2026-10-28T17:54:30.805425+00:00"
+    },
+    "D_E3_s20261026": {
+      "checkpoint_sha256": "c65d6e907d97234bd2ca97a556987a4dc597658e90178f5651b303373470de6c",
+      "validation_sha256": "c6af81f55deedddde7694dbf45d34e18d5632ded33f7fca4fd4dea20389382d4",
+      "receipt_sha256": "9ac01d408f4fbb3372eec96b71f41c6a74e5e54044b0b54b5311fc897eb96164",
+      "temperature": 1.5763286359963564,
+      "completed_utc": "2026-10-28T17:54:42.878232+00:00"
+    },
+    "E_E3_s20261026": {
+      "checkpoint_sha256": "b46fd92a0ed5c9b170706db08db9c4ab2b95e4d853a9e6d5016f3ab9d20b4d42",
+      "validation_sha256": "a34956460c5a593ba0aef0f6595d60bf1d1a72e61430284ab1e619f3daee23ef",
+      "receipt_sha256": "6a8f0a0cfd319bcb5d38c196d870f5c1b1e7f8b7b42a87abfce7e248149aa739",
+      "temperature": 0.9591296235977665,
+      "completed_utc": "2026-10-28T17:55:41.125831+00:00"
+    },
+    "A_E3_s20261027": {
+      "checkpoint_sha256": "3eae20335ca0cd4f55f9307bca6861647fe3e745f000ee46340a9f431a9dccee",
+      "validation_sha256": "85f28743ad4730e501c37dea9c1596d62b3b37952da9fc66560857b197929b63",
+      "receipt_sha256": "59e6de487e57a963d978de0e6b42e0963257682bb2faa2c6ebec817ddf12ab1d",
+      "temperature": 1.289880331543423,
+      "completed_utc": "2026-10-28T17:56:14.426847+00:00"
+    },
+    "B_E3_s20261027": {
+      "checkpoint_sha256": "895302e0202ac2e66fa8e8b5b5105ea4452cd2ea87561b5f0c28389649dbd7cd",
+      "validation_sha256": "d3e1793ee9c2e63951f2a51c07ddf1deb4153c0d7eb652f3286b6323aa48d29b",
+      "receipt_sha256": "e0147757c0ad132a6c4e6bd637bbd893460638a1599497fb6704bb76dfbe7702",
+      "temperature": 1.2294611123719459,
+      "completed_utc": "2026-10-28T17:56:51.211243+00:00"
+    },
+    "C_E3_s20261027": {
+      "checkpoint_sha256": "40809f48000731d6bc8f0e3290e38235d7a212b81b9a5422cfd780bc8cf02f8a",
+      "validation_sha256": "b7fbaef81d4492a608b3cb0b25279499e4074da360106ff4adee3ca33dd39a47",
+      "receipt_sha256": "31ba4e7547bcdbdc1d430ffa6780857c394247144ed646cf442fcc837aae229b",
+      "temperature": 1.3247023850783484,
+      "completed_utc": "2026-10-28T17:57:13.948254+00:00"
+    },
+    "D_E3_s20261027": {
+      "checkpoint_sha256": "f0c6e043e4f4787bca96e41faf0a99879b6c10ae7111af110f9e9de3bc712777",
+      "validation_sha256": "955bc9242cf7658ba80cadc1fbb3b25639e7a607135d8683115818cd1b9a8a25",
+      "receipt_sha256": "d6e47ad890377ecb6baf4de166d72ccd7327a27882b0899b801cc9f11ffc9388",
+      "temperature": 1.3825106789009471,
+      "completed_utc": "2026-10-28T17:57:20.448253+00:00"
+    },
+    "E_E3_s20261027": {
+      "checkpoint_sha256": "d1d40c0ed52a851af73507cbc720b9d3ad1ac818aaa706cf0bd147d4f6277b92",
+      "validation_sha256": "5a51f145f8f6360dd84a13caf2a412d700ae9abfbc541c8c40c5ddc296c09eae",
+      "receipt_sha256": "568bf7e878ee19991f71cc20e0751f31acb10bc22961d318179097017a9b6631",
+      "temperature": 0.9608376165130808,
+      "completed_utc": "2026-10-28T17:58:15.360609+00:00"
+    },
+    "A_E3_s20261028": {
+      "checkpoint_sha256": "ece899bcfaeaab275ab6a75f619d77774e8e2b997d4efffcd06c8a57aff493c1",
+      "validation_sha256": "67f6dec3fbcaad993b9b1681786307f28f87a97d77f0b61baacbfdc8a8ec7a30",
+      "receipt_sha256": "26e9fc027954de69bab4701943c89380af60eb03b35ae9cd4f150c9fca2fc641",
+      "temperature": 1.3530388258721207,
+      "completed_utc": "2026-10-28T17:59:13.466930+00:00"
+    },
+    "B_E3_s20261028": {
+      "checkpoint_sha256": "d396f165a0b20827a2eef24675be59136a89921cdb6ad8bce61a31d8501df253",
+      "validation_sha256": "cfc62c880097775cc6ad599ef40dae2d49f395add68cbcfe07a8fe7fb5f79484",
+      "receipt_sha256": "7b057deb2d9542fc49f6706dcb1062061479e0784c7e0459f6be33c92e8772e0",
+      "temperature": 1.3530980918484945,
+      "completed_utc": "2026-10-28T18:00:00.438269+00:00"
+    },
+    "C_E3_s20261028": {
+      "checkpoint_sha256": "436f0fab499611de4d5824cdace08fc9f4fb3def5cc6780ea2691c8a7a9de324",
+      "validation_sha256": "decfd6d9123f82c6856ccd97197a25b65f0fc4091bf81fd8c700901d8eba7b3a",
+      "receipt_sha256": "cb14a290d365b04fc1779e3bffca23d3d816efea33434fa180eb19ad5da0e2a0",
+      "temperature": 1.0516842856921662,
+      "completed_utc": "2026-10-28T18:00:22.124146+00:00"
+    },
+    "D_E3_s20261028": {
+      "checkpoint_sha256": "6c33123f8869c6bbbae3f129efa22143d0bfd555dc6ee43ef83eba8a03110417",
+      "validation_sha256": "90e5aae62d9073ea5de58c974aba77a832f2d135717bb582dd86c7de71a8077f",
+      "receipt_sha256": "831210263ec52c71941046179d8c7d6d896f6f5feb2ad55891de8c751398c01a",
+      "temperature": 1.6845698408463154,
+      "completed_utc": "2026-10-28T18:00:35.940202+00:00"
+    },
+    "E_E3_s20261028": {
+      "checkpoint_sha256": "19d854fe69b94cb076360b2f93cde18b1615b009e28a87d5ab7c07323428a872",
+      "validation_sha256": "94198cdb0fc4c29626f88b2f5be5daa1607b020a722806e2bcae422eae748a9d",
+      "receipt_sha256": "76547e5706bad156a49f88fcad869fc3f7e4960dc6fd8751fb974911eef0d67e",
+      "temperature": 0.9893260924503091,
+      "completed_utc": "2026-10-28T18:01:48.431316+00:00"
+    },
+    "A_E3_s20261029": {
+      "checkpoint_sha256": "0c2d8b73dd3a421eb716067a70a857958976f33e574a631781a8bdd2c5cf2527",
+      "validation_sha256": "20021c54a1c53a4636a7c1ae31701b73deec991174952b936dd9428d06a31fa3",
+      "receipt_sha256": "887d6bf219341194321af78f9275467e1958703c8a04399223e43395102a299e",
+      "temperature": 1.1742124608366773,
+      "completed_utc": "2026-10-28T18:02:20.479134+00:00"
+    },
+    "B_E3_s20261029": {
+      "checkpoint_sha256": "28ca76a92d8d6c751fb510d8c9335155e0d15a26309dc2e639c3c3229ee83a7d",
+      "validation_sha256": "7f999cd4c817edbe700a1ac9f063bc93ab28449b0a2a822cb0846bd2e6e6b545",
+      "receipt_sha256": "0aeb5bb32bb93f67812f71fbde9c8b91cd6ba0c8ee2f0b49fa59848196c56639",
+      "temperature": 1.1646291378222455,
+      "completed_utc": "2026-10-28T18:02:54.983238+00:00"
+    },
+    "C_E3_s20261029": {
+      "checkpoint_sha256": "95894a576bb473c72f62c9fca1687df681aaff285e7b201b61a5bffa62ad7c37",
+      "validation_sha256": "d56e1525c915ecd729dbe3e887751607525ef63dceaaa6c8c15b9340a2123eb7",
+      "receipt_sha256": "a3bd97c08c098aeb45625f42b2c1f661abfd17511f643eb90af64d46a22dda46",
+      "temperature": 1.169694330639107,
+      "completed_utc": "2026-10-28T18:03:12.605098+00:00"
+    },
+    "D_E3_s20261029": {
+      "checkpoint_sha256": "91e9859a48b78fb2520ebc221f6e976b54e3a286fcb2088e00255a6815e360c4",
+      "validation_sha256": "fd356cacb3cdf9af61fb160a9728d088fb85e041efff59cdb0cd950b5c6afeea",
+      "receipt_sha256": "68357d2df8d44c3616d12e2f8461d83af97dfca1f62278d5f962553e0e6abc69",
+      "temperature": 1.0808840195097043,
+      "completed_utc": "2026-10-28T18:03:18.120456+00:00"
+    },
+    "E_E3_s20261029": {
+      "checkpoint_sha256": "d8ed51d4821c9da2d558b7ee3f4ea3dd31e825c392b0e0c630e180e3cb6c2b7b",
+      "validation_sha256": "1f6f1f2634ef71eaf717e67f60cd248ace9ed6104d7101b89b5dd9f65e8a65ff",
+      "receipt_sha256": "1f6c1d84475c2fa2f7da22cb098cc05055b3dc5be8a82d67a69fde9278d90497",
+      "temperature": 0.9741192811622205,
+      "completed_utc": "2026-10-28T18:04:10.146980+00:00"
+    },
+    "A_E3_s20261030": {
+      "checkpoint_sha256": "119c79814853262fb457e9981f2b6e4eb379b3682789f209856a883d9a6f9887",
+      "validation_sha256": "e82d0e5c851589af7306bc861484478d3d5480b8de4b9faf766840818ab30c5c",
+      "receipt_sha256": "0ede5e73fe2eb7374bcb0bcce286df898196c3e298a0e83826b3c4f0db55ec63",
+      "temperature": 1.3780745549447433,
+      "completed_utc": "2026-10-28T18:04:38.128019+00:00"
+    },
+    "B_E3_s20261030": {
+      "checkpoint_sha256": "be95ef0d4b84af79cf9c66cbbeeb1f920d262a72e1b6b0f2ac2d2e18bfbc0da8",
+      "validation_sha256": "b2b40111234f49ce7333560ec2a55f961bf7a82956dd4c5075adbb198ff61022",
+      "receipt_sha256": "d9dd5662ee847a73cf37c948349ea8e4f4d3e695419476f45149fd7f87fb39a9",
+      "temperature": 1.376838678055103,
+      "completed_utc": "2026-10-28T18:05:06.072367+00:00"
+    },
+    "C_E3_s20261030": {
+      "checkpoint_sha256": "7d97a1ed3804fee3fcfa13b7ff736c1a52b35873f20fda98c46e321d99bc5bf1",
+      "validation_sha256": "690bb789efa24f4b175c96458f660b2c6693dfaad1edce9bfa636e1ba46844d9",
+      "receipt_sha256": "6eb0e95660cb2fb8d4796e10bae687df21a03b3e1c9df0459c40d4162fb106f2",
+      "temperature": 1.2166155498446074,
+      "completed_utc": "2026-10-28T18:05:24.612932+00:00"
+    },
+    "D_E3_s20261030": {
+      "checkpoint_sha256": "63b52f91a54cf746a2a8a9c49d8c6da1fc9016e4c3c7350356230772c0720a2e",
+      "validation_sha256": "bddf5c6e8f974f10de535ef4dad36301fc415afa66ed4bb7b1b40f73ed39024a",
+      "receipt_sha256": "32af89086362925f9790173c3e36c20aaea48ffeec1a178efdf383737a4742b9",
+      "temperature": 1.1224738291838827,
+      "completed_utc": "2026-10-28T18:05:31.298662+00:00"
+    },
+    "E_E3_s20261030": {
+      "checkpoint_sha256": "34e11447b171ee56bc83b62c9c995dd6d3ce688c6c8a45171bd45ead62993082",
+      "validation_sha256": "c861679c5ca1f8c975a005b6a5b8626719578786ad34e8ad52156d8613ed1ec8",
+      "receipt_sha256": "2b78e8b98a1b575af30dd188d92b470021997486c2295beea5bb9a4c0d56143d",
+      "temperature": 1.03160270009503,
+      "completed_utc": "2026-10-28T18:06:30.381293+00:00"
+    }
+  },
+  "held_or_familiar_scored_before_freeze": false,
+  "research_status": "Exploratory follow-up; historical target results were previously known"
+}

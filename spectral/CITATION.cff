@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this implementation and also the original dataset and relevant methodological sources listed in NOTICE.md."
+type: software
+title: "MIRA-CSI spectral variant E (experimental)"
+authors:
+  - family-names: Bourkibate
+    given-names: Abdessamad
+version: "spectral-E-experimental"
+license: GPL-3.0
+repository-code: "https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi"
+abstract: "Experimental offline seven-class CSI activity classifier with observed-endpoint lagged-increment spectral features and a compact MLP. Developed by Abdessamad Bourkibate; evaluated as a prespecified comparator in an exploratory 75-fit study."
+keywords:
+  - Wi-Fi sensing
+  - channel state information
+  - activity recognition
+  - incomplete time series
+  - exploratory research

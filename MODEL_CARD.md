@@ -2,7 +2,102 @@
 
 **Developer and research lead:** Eng. Abdessamad Bourkibate<br>
 **Task:** offline classification of recorded Wi-Fi CSI into seven activity labels<br>
-**Status:** experimental software. The v0.2.0 research release adds the verified follow-up and manuscript; the original saved-model inference assets remain under v0.1.0.
+**Status:** v0.3.0 experimental research software, unreviewed and without an assigned DOI. The current entry point is spectral E; the original temporal model and earlier evidence are retained below.
+
+## Current variant: spectral E
+
+[`spectral/`](spectral/) provides **MIRA-CSI spectral variant E (experimental)**,
+developed by Abdessamad Bourkibate. It uses 360 observed-endpoint lagged-increment
+features, a 360–64–32 GELU MLP, dropout and a seven-logit head: **25,415 trainable
+parameters, with no temporal CNN**. It is distinct from the 40,871-parameter
+temporal model described in the retained card below.
+
+### Input, loading and output contract
+
+The input is an unnormalized processed `(18, 500)` **log-mean-power18** tensor:
+five-exported-subcarrier groups, three receive antennas and 500 normalized
+valid-packet positions. It is not raw complex CSI, dBm, physical time or the
+original amplitude representation. The optional `(500,)` mask is Boolean or
+finite binary, with 1 indicating an observed position. Mask validation precedes
+Boolean conversion. Non-finite observed values, invalid dimensions, numerical
+feature failures and non-finite features/logits/probabilities are rejected.
+Hidden numeric NaN/Inf fills do not enter the observed-only features; an empty
+record is rejected because total loss was not evaluated.
+
+The public wrapper verifies the pinned protocol/freeze, checkpoint and saved
+validation/receipt hashes before restricted Torch loading. Class order and the
+source-validation temperature must agree with the frozen records. Modules load
+from the same verified package root. Thirteen interface tests include invalid
+masks, hidden-fill feature independence, extreme finite-value overflow, mocked
+non-finite outputs, verified-root loading and hash rejection. These tests check
+software behaviour, not recognition accuracy. Hashes establish content
+consistency, not authenticity or external validity. [Commands and exact files](spectral/README.md).
+
+The first held E1 example is retained without selecting for success. Its true
+label is `sit`; E predicts `pick_up` when complete and `stand` under its B50
+mask. The two saved CLI replays match earlier batched probabilities within the
+declared float32 tolerance. Later finite-value/root-loading hardening was
+checked without additional real-record model inference.
+
+### Current evidence and its limits
+
+The extension uses 75 source fits: A–E × three outer folds × five seeds. The
+additional MiniRocket power18 reference has 15 configurations, including three
+reused source fits and 12 new ones. Both use the same power18 tensor, roles,
+seeds and masks. E is loss-augmented; the reference is clean-trained with
+source-band-mean fill and no explicit mask. This aligns input and prediction
+roles, not the complete training/repair policy.
+
+| Held condition | E accuracy (%) | E macro F1 (%) | Reference accuracy (%) | Reference macro F1 (%) |
+|---|---:|---:|---:|---:|
+| Complete | 75.175 ± 1.005 | 74.607 ± 1.207 | 53.841 ± 0.938 | 53.868 ± 1.009 |
+| Random 50% | 73.822 ± 0.942 | 73.329 ± 1.105 | 22.305 ± 1.102 | 16.112 ± 0.841 |
+| Contiguous 50% | 60.597 ± 1.375 | 59.159 ± 1.610 | 19.406 ± 2.330 | 15.636 ± 4.147 |
+
+Masks are averaged within each training seed before computing mean and sample
+SD across five seeds. These SDs are not population confidence intervals. NLL
+and summed multiclass Brier, all negative controls and full fold/domain scores
+are retained in the [32-page manuscript](paper/manuscript.pdf),
+[four-page supplement](paper/supplementary-results.pdf) and v0.3.0 evidence
+assets linked from the [README](README.md#evaluation). Under B50, E's NLL/Brier
+are 1.160 ± 0.014 / 0.552 ± 0.011; the reference's are
+4.852 ± 1.764 / 1.275 ± 0.168. E still has B50 pooled familiar accuracy
+53.325 ± 1.480%, and two pooled held training seeds are below 60% accuracy.
+Pooled familiar scores can repeat recordings and participants across outer
+folds; those prediction occurrences are not independent new samples.
+
+A/B hybrids remain weaker on complete held data than the reference:
+48.302 ± 2.627% and 48.048 ± 2.559%. The original primary A−B B50 macro-F1
+contrast remains +0.543 ± 0.654 percentage points, with four positive and one
+negative training seed. The additional, post-hoc E−reference contrast is
++43.524 ± 3.639 points. Its [39.879, 47.054] participant-bootstrap range is
+descriptive and conditional on fixed rooms, models, seeds and masks; it is not
+corrected for post-hoc selection and does not cover new-room or new-training-data
+uncertainty. E was a prespecified arm before its evaluation but was highlighted
+after the results; historical target outcomes had already influenced development.
+
+The construction is attributed to known covariance/temporal precedents in
+SFA/SOBI and earlier CSI eigen-feature work in PADS. Both A and B have ideal
+full-effective-support congruence invariance; matching supplies an endpoint
+reference and [0,2] bound. Numerical truncation can break that invariance, even
+at unchanged retained rank. A−B changes endpoint weighting and centering even
+on complete data; E's feature-only comparator with B's denominator was not
+tested. Consequently these results do not isolate a matching mechanism or a
+causal architectural effect, establish SOTA, or support a patent/first-in-field
+claim. Independent data and training-policy-matched controls remain necessary.
+
+All source weights and calibration were frozen before held/familiar model
+inference in this execution. Static per-record conversion and hash reads are
+distinct from target fitting or model inference. Loss is imposed after
+packet-index normalization, and different cohorts occupy different environments.
+No experiment here validates continuous live sensing, body imaging, vital signs
+or a causal room-only effect.
+
+## Earlier temporal model: retained documentation
+
+**The remainder of this card describes the original temporal predictor and
+v0.1.0–v0.2.1 studies. Its amplitude input, 40,871-parameter architecture,
+checkpoints and numerical results must not be relabelled as spectral E.**
 
 ## Input and output
 

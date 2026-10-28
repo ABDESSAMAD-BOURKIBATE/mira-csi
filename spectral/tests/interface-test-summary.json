@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "tests": 13,
+  "trained_model_forward_calls": 0,
+  "checked": [
+    "shape and real-valued input",
+    "finite binary mask before bool conversion",
+    "finite observed values",
+    "hidden-fill feature independence",
+    "bound classes/temperature/parameter count",
+    "checkpoint/validation/protocol tampering rejected before Torch deserialization",
+    "finite extreme input overflow rejected before model forward",
+    "nonfinite features/logits/probabilities rejected using synthetic mocks",
+    "loaded frozen-module paths match the verified package root"
+  ],
+  "scope": "API/integrity tests, not external model validation or novelty assessment."
+}

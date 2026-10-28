@@ -1,6 +1,13 @@
-\documentclass[a4paper,11pt,fleqn]{cas-dc}
+\documentclass[a4paper,11pt,fleqn]{mira-author}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{newpxtext}
+\usepackage{iftex}
+\ifPDFTeX
+ \usepackage{newpxmath}
+\else
+ \usepackage{unicode-math}
+ \setmathfont{texgyrepagella-math.otf}
+\fi
 \usepackage{microtype}
 \usepackage{tikz}
 \usepackage{enumitem}
@@ -85,8 +92,17 @@
 \renewcommand{\topfraction}{.9}
 \renewcommand{\dbltopfraction}{.9}
 \renewcommand{\textfraction}{.08}
+\input{mira-v2-table-style.tex}
+\input{matched-table-style.tex}
+\makeatletter
+\def\ps@authorpages{%
+ \def\@oddhead{}\def\@evenhead{}%
+ \def\@oddfoot{\hfil{\normalfont\fontsize{8.5}{10}\selectfont\thepage}\hfil}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
+
 \begin{document}
-\pagestyle{empty}
+\pagestyle{authorpages}
 \color{ink}
 \twocolumn[{
 \begin{minipage}{\textwidth}
@@ -115,7 +131,7 @@
 {\fontsize{11}{13}\selectfont\bfseries Abstract\par}
 \vspace{1mm}
 {\fontsize{10}{12.3}\selectfont
-Wi-Fi channel state information (CSI) supports contactless activity recognition, but clean accuracy alone does not establish reliability under domain change and incomplete measurements. We evaluate 1,260 genuine recordings from 30 participants in three indoor environments using participant-disjoint source partitions and leave-one-environment-out tests. Logistic regression and random forest attain pooled target accuracy of 36.7\% and 39.0\%. An initial 60-fit, five-seed comparison evaluates compact CNNs, the implemented missingness-informed model MIRA-CSI, and the official 9,996-feature MiniRocket transform. MIRA-CSI reaches 23.7\% complete-input accuracy; MiniRocket reaches 53.1\%. A frozen 90-fit follow-up isolates MIRA's explicit mask input, support-distance input and coverage pooling, and adds residual CNN controls. The clean-trained residual model reaches 33.8\% complete-input and 26.7\% contiguous-loss accuracy after averaging all five masks. Component controls do not establish an individual benefit for every MIRA addition; omitting distance slightly improves mean block-loss macro F1 in this experiment. Separately, source-only, fold-specific representation selection raises the known MiniRocket comparator to 57.4\% clean accuracy. Three offline repairs are compared under synthetic loss of normalized packet positions, with reconstruction error distinguished from classification and probability quality. Checkpoint hashes and saved probabilities undergo independent checks; participant-cluster resampling preserves repeated-view dependence. Classical interaction contrasts have both signs, while clean-source calibration does not guarantee reliable confidence after transfer and loss. Different participant cohorts occupy each environment, preventing identification of a causal room effect. These results document an executable model, controlled component tests and a reproducible reliability assessment; broader performance and deployment claims require independent data.\par}
+Wi-Fi channel state information (CSI) supports contactless activity recognition, but performance in one acquisition setting does not establish reliability after environmental change and measurement loss. We evaluate 1,260 genuine recordings from 30 participants in three indoor environments using participant-disjoint source partitions and leave-one-environment-out tests. An initial 60-fit model comparison and a separate 90-fit component-removal study retain mixed and adverse results for compact missingness-informed and residual networks. A further exploratory execution freezes 75 source-fitted models across five prespecified configurations before their test evaluation. Fixed log-mean-power inputs feed observed-endpoint temporal moments and generalized covariance spectra. The declared feature-only MLP arm E achieves mean held accuracy of $75.17\pm1.00$\% on complete input, $73.82\pm0.94$\% with random 50\% loss, and $60.60\pm1.37$\% with contiguous 50\% loss. These deviations describe five training seeds after within-seed mask averaging. Its contiguous-loss macro F1 is 59.16\%; two seed accuracies remain below 60\%. The primary matched-endpoint versus observed-cell normalization contrast in the hybrid model is only $+0.54\pm0.65$ macro-F1 percentage points. E's result therefore does not establish that support matching alone causes the improvement. Source-only calibration, recognition, proper probability scores and repeated-view dependence are documented alongside verified checkpoints and saved predictions. An additional fixed-power-input MiniRocket reference reaches 53.84\% complete and 19.41\% contiguous-loss accuracy. Its clean-source training and mean filling differ from E's loss augmentation and observed-mask features; this comparison does not isolate architecture. Different cohorts occupy each environment, and missingness is simulated after packet-index normalization. Historical target outcomes influenced development; external replication and matched controls are needed before general performance or deployment claims.\par}
 \vspace{2mm}
 {\sffamily\fontsize{8.7}{11}\selectfont\textbf{Keywords:} Wi-Fi sensing; channel state information; activity recognition; environmental shift; missing measurements; predictive reliability.\par}
 \vspace{3mm}
@@ -254,7 +270,7 @@ This study tests how activity recognition and predictive confidence change under
 \end{minipage}
 \end{center}
 
-\noindent The completed evaluation has three parts:
+\noindent The initial evaluation has three parts:
 \begin{enumerate}
 \item quantify separate and combined degradation;
 \item compare recognition and probability quality; and
@@ -632,10 +648,13 @@ The mean NLL and Brier values for all three compact neural configurations exceed
 
 At 80\% retained coverage under block loss, mean selective error was 76.8\% for MIRA-CSI and 79.8\% for MiniRocket. Thus, retaining high-confidence predictions is not sufficient to guarantee low error in these target conditions. Figure~\ref{fig:neuralrisk} records the complete coverage range rather than choosing a favorable operating point. These are conditional error descriptions, not a validated selective-risk bound.
 
-\section{Discussion}
-The completed comparisons show why model capacity, missingness handling and transfer must be assessed separately. The wider MiniRocket has stronger clean recognition, but its long-gap probability errors are larger in the original-representation loss experiment. Source-selected recording normalization improves its clean accuracy, without testing its loss robustness. Residual capacity improves on the compact CNNs in the follow-up, yet the examined models remain weak on held environments. These results cannot support a claim that high-capacity deep learning universally fails after achieving high source accuracy. All transfer statements use within-dataset partitions.
+\input{mira-v2-section.tex}
+\input{matched-reference-section.tex}
 
-Structured loss changes information before the classifier sees it. A long interpolated gap is determined by its observed boundary samples; it cannot uniquely recover an unobserved transition. The feature set includes temporal-bin means and first-difference statistics, both affected by that operation. This gives a plausible processing explanation for degradation, but a causal account of the individual class failures requires feature-specific ablations and further controlled acquisition. The extension compares three fixed repair operators but does not isolate every representation effect. These experiments do not establish that all CSI representations respond in the same way.
+\section{Discussion}
+The completed comparisons show why model capacity, missingness handling and transfer must be assessed separately. Among the original mean-log-amplitude models, MiniRocket has stronger clean recognition, but its long-gap probability errors are larger in the original-representation loss experiment. Source-selected recording normalization improves its clean accuracy, without testing its loss robustness. Residual capacity improves on the compact CNNs in that mean-log-amplitude follow-up. The separate log-mean-power extension changes the empirical picture: its feature-only arm E reaches 75.17\% complete and 60.60\% contiguous-loss accuracy, whereas its hybrid A remains at 48.30\% and 34.77\%. Those are outcomes for distinct specified pipelines; the higher E score does not identify a unique cause or validate every proposed component. The additional fixed-power MiniRocket reference reaches 53.84\% complete and 19.41\% contiguous-loss accuracy, while using clean source training and dense source-mean filling. The difference from E is a comparison of specified pipelines, not an isolated architectural or augmentation effect. These results cannot support a claim that high-capacity deep learning universally fails after achieving high source accuracy. All transfer statements use within-dataset partitions.
+
+Structured loss changes information before the classifier sees it. A long interpolated gap is determined by its observed boundary samples; it cannot uniquely recover an unobserved transition. The feature set includes temporal-bin means and first-difference statistics, both affected by that operation. This gives a plausible processing explanation for degradation, but a causal account of the individual class failures requires feature-specific ablations and further controlled acquisition. The original mean-log-amplitude extension compares three fixed repair operators but does not isolate every representation effect. These experiments do not establish that all CSI representations respond in the same way.
 
 The interaction results also refine the original hypothesis. Additional error under loss is not consistently larger in the target domain. Low clean accuracy leaves different scope for further error, and cohort and class-specific confusions can alter the contrast. Reporting both signs is necessary; selecting only the positive cells would overstate the evidence. Future comparisons should include additional frozen baselines and independently collected environments before generalizing this pattern.
 
@@ -656,8 +675,7 @@ The package contains executable analyses and numerical outputs; recordings remai
 
 The initial extension and follow-up retain separate frozen protocols and outputs. The latter contributes 90 checkpoint-verified fits, 5,580 independently reconstructed metric rows and 1,640,520 saved probability vectors; its source-only archive is preserved separately from target evaluation. The representation sensitivity contributes 30 sealed fit configurations and 12,600 independently checked clean held predictions, with explicit reuse of previously fitted seed-one models. These counts describe computational artifacts and repeated evaluations, not an increase in the 30-participant sample. Script versions, input and prediction hashes, exact masks and participant-bootstrap draws accompany the corresponding result packages.
 
-Across three held-out environments and 30 participants, complete-input accuracy was 36.7\% for logistic regression and 39.0\% for random forest; 50\% block loss reduced these to 25.5\% and 28.8\%. Class confusions and probability errors revealed additional limitations. Interaction contrasts had both signs, and participant-grouped resampling quantified conditional sensitivity. MIRA-CSI is an executable, documented research model whose component controls reveal limited and condition-specific evidence, including a small improvement when distance is omitted. The larger clean-trained residual control reaches 33.8\% held accuracy, while source-selected preprocessing improves the known MiniRocket comparator to 57.4\% on complete input. These results support reporting component effects, representation choices and probability quality together. Independent replication with matched participants across more rooms and deployment-relevant acquisition remains necessary before broader performance claims.
-
+The spectral extension adds 75 source-fitted and checkpoint-verified models, 485,100 saved test probability vectors and 1,650 independently reconstructed condition/domain rows. These are repeated evaluations of the same recordings, not additional participants. Its primary hybrid A--B difference is small and changes direction across training seeds. The prespecified feature-only E comparator is substantially stronger within this execution, with mean accuracy of 75.17\% complete, 73.82\% random-loss and 60.60\% contiguous-loss, but its prominence is an exploratory outcome after historical target inspection. It does not prove support matching, causal room invariance or general algorithmic superiority. The additional 15-configuration fixed-power MiniRocket comparison, including three reused source fits, retains 97,020 saved probability vectors and 330 reconstructed domain/condition rows. E outperforms this fixed reference, but differences in training policy and loss treatment prevent attributing that advantage to architecture alone. Across the studies, recognition, component effects, input representation and probability quality require separate reporting. Independent replication with matched participants across more rooms and deployment-relevant acquisition remains necessary.
 
 
 \appendix
@@ -672,7 +690,7 @@ A prespecified subset of NTU-Fi HAR exercises the loss-only evaluation. This pil
 
 The SenseFi public archive \cite{yang2023} contains 936 training and 264 test files, with six activity classes. A fixed SHA256 ranking selected 12 training, four validation, and eight test files per class: 72/24/48 files in total. Validation came exclusively from the released training partition. File checks found no non-finite values or exact duplicates in the selected inputs. Subject, session, and room identifiers were unavailable in this processed release.
 
-Each file provides a $342\times2000$ amplitude array. Following the released loader, every fourth time sample was retained. Three antenna streams were summarized over six subcarrier bands using six statistics and ten temporal-bin means, yielding 288 features. Logistic regression ($C=1$; training-only standardization) and a 200-tree random forest (minimum leaf size two) were fitted once. Temperature scaling used only the 24 clean validation files.
+Each file provides a 342-by-2000 amplitude array. Following the released loader, every fourth time sample was retained. Three antenna streams were summarized over six subcarrier bands using six statistics and ten temporal-bin means, yielding 288 features. Logistic regression ($C=1$; training-only standardization) and a 200-tree random forest (minimum leaf size two) were fitted once. Temperature scaling used only the 24 clean validation files.
 
 At each loss fraction, exactly 50, 150, or 250 of 500 time positions were masked across all channels. Uniform random masks and one contiguous block were generated with five fixed seeds. Linear interpolation used observed values only, with held boundary values. Test labels did not influence model fitting, calibration, or mask generation.
 
@@ -728,35 +746,35 @@ Figure~\ref{fig:csimaps} contains genuine six-class NTU-Fi pilot inputs on their
 \onecolumn
 \begingroup
 \begin{multicols}{2}
-\fontsize{9.5}{12.5}\selectfont
+\fontsize{9}{11.3}\selectfont
 
 
 
-\renewcommand{\bibfont}{\normalfont\fontsize{9.5}{12.5}\selectfont}
-\setlength{\bibsep}{4pt}
+\renewcommand{\bibfont}{\normalfont\fontsize{9}{11.3}\selectfont}
+\setlength{\bibsep}{3pt}
 \begin{thebibliography}{17}
 \raggedright
 \interlinepenalty=10000
 \bibitem{zinys2021}
-A. Zinys, B. van Berlo, and N. Meratnia. A Domain-Independent Generative Adversarial Network for Activity Recognition Using WiFi CSI Data. \textit{Sensors}, 21(23):7852, 2021. \href{https://doi.org/10.3390/s21237852}{doi:10.3390/s21237852}.
+A. Zinys, B. van Berlo, and N. Meratnia. A Domain-Independent Generative Adversarial Network for Activity Recognition Using WiFi CSI Data. \textit{Sensors}, 21(23):7852, 2021. \href{https://doi.org/10.3390/s21237852}{\nolinkurl{doi:10.3390/s21237852}}.
 \bibitem{guarino2026}
-I. Guarino, D. Carra, M. Cominelli, F. Gringoli, and R. Lo Cigno. A survey on CSI-based Wi-Fi sensing datasets and models with a focus on reproducibility. \textit{Computer Communications}, 249:108431, 2026. \href{https://doi.org/10.1016/j.comcom.2026.108431}{doi:10.1016/j.comcom.2026.108431}.
+I. Guarino, D. Carra, M. Cominelli, F. Gringoli, and R. Lo Cigno. A survey on CSI-based Wi-Fi sensing datasets and models with a focus on reproducibility. \textit{Computer Communications}, 249:108431, 2026. \href{https://doi.org/10.1016/j.comcom.2026.108431}{\nolinkurl{doi:10.1016/j.comcom.2026.108431}}.
 \bibitem{geng2022}
-J. Geng, D. Huang, and F. De la Torre. DensePose From WiFi. \textit{arXiv preprint}, arXiv:2301.00250, submitted 31 December 2022. \href{https://doi.org/10.48550/arXiv.2301.00250}{doi:10.48550/arXiv.2301.00250}.
+J. Geng, D. Huang, and F. De la Torre. DensePose From WiFi. \textit{arXiv preprint}, arXiv:2301.00250, submitted 31 December 2022. \href{https://doi.org/10.48550/arXiv.2301.00250}{\nolinkurl{doi:10.48550/arXiv.2301.00250}}.
 \bibitem{zheng2019}
-Y. Zheng, Y. Zhang, K. Qian, G. Zhang, Y. Liu, C. Wu, and Z. Yang. Zero-Effort Cross-Domain Gesture Recognition with Wi-Fi. In \textit{ACM MobiSys}, pp. 313--325, 2019. \href{https://doi.org/10.1145/3307334.3326081}{doi:10.1145/3307334.3326081}.
+Y. Zheng, Y. Zhang, K. Qian, G. Zhang, Y. Liu, C. Wu, and Z. Yang. Zero-Effort Cross-Domain Gesture Recognition with Wi-Fi. In \textit{ACM MobiSys}, pp. 313--325, 2019. \href{https://doi.org/10.1145/3307334.3326081}{\nolinkurl{doi:10.1145/3307334.3326081}}.
 \bibitem{yang2023}
-J. Yang, X. Chen, H. Zou, C. X. Lu, D. Wang, S. Sun, and L. Xie. SenseFi: A library and benchmark on deep-learning-empowered WiFi human sensing. \textit{Patterns}, 4(3):100703, 2023. \href{https://doi.org/10.1016/j.patter.2023.100703}{doi:10.1016/j.patter.2023.100703}.
+J. Yang, X. Chen, H. Zou, C. X. Lu, D. Wang, S. Sun, and L. Xie. SenseFi: A library and benchmark on deep-learning-empowered WiFi human sensing. \textit{Patterns}, 4(3):100703, 2023. \href{https://doi.org/10.1016/j.patter.2023.100703}{\nolinkurl{doi:10.1016/j.patter.2023.100703}}.
 \bibitem{guo2017}
 C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger. On Calibration of Modern Neural Networks. In \textit{ICML}, PMLR 70, pp. 1321--1330, 2017. \href{https://proceedings.mlr.press/v70/guo17a.html}{proceedings.mlr.press/v70/guo17a}.
 \bibitem{geifman2017}
 Y. Geifman and R. El-Yaniv. Selective Classification for Deep Neural Networks. In \textit{Advances in Neural Information Processing Systems}, vol. 30, 2017. \href{https://papers.nips.cc/paper_files/paper/2017/hash/4a8423d5e91fda00bb7e46540e2b0cf1-Abstract.html}{Official proceedings}.
 \bibitem{alsaify2020}
-B. A. Alsaify, M. M. Almazari, R. Alazrai, and M. I. Daoud. A dataset for Wi-Fi-based human activity recognition in line-of-sight and non-line-of-sight indoor environments. \textit{Data in Brief}, 33:106534, 2020. \href{https://doi.org/10.1016/j.dib.2020.106534}{doi:10.1016/j.dib.2020.106534}.
+B. A. Alsaify, M. M. Almazari, R. Alazrai, and M. I. Daoud. A dataset for Wi-Fi-based human activity recognition in line-of-sight and non-line-of-sight indoor environments. \textit{Data in Brief}, 33:106534, 2020. \href{https://doi.org/10.1016/j.dib.2020.106534}{\nolinkurl{doi:10.1016/j.dib.2020.106534}}.
 \bibitem{multienvdata}
-B. A. Alsaify, M. M. Almazari, R. Alazrai, and M. I. Aldaoud. A dataset for Wi-Fi-based human activity recognition in line-of-sight and non-line-of-sight indoor environments, v2. \textit{Mendeley Data}, 2021. \href{https://doi.org/10.17632/v38wjmz6f6.2}{doi:10.17632/v38wjmz6f6.2}. Parsed MAT files and scaling code: \href{https://github.com/lcsig/Dataset-for-Wi-Fi-based-human-activity-recognition-in-LOS-and-NLOS-indoor-environments/tree/5337147c5156948b13e6b05a50b79529614acfbe}{author repository, pinned revision}.
+B. A. Alsaify, M. M. Almazari, R. Alazrai, and M. I. Aldaoud. A dataset for Wi-Fi-based human activity recognition in line-of-sight and non-line-of-sight indoor environments, v2. \textit{Mendeley Data}, 2021. \href{https://doi.org/10.17632/v38wjmz6f6.2}{\nolinkurl{doi:10.17632/v38wjmz6f6.2}}. Parsed MAT files and scaling code: \href{https://github.com/lcsig/Dataset-for-Wi-Fi-based-human-activity-recognition-in-LOS-and-NLOS-indoor-environments/tree/5337147c5156948b13e6b05a50b79529614acfbe}{author repository, pinned revision}.
 \bibitem{halperin2011}
-D. Halperin, W. Hu, A. Sheth, and D. Wetherall. Tool release: Gathering 802.11n traces with channel state information. \textit{ACM SIGCOMM Computer Communication Review}, 41(1):53, 2011. \href{https://doi.org/10.1145/1925861.1925870}{doi:10.1145/1925861.1925870}.
+D. Halperin, W. Hu, A. Sheth, and D. Wetherall. Tool release: Gathering 802.11n traces with channel state information. \textit{ACM SIGCOMM Computer Communication Review}, 41(1):53, 2011. \href{https://doi.org/10.1145/1925861.1925870}{\nolinkurl{doi:10.1145/1925861.1925870}}.
 \bibitem{usgs2019}
 U.S. Geological Survey, Water Science School. The Water in You: Water and the Human Body. 22 May 2019. \href{https://www.usgs.gov/water-science-school/science/water-you-water-and-human-body}{USGS educational source}. Accessed 26 October 2026.
 \bibitem{gabriel1996}
@@ -764,21 +782,45 @@ C. Gabriel and S. Gabriel. Compilation of the dielectric properties of body tiss
 \bibitem{espressif2026}
 Espressif Systems. Wi-Fi Channel State Information Configure. \textit{ESP-IDF Programming Guide}, v6.1, ESP32. \href{https://docs.espressif.com/projects/esp-idf/en/v6.1/esp32/api-guides/wifi-driver/wifi-vendor-features.html}{Official documentation}. Accessed 26 October 2026.
 \bibitem{efron1979}
-B. Efron. Bootstrap Methods: Another Look at the Jackknife. \textit{The Annals of Statistics}, 7(1):1--26, 1979. \href{https://doi.org/10.1214/aos/1176344552}{doi:10.1214/aos/1176344552}.
+B. Efron. Bootstrap Methods: Another Look at the Jackknife. \textit{The Annals of Statistics}, 7(1):1--26, 1979. \href{https://doi.org/10.1214/aos/1176344552}{\nolinkurl{doi:10.1214/aos/1176344552}}.
 \bibitem{dempster2021}
-A. Dempster, D. F. Schmidt, and G. I. Webb. MiniRocket: A Very Fast (Almost) Deterministic Transform for Time Series Classification. In \textit{ACM SIGKDD}, pp. 248--257, 2021. \href{https://doi.org/10.1145/3447548.3467231}{doi:10.1145/3447548.3467231}. Basic multivariate reference code: \href{https://github.com/angus924/minirocket/tree/0b1c245d9c9dbc50886f28bc7b32d5d45b5663d6}{pinned source revision}.
+A. Dempster, D. F. Schmidt, and G. I. Webb. MiniRocket: A Very Fast (Almost) Deterministic Transform for Time Series Classification. In \textit{ACM SIGKDD}, pp. 248--257, 2021. \href{https://doi.org/10.1145/3447548.3467231}{\nolinkurl{doi:10.1145/3447548.3467231}}. Basic multivariate reference code: \href{https://github.com/angus924/minirocket/tree/0b1c245d9c9dbc50886f28bc7b32d5d45b5663d6}{pinned source revision}.
 \bibitem{che2018}
-Z. Che, S. Purushotham, K. Cho, D. Sontag, and Y. Liu. Recurrent Neural Networks for Multivariate Time Series with Missing Values. \textit{Scientific Reports}, 8:6085, 2018. \href{https://doi.org/10.1038/s41598-018-24271-9}{doi:10.1038/s41598-018-24271-9}.
+Z. Che, S. Purushotham, K. Cho, D. Sontag, and Y. Liu. Recurrent Neural Networks for Multivariate Time Series with Missing Values. \textit{Scientific Reports}, 8:6085, 2018. \href{https://doi.org/10.1038/s41598-018-24271-9}{\nolinkurl{doi:10.1038/s41598-018-24271-9}}.
 \bibitem{ganin2016}
 Y. Ganin, E. Ustinova, H. Ajakan, P. Germain, H. Larochelle, F. Laviolette, M. Marchand, and V. Lempitsky. Domain-Adversarial Training of Neural Networks. \textit{Journal of Machine Learning Research}, 17(59):1--35, 2016. \href{https://jmlr.org/papers/v17/15-239.html}{Official article and full text}.
 \bibitem{zhao2024csibert}
-Z. Zhao, T. Chen, F. Meng, H. Li, X. Li, and G. Zhu. Finding the Missing Data: A BERT-Inspired Approach Against Package Loss in Wireless Sensing. In \textit{IEEE INFOCOM 2024 -- IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS)}, pp. 1--6, 2024. \href{https://doi.org/10.1109/INFOCOMWKSHPS61880.2024.10620769}{doi:10.1109/INFOCOMWKSHPS61880.2024.10620769}.
+Z. Zhao, T. Chen, F. Meng, H. Li, X. Li, and G. Zhu. Finding the Missing Data: A BERT-Inspired Approach Against Package Loss in Wireless Sensing. In \textit{IEEE INFOCOM 2024 -- IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS)}, pp. 1--6, 2024. \href{https://doi.org/10.1109/INFOCOMWKSHPS61880.2024.10620769}{\nolinkurl{doi:10.1109/INFOCOMWKSHPS61880.2024.10620769}}.
 \bibitem{zhao2026csibert2}
-Z. Zhao, F. Meng, Z. Lyu, H. Li, X. Li, and G. Zhu. CSI-BERT2: A BERT-Inspired Framework for Efficient CSI Prediction and Classification in Wireless Communication and Sensing. \textit{IEEE Transactions on Mobile Computing}, 25(5):7241--7257, 2026. \href{https://doi.org/10.1109/TMC.2025.3640420}{doi:10.1109/TMC.2025.3640420}.
+Z. Zhao, F. Meng, Z. Lyu, H. Li, X. Li, and G. Zhu. CSI-BERT2: A BERT-Inspired Framework for Efficient CSI Prediction and Classification in Wireless Communication and Sensing. \textit{IEEE Transactions on Mobile Computing}, 25(5):7241--7257, 2026. \href{https://doi.org/10.1109/TMC.2025.3640420}{\nolinkurl{doi:10.1109/TMC.2025.3640420}}.
 \bibitem{zakeri2026age}
-A. Zakeri, N. T. Nguyen, and M. Juntti. Resource-Efficient Wi-Fi CSI-Based Sensing via Exploiting the Age of Samples. \textit{arXiv preprint}, arXiv:2606.31690v2, revised 5 October 2026. \href{https://doi.org/10.48550/arXiv.2606.31690}{doi:10.48550/arXiv.2606.31690}.
+A. Zakeri, N. T. Nguyen, and M. Juntti. Resource-Efficient Wi-Fi CSI-Based Sensing via Exploiting the Age of Samples. \textit{arXiv preprint}, arXiv:2606.31690v2, revised 5 October 2026. \href{https://doi.org/10.48550/arXiv.2606.31690}{\nolinkurl{doi:10.48550/arXiv.2606.31690}}.
 \bibitem{bourkibate2026mira}
 A. Bourkibate. MIRA-CSI: Missingness-Informed Recognition of Activities from Wi-Fi CSI. Software v0.1.0, 2026. \href{https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.1.0}{Code, model states and evaluated release}. Experimental software; no DOI assigned.
+\bibitem{m2pads}
+K. Qian, C. Wu, Z. Yang, Y. Liu, and Z. Zhou.
+PADS: Passive detection of moving targets with dynamic speed using PHY layer
+information. In \textit{2014 20th IEEE International Conference on Parallel
+and Distributed Systems (ICPADS)}, 2014.
+\href{https://doi.org/10.1109/PADSW.2014.7097784}{doi:10.1109/PADSW.2014.7097784}.
+
+\bibitem{m2sfa}
+L. Wiskott and T. J. Sejnowski.
+Slow feature analysis: Unsupervised learning of invariances.
+\textit{Neural Computation}, 14(4):715--770, 2002.
+\href{https://doi.org/10.1162/089976602317318938}{doi:10.1162/089976602317318938}.
+
+\bibitem{m2sobi}
+A. Belouchrani, K. Abed-Meraim, J.-F. Cardoso, and E. Moulines.
+A blind source separation technique using second-order statistics.
+\textit{IEEE Transactions on Signal Processing}, 45(2):434--444, 1997.
+\href{https://doi.org/10.1109/78.554307}{doi:10.1109/78.554307}.
+
+\bibitem{m2partial}
+G. Liu, F. A. Reda, K. J. Shih, T.-C. Wang, A. Tao, and B. Catanzaro.
+Image inpainting for irregular holes using partial convolutions.
+In \textit{European Conference on Computer Vision (ECCV)}, pp. 85--100, 2018.
+\href{https://www.ecva.net/papers/eccv_2018/papers_ECCV/html/Guilin_Liu_Image_Inpainting_for_ECCV_2018_paper.php}{Official proceedings}.
 \end{thebibliography}
 \end{multicols}
 \endgroup

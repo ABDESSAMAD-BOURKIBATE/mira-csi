@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "selection": "First E1 held recording in immutable manifest order, index 0",
+  "model": "E_E1_s20261026",
+  "purpose": "CLI replay of exactly two already evaluated views, not a new performance study",
+  "replayed_conditions": 2,
+  "new_performance_studies": 0,
+  "model_forward_calls": 2,
+  "optimizer_steps": 0,
+  "example_replaced": false,
+  "results": {
+    "complete": {
+      "probability_max_absolute_error": 1.0740997868907698e-07,
+      "logit_max_absolute_error": 9.5367431640625e-07,
+      "truth": "sit",
+      "prediction": "pick_up",
+      "correct": false,
+      "declared_probability_tolerance": 1e-06,
+      "declared_logit_tolerance": 1e-05,
+      "passed": true
+    },
+    "contiguous50": {
+      "probability_max_absolute_error": 1.1871546445885173e-07,
+      "logit_max_absolute_error": 1.430511474609375e-06,
+      "truth": "sit",
+      "prediction": "stand",
+      "correct": false,
+      "declared_probability_tolerance": 1e-06,
+      "declared_logit_tolerance": 1e-05,
+      "passed": true
+    }
+  },
+  "replay_interface_sha256": "b8eea09ed7665fa1bfc863848e19d7c9a7b2b03972c3fd4d4c0b5161ea1bc5ba",
+  "current_interface_sha256": "cc8561701aedaee47a50e01d0dee3c621436ec8661f55c96256e31f2002a376f",
+  "post_replay_hardening": "Finite-value rejection and verified-root module loading; tested without additional real-data forwards.",
+  "note": "One-record float32 execution compared with saved batched outputs. Agreement does not imply correctness."
+}
