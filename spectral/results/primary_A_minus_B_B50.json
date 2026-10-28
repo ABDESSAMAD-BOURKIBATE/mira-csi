@@ -1,0 +1,13 @@
+{
+  "mean_difference": 0.005433530075938909,
+  "sample_sd_paired_5seeds": 0.006538212794256683,
+  "mean_difference_percentage_points": 0.5433530075938908,
+  "sample_sd_percentage_points": 0.6538212794256683,
+  "positive_training_seeds": 4,
+  "zero_training_seeds": 0,
+  "negative_training_seeds": 1,
+  "sign_tolerance": 1e-12,
+  "contrast": "A minus B pooled held Macro-F1 under contiguous50; average masks within each seed first",
+  "inference": "Descriptive paired SD and sign count; no population CI or significance claim",
+  "preserves_original_primary": true
+}

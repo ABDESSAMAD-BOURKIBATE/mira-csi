@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "summarizer_sha256": "322e0dcee5d6ffcbb7f04c52c9a50c11a2c7ce4a28ffb73fc56d3a1231f1cdab",
+  "probability_audit_receipt_sha256": "0511d49ade3529eed2a43682d7024f065846c3f3891a9487816f144b8c7233ac",
+  "files_sha256": {
+    "mira_v2_reporting\\pooled_held_training_seed_mask_averages.csv": "77076bab14ac20922f2fb2dc41e5192b16309998c78819cab9274fc3efe21257",
+    "mira_v2_reporting\\pooled_held_mean_sampleSD_5seeds.csv": "29d945338f0c2265e78a1f85df902e51915ab7381cd7f819c01e9491667f92d2",
+    "mira_v2_reporting\\per_fold_domain_training_seed_mask_averages.csv": "add7bca28b76edcb5a2a4fc6e33b3c067fd2d2ea88e98edd1559ced87f4668f3",
+    "mira_v2_reporting\\per_fold_domain_mean_sampleSD_5seeds.csv": "b944f3905421c2c4024a4a18e18b9ab6684b3b3a5293e769806310e76b8b0db3",
+    "mira_v2_reporting\\paired_A_minus_B_B50_5seeds.csv": "f194c306f08138c6f5da9848e014d3474d302207d98af8614f1e2c6e18f51022",
+    "mira_v2_reporting\\interpretive_A_minus_B_block_vs_clean.csv": "3a2c1c67d8789086dce581328f21abe6a34f02dc6d19de41a196b147b6bf0ccf",
+    "mira_v2_reporting\\primary_A_minus_B_B50.json": "5dd87f1ffa19a4bed9a433293e7b3b563ff2c20ee0e9c841a0ff74a62c28da68",
+    "mira_v2_reporting\\summary.json": "dbb4c851bff8a4ccbcbaa4ac5ee7049e0e21a1df8530443b1ec8b78bc626cadd",
+    "mira_v2_reporting\\RESULTS-AR.md": "cf3470cf27ddf614ef2e1c15f74d79681a48c5f42c2bba4e6c92d9647bfc7e75"
+  },
+  "additional_forward_passes": 0,
+  "training_calls": 0,
+  "parameter_changes": 0
+}
