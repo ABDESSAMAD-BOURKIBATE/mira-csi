@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "software_version": "0.2.1",
+  "regression_cases_passed": 13,
+  "fresh_index_checkout_uses_LF": true,
+  "real_input_and_gradient_check_passed": true,
+  "legacy_complete_demo_prediction": "pick_up",
+  "legacy_block_demo_prediction": "sit_down",
+  "demo_true_class": "sit",
+  "classification_success_claim": false,
+  "frozen_study_source_hashes_verified": 5,
+  "paper_source_hashes_verified": 22,
+  "fresh_checkout_calibration_scope": "exact_legacy_v0.1.0_released_pair; no_current_source_seal",
+  "retraining_performed": false,
+  "new_scientific_performance_evaluation": false
+}

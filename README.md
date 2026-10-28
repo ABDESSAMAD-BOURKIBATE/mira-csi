@@ -79,6 +79,8 @@ python predict.py --checkpoint results/checkpoints/mira_csi_E3_s20261026.pt --in
 Add `--observed results/demo_observed.npy` for the matched block-loss example. A CPU is sufficient for saved-model inference. The predictor returns an activity label and seven model probabilities. The included example is a public recorded CSI segment.
 
 Exact evaluated package versions are in [`evaluation/package_versions.json`](evaluation/package_versions.json).
+The current predictor verifies exact released checkpoint/calibration pairs through a small [release manifest](evaluation/legacy-release-manifest.json). New runs bind calibration to checkpoint bytes; unknown historical pairs require an explicit legacy opt-in.
+See the [software integrity checks](evaluation/software-integrity/README.md) for corruption tests and the limits of these checks.
 
 <a id="architecture"></a>
 <h3><picture>
@@ -297,11 +299,15 @@ Install `requirements.txt`. Obtain the exact processed public input cache from t
 python -m pip install -r requirements.txt
 python prepare_data.py
 python check_inputs.py
-python run_experiment.py --models cnn_clean cnn_augmented mira_csi
-python run_experiment.py --models minirocket_9996
-python verify_results.py
-python summarize_results.py
+python run_experiment.py --output-root results/reproduction --models cnn_clean cnn_augmented mira_csi
+python run_experiment.py --output-root results/reproduction --models minirocket_9996
+python verify_results.py --output-root results/reproduction
+python summarize_results.py --output-root results/reproduction
 ```
+
+Use a fresh `results/reproduction` directory for a new experiment. A completion file alone is insufficient for reuse: current runs check source/configuration, inputs, run identity, checkpoint, saved probabilities, scores and histories. Partial, changed or unsealed historical outputs are refused. The published v0.1.0 package remains available for prediction and independent recalculation; it is not retroactively marked as a new run.
+
+[`requirements.txt`](requirements.txt) is the general installation list. For the original source-fit dependency versions, see [`requirements-original-evaluation.txt`](requirements-original-evaluation.txt) and the recorded [runtime versions](evaluation/package_versions.json); hardware can affect training. The separate component study has its own [pinned analysis requirements](studies/component_removal/requirements.txt).
 
 [`protocol.json`](protocol.json) fixes the original selection, participant roles, model settings and seeds. The [compute amendment](protocol_amendment_01.json) pairs training/mask seeds for the original primary comparison. Extra CNN masks and a previously completed full-grid MiniRocket run remain supplementary sensitivity data. The separate [component-control protocol](studies/component_removal/protocol.json) records the frozen follow-up. [Follow-up CSVs and analysis instructions](evaluation/component-controls/README.md) keep its full-grid summaries distinct from v0.1.0.
 

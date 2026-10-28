@@ -1,11 +1,14 @@
 """Independent recomputation from saved probabilities, with completeness checks."""
 from pathlib import Path
-import csv, json
+import argparse, csv, json
 import numpy as np
 from sklearn.metrics import f1_score
 
 root = Path(__file__).resolve().parent
-out = root/'results'; config = json.loads((root/'protocol.json').read_text())
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--output-root', type=Path, default=root/'results')
+args = parser.parse_args()
+out = args.output_root.resolve(); config = json.loads((root/'protocol.json').read_text())
 manifest = json.loads((root/'data/manifest.json').read_text())['selected']
 conditions = json.loads((out/'conditions.json').read_text())
 checked = 0; rows_checked = 0; errors = []

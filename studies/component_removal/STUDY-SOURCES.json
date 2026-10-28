@@ -26,7 +26,6 @@
   },
   "files_in_git": "Source, instructions and small provenance/validation receipts only; no data cache or model states",
   "doi": null,
-  "patent_claim": false,
   "licensing": "Original study code GPL-3.0-or-later; Alsaify et al. data CC BY 4.0; scaling source retains MIT notice",
   "defaults_preserved": "Always provide explicit --data-root and --output-root; original defaults refer to the historical experiment layout."
 }

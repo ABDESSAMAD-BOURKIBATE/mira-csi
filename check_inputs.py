@@ -1,13 +1,14 @@
 """Input, mask, model and backward-pass checks; not performance evidence."""
 from pathlib import Path
-import hashlib, json
+import json
 import numpy as np
 from missingness import make_mask, repair, gap_distance
+from integrity import verify_input_hash
 
 root = Path(__file__).resolve().parent
 receipt = json.loads((root/'input_receipt.json').read_text())
 for name, sha in receipt['sha256'].items():
-    assert hashlib.sha256((root/'data'/name).read_bytes()).hexdigest() == sha
+    verify_input_hash(root/'data'/name, sha, text=name.endswith('.json'))
 X = np.load(root/'data/band_streams.npy')
 entries = json.loads((root/'data/manifest.json').read_text())['selected']
 assert X.shape == (1260,18,500) and np.isfinite(X).all()

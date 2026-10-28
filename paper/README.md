@@ -56,6 +56,5 @@ remain separate, as recorded in [NOTICE.md](../NOTICE.md) and [data attribution]
 }
 ```
 
-Cite the original dataset and MiniRocket separately when using them. A GitHub
-timestamp records public availability; it does not certify novelty, establish
-a granted patent or replace scientific review.
+Cite the original dataset and MiniRocket separately when using them. Versioned
+source and SHA256 records identify the exact author version distributed here.

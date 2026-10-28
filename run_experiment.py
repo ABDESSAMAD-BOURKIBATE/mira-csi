@@ -13,6 +13,8 @@ from scipy.optimize import minimize_scalar
 from sklearn.metrics import f1_score, log_loss
 from mira_model import ActivityCNN
 from missingness import make_mask, repair, gap_distance
+from integrity import (IntegrityError, atomic_json, completed_or_available,
+                       run_context, run_identity, seal_completed_run, text_sha256)
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT/'results'
@@ -132,7 +134,8 @@ def train_cnn(X, y, entries, train, val, mean, scale, variant, seed, target, dev
     tag = f'{variant}_E{target}_s{seed}'
     torch.save(dict(state_dict=state, mean=mean, scale=scale, variant=variant,
                     seed=seed, target_environment=target, best_epoch=best_epoch,
-                    classes=CLASSES, protocol_sha256=hashlib.sha256((ROOT/'protocol.json').read_bytes()).hexdigest()),
+                    classes=CLASSES, protocol_sha256=text_sha256(ROOT/'protocol.json'),
+                    model_source_sha256_lf={n: text_sha256(ROOT/n) for n in ['mira_model.py', 'missingness.py']}),
                OUT/'checkpoints'/f'{tag}.pt')
     write_rows(OUT/'histories'/f'{tag}.csv', history)
     return model, dict(epochs=len(history), best_epoch=best_epoch,
@@ -168,23 +171,38 @@ def evaluate(predict, X, y, entries, indices, mean, vp_logits, val_y, name, seed
     write_rows(OUT/'metrics'/f'{tag}.csv', rows)
     metadata.update(temperature=temperature, validation_nll=float(optimum.fun),
                     clean_held_accuracy=rows[0]['accuracy'], clean_familiar_accuracy=rows[1]['accuracy'])
-    (OUT/'runs'/f'{tag}.json').write_text(json.dumps(metadata, indent=2))
+    seal_completed_run(OUT, tag, metadata, run_identity(name, seed, target), CURRENT_CONTEXT)
     print(f"DONE {tag}: held clean={100*rows[0]['accuracy']:.2f}%, "
           f"familiar={100*rows[1]['accuracy']:.2f}%", flush=True)
 
 
 def main():
+    global OUT, CURRENT_CONTEXT
     parser = argparse.ArgumentParser()
-    parser.add_argument('--models', nargs='+', default=CONFIG['models'])
-    parser.add_argument('--seeds', nargs='+', type=int, default=CONFIG['training_seeds'])
-    parser.add_argument('--folds', nargs='+', type=int, default=CONFIG['folds'])
+    parser.add_argument('--models', nargs='+', choices=CONFIG['models'], default=CONFIG['models'])
+    parser.add_argument('--seeds', nargs='+', type=int, choices=CONFIG['training_seeds'], default=CONFIG['training_seeds'])
+    parser.add_argument('--folds', nargs='+', type=int, choices=CONFIG['folds'], default=CONFIG['folds'])
+    parser.add_argument('--output-root', type=Path, default=OUT,
+                        help='Use a fresh directory for new runs; unsealed historical outputs are never silently reused')
     args = parser.parse_args()
+    OUT = args.output_root.resolve()
+    CURRENT_CONTEXT = run_context(ROOT)
+    completed = set()
+    # Check the entire requested set before writing global metadata or fitting.
+    for target in args.folds:
+        for seed in args.seeds:
+            for name in args.models:
+                tag = f'{name}_E{target}_s{seed}'
+                if completed_or_available(OUT, tag, run_identity(name, seed, target), CURRENT_CONTEXT):
+                    completed.add(tag)
     for directory in ['checkpoints', 'histories', 'predictions', 'metrics', 'runs']:
         (OUT/directory).mkdir(parents=True, exist_ok=True)
-    (OUT/'conditions.json').write_text(json.dumps(CONDITIONS, indent=2))
-    receipt = json.loads((ROOT/'input_receipt.json').read_text())
-    for key in ['band_streams.npy', 'manifest.json']:
-        assert hashlib.sha256((ROOT/'data'/key).read_bytes()).hexdigest() == receipt['sha256'][key]
+    condition_path = OUT/'conditions.json'
+    if condition_path.exists():
+        if json.loads(condition_path.read_text()) != json.loads(json.dumps(CONDITIONS)):
+            raise IntegrityError('Existing output conditions differ; use a fresh --output-root')
+    else:
+        atomic_json(condition_path, CONDITIONS)
     X = np.load(ROOT/'data/band_streams.npy')
     entries = json.loads((ROOT/'data/manifest.json').read_text())['selected']
     assert X.shape == (1260,18,500) and np.isfinite(X).all()
@@ -193,9 +211,10 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     torch.set_num_threads(2); torch.backends.cudnn.benchmark = False
     torch.use_deterministic_algorithms(True)
-    (OUT/'runtime.json').write_text(json.dumps(dict(torch=torch.__version__, numpy=np.__version__,
+    runtime = dict(torch=torch.__version__, numpy=np.__version__,
          device=str(device), device_name=torch.cuda.get_device_name(0) if device.type=='cuda' else 'CPU',
-         protocol_sha256=hashlib.sha256((ROOT/'protocol.json').read_bytes()).hexdigest()), indent=2))
+         protocol_sha256=CURRENT_CONTEXT['protocol_sha256'])
+    if not (OUT/'runtime.json').exists(): atomic_json(OUT/'runtime.json', runtime)
     print('Device:', device, '| files:', len(entries), '| models:', args.models, flush=True)
     split_audit = []
     for target in args.folds:
@@ -213,7 +232,7 @@ def main():
         for seed in args.seeds:
             for name in args.models:
                 tag = f'{name}_E{target}_s{seed}'
-                if (OUT/'runs'/f'{tag}.json').exists():
+                if tag in completed:
                     print('Resume verified completed run:', tag, flush=True)
                     continue
                 start = time.perf_counter()
@@ -239,7 +258,8 @@ def main():
                             rocket.transform(np.ascontiguousarray(xx), parameters)))
                     vp = predict(X[val], None, None)
                     joblib.dump(dict(parameters=parameters, scaler=scaler, classifier=classifier,
-                                     classes=CLASSES), OUT/'checkpoints'/f'{tag}.joblib')
+                                     classes=CLASSES, variant=name, seed=seed, target_environment=target,
+                                     protocol_sha256=CURRENT_CONTEXT['protocol_sha256']), OUT/'checkpoints'/f'{tag}.joblib')
                     metadata = dict(actual_features=9996, implementation='official Numba multivariate reference')
                 else:
                     model, metadata = train_cnn(X, y, entries, train, val, mean, scale,

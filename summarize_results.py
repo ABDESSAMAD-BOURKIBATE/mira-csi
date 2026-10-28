@@ -1,6 +1,6 @@
 """Summaries and publication plots computed only from verified result files."""
 from pathlib import Path
-import json
+import argparse, json
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -9,7 +9,10 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import f1_score
 from missingness import make_mask,repair
 
-root=Path(__file__).resolve().parent; out=root/'results'
+root=Path(__file__).resolve().parent
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--output-root',type=Path,default=root/'results')
+args=parser.parse_args();out=args.output_root.resolve()
 receipt=json.loads((out/'verification.json').read_text())
 assert receipt['complete'], 'Run independent verification first.'
 df=pd.concat([pd.read_csv(p) for p in sorted((out/'metrics').glob('*.csv'))],ignore_index=True)
