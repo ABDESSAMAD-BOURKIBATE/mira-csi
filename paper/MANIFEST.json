@@ -5,7 +5,7 @@
   "figures": 14,
   "references": 21,
   "status": "Unreviewed author manuscript; no DOI assigned",
-  "pdf_sha256": "9b01a76bc58407d2d95b5e4fce316d44917e887a2866e46c67b6237e39da751d",
+  "pdf_sha256": "08f363c8a499143a7813aa4610bb99e826f3db055e75f741d6cb0db91dab6ff6",
   "source_files": {
     "source/cas-common.sty": "e95a01f4b33531d01ade231669fcc1e42f52193dddcb22ead5b63240eb952f8f",
     "source/cas-dc.cls": "9f7dd6cfc91f7ce52d0db29579894662e1dd8ae96d42cf18d6d0c697e42464f5",
@@ -19,7 +19,7 @@
     "source/followup_results.tex": "fad9b6b23ac5d90a748c87a48b151273665c05b33dbae9043b29aadf7f4cdc63",
     "source/imputation_comparison.pdf": "4250783a92f42ac04742eaafef46745b82b005f33f73f8b75a71373b572f76b9",
     "source/loss_accuracy.pdf": "c77f9dd51c2e9c3a063ac7286464a08ddb9372c418263524d42fb89bfb3f38e0",
-    "source/main.tex": "ef971b16160dd98cfd161217e6809e9c7086d17a3e04248063d2f465e2857602",
+    "source/main.tex": "8cb5166a8c4fd779ba32807642eb0283fac68c940744a8a584563c5cceb6eba2",
     "source/manifest.txt": "a73f1a2366697c58c23ca2b5d6189a86631a6a8a849d3993ca7f330b08a1c671",
     "source/mira_architecture.pdf": "6c67054232f05dbc739b289b4f4c40a664a4a01f582b06cfb1df917e0596c341",
     "source/neural_risk_coverage.pdf": "551bd45c6a4fa61d56590f355ce3db82da95af55611e5fcdc2cfcb5c35dae843",
@@ -30,5 +30,7 @@
     "source/transfer_confusions.pdf": "30b6ca0a10d9469ffac2f7e47fca7acf500672ae0cda53085b5844c29155f4cd",
     "source/transfer_interaction.pdf": "6e872f57d55adf9ae5f407a670e42414fe5530764ee113827b991d5c0b0ee9cf"
   },
-  "previews": "Actual rendered pages of manuscript.pdf, not generated result illustrations"
+  "previews": "Actual rendered pages of manuscript.pdf, not generated result illustrations",
+  "revision": "Author-approved AI-assistance declaration; numerical study unchanged",
+  "declaration_author_approved": "2026-10-28"
 }

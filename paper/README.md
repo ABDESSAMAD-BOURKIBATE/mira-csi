@@ -7,6 +7,9 @@ Eng. **Abdessamad Bourkibate** · 28 October 2026
 
 This is the **unreviewed author manuscript**: 21 pages, 14 tables, 14 figures and
 21 references. It has not been accepted by a journal and has no assigned DOI.
+The current author version includes the author-approved AI-assistance declaration
+on page 20. Numerical results are unchanged. The [v0.2.0 archived PDF](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reliability-manuscript-20261028.pdf)
+predates that declaration; its published checksums remain valid for that archived version.
 The contribution is an executable model and a bounded, reproducible reliability study; the reported
 component findings are mixed and do not establish broad model superiority.
 

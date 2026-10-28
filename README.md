@@ -42,6 +42,8 @@ Software & Cybersecurity Engineer | AI & EdTech — **Share'In Holding**
 
 **Download the evidence:** [v0.2.0 research release](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.0) · [validated reproducibility supplement](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reproducibility-supplement-20261028-validated.zip) · [SHA256 checksums](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/SHA256SUMS.txt). The original v0.1.0 predictor package remains linked in Quick start.
 
+**Software update:** [v0.2.1 integrity patch](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.1) validates artifact reuse, checkpoint-bound calibration and portable text hashes. It preserves the recorded model results; [verification details](evaluation/software-integrity/README.md) include the clean-checkout check.
+
 <details>
 <summary><strong>Preview actual manuscript pages</strong></summary>
 
@@ -366,8 +368,8 @@ Use **Cite this repository** on GitHub or [`CITATION.cff`](CITATION.cff).
   author  = {Bourkibate, Abdessamad},
   title   = {{MIRA-CSI}: Missingness-Informed Recognition of Activities from Wi-Fi CSI},
   year    = {2026},
-  version = {0.2.0},
-  url     = {https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.0}
+  version = {0.2.1},
+  url     = {https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.1}
 }
 ```
 
