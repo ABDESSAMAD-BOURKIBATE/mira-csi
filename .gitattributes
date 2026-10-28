@@ -13,3 +13,7 @@ studies/component_removal/run_ablation.py -text
 studies/component_removal/protocol.json -text
 studies/component_removal/analysis_evaluation.py -text
 evaluation/component-controls/summaries/** -text
+# Retain upstream CAS styles without attributing their language volume to this model.
+paper/source/cas-common.sty linguist-vendored
+paper/source/cas-dc.cls linguist-vendored
+paper/source/cas-model2-names.bst linguist-vendored

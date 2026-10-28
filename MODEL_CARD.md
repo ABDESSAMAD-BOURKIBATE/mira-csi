@@ -2,7 +2,7 @@
 
 **Developer and research lead:** Eng. Abdessamad Bourkibate<br>
 **Task:** offline classification of recorded Wi-Fi CSI into seven activity labels<br>
-**Status:** experimental software; the runnable release is v0.1.0.
+**Status:** experimental software. The v0.2.0 research release adds the verified follow-up and manuscript; the original saved-model inference assets remain under v0.1.0.
 
 ## Input and output
 

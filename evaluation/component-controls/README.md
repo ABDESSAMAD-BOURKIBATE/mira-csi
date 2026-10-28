@@ -204,6 +204,10 @@ the repository root. It reads only these summary CSVs and fits no model.
 The existing v0.1.0 release assets cover the original 60-fit experiment. They do
 not include the new 90-fit checkpoints.
 
+The [v0.2.0 release](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.0)
+now provides the [validated supplement](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reproducibility-supplement-20261028-validated.zip),
+the complete manuscript PDF and [SHA256 checksums](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/SHA256SUMS.txt).
+
 ## Reproduce the frozen analysis
 
 Keep the source-trained and verified-evaluation ZIPs separate. The analysis reads

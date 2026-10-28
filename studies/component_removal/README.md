@@ -46,16 +46,15 @@ variant names listed below.
 
 ## Supplementary assets
 
-The approximately 227 MB supplement is intended as a downloadable release
-asset, **not as Git source files**:
+The approximately 227 MB supplement is a downloadable [v0.2.0 release asset](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/download/v0.2.0/MIRA-CSI-reproducibility-supplement-20261028-validated.zip), **not Git source files**:
 
 `MIRA-CSI-reproducibility-supplement-20261028-validated.zip`
 
 SHA256:
 `b06802d9e3cd064d94c3caead3f37c4dee5bea7b7fe3f73a157dbfbf4d79ee9e`
 
-Obtain the asset from the corresponding [repository release](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases)
-when attached. Extract it under `studies/component_removal/local-assets/supplement/`.
+Obtain the asset from the [v0.2.0 release](https://github.com/ABDESSAMAD-BOURKIBATE/mira-csi/releases/tag/v0.2.0).
+Extract it under `studies/component_removal/local-assets/supplement/`.
 That directory and all local runs/checkpoints/caches are ignored by this study's
 `.gitignore`. The article PDF is separate; preparation of the supplement does
 not assign a DOI or peer-review status.
